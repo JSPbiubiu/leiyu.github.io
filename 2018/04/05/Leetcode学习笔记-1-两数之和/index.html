@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hello World | 宝石叔叔的博客</title>
+  <title>Leetcode学习笔记:1.两数之和 | 宝石叔叔的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="第一种方法： 暴力枚举 不多说第二种方法：遍历数组，将target - 当前元素存入map作为键，当前下标作为值，继续进行遍历，若map中的键有当前元素，则当前的下标为结束下标，map中存的值为起始下标  12345678910111213141516171819202122public int[] twoSum(int[] nums, int target) &amp;#123;       int[]">
+<meta name="keywords" content="Leetcode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/04/05/hello-world/index.html">
+<meta property="og:title" content="Leetcode学习笔记:1.两数之和">
+<meta property="og:url" content="http://yoursite.com/2018/04/05/Leetcode学习笔记-1-两数之和/index.html">
 <meta property="og:site_name" content="宝石叔叔的博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="第一种方法： 暴力枚举 不多说第二种方法：遍历数组，将target - 当前元素存入map作为键，当前下标作为值，继续进行遍历，若map中的键有当前元素，则当前的下标为结束下标，map中存的值为起始下标  12345678910111213141516171819202122public int[] twoSum(int[] nums, int target) &amp;#123;       int[]">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-05T01:24:36.866Z">
+<meta property="og:updated_time" content="2018-04-05T06:54:23.773Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="Leetcode学习笔记:1.两数之和">
+<meta name="twitter:description" content="第一种方法： 暴力枚举 不多说第二种方法：遍历数组，将target - 当前元素存入map作为键，当前下标作为值，继续进行遍历，若map中的键有当前元素，则当前的下标为结束下标，map中存的值为起始下标  12345678910111213141516171819202122public int[] twoSum(int[] nums, int target) &amp;#123;       int[]">
   
     <link rel="alternative" href="/atom.xml" title="宝石叔叔的博客" type="application/atom+xml">
   
@@ -158,36 +159,29 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Leetcode学习笔记-1-两数之和" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      Leetcode学习笔记:1.两数之和
     </h1>
   
 
         
-        <a href="/2018/04/05/hello-world/" class="archive-article-date">
-  	<time datetime="2018-04-05T01:24:36.866Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-05</time>
+        <a href="/2018/04/05/Leetcode学习笔记-1-两数之和/" class="archive-article-date">
+  	<time datetime="2018-04-05T06:35:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-05</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <font face="微软雅黑" color="black" size="5"><br><strong>第一种方法： 暴力枚举 不多说</strong><br><br><strong>第二种方法：遍历数组，将target - 当前元素存入map作为键，当前下标作为值，继续进行遍历，若map中的键有当前元素，则当前的下标为结束下标，map中存的值为起始下标</strong></font>
 
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">       <span class="keyword">int</span>[] array = &#123;<span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line">	Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> TreeMap&lt;Integer, Integer&gt;();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(map.containsKey(target - nums[i])) &#123;</span><br><span class="line">			</span><br><span class="line">			array[<span class="number">1</span>] = i;</span><br><span class="line">			array[<span class="number">0</span>] = map.get(target - nums[i]);</span><br><span class="line">			<span class="keyword">return</span> array;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			map.put(nums[i], i);</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> array;</span><br><span class="line">   </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -216,6 +210,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Leetcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -266,7 +271,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/05/hello-world/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/05/Leetcode学习笔记-1-两数之和/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -300,7 +305,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="hello-world" data-title="Hello World" data-url="http://yoursite.com/2018/04/05/hello-world/"></div>
+	<div class="ds-thread" data-thread-key="Leetcode学习笔记-1-两数之和" data-title="Leetcode学习笔记:1.两数之和" data-url="http://yoursite.com/2018/04/05/Leetcode学习笔记-1-两数之和/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -322,7 +327,7 @@
   
 
   
-  <div id="SOHUCS" sid="hello-world" ></div> 
+  <div id="SOHUCS" sid="Leetcode学习笔记-1-两数之和" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
@@ -426,6 +431,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Leetcode</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
