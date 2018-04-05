@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Leetcode学习笔记:1.两数之和 | 宝石叔叔的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="第一种方法： 暴力枚举 不多说第二种方法：遍历数组，将target - 当前元素存入map作为键，当前下标作为值，继续进行遍历，若map中的键有当前元素，则当前的下标为结束下标，map中存的值为起始下标  12345678910111213141516171819202122public int[] twoSum(int[] nums, int target) &amp;#123;       int[]">
+  <meta name="description" content="第一种方法： 暴力枚举 不多说第二种方法：遍历数组，将target - 当前元素存入map作为键，当前下标作为值，继续进行遍历，若map中的键有当前元素，则当前的下标为结束下标，map中存的值为起始下标  12345678910111213141516171819public int[] twoSum(int[] nums, int target) &amp;#123;       int[] array">
 <meta name="keywords" content="Leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode学习笔记:1.两数之和">
 <meta property="og:url" content="http://yoursite.com/2018/04/05/Leetcode学习笔记-1-两数之和/index.html">
 <meta property="og:site_name" content="宝石叔叔的博客">
-<meta property="og:description" content="第一种方法： 暴力枚举 不多说第二种方法：遍历数组，将target - 当前元素存入map作为键，当前下标作为值，继续进行遍历，若map中的键有当前元素，则当前的下标为结束下标，map中存的值为起始下标  12345678910111213141516171819202122public int[] twoSum(int[] nums, int target) &amp;#123;       int[]">
+<meta property="og:description" content="第一种方法： 暴力枚举 不多说第二种方法：遍历数组，将target - 当前元素存入map作为键，当前下标作为值，继续进行遍历，若map中的键有当前元素，则当前的下标为结束下标，map中存的值为起始下标  12345678910111213141516171819public int[] twoSum(int[] nums, int target) &amp;#123;       int[] array">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-05T06:54:23.773Z">
+<meta property="og:updated_time" content="2018-04-05T06:55:12.214Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习笔记:1.两数之和">
-<meta name="twitter:description" content="第一种方法： 暴力枚举 不多说第二种方法：遍历数组，将target - 当前元素存入map作为键，当前下标作为值，继续进行遍历，若map中的键有当前元素，则当前的下标为结束下标，map中存的值为起始下标  12345678910111213141516171819202122public int[] twoSum(int[] nums, int target) &amp;#123;       int[]">
+<meta name="twitter:description" content="第一种方法： 暴力枚举 不多说第二种方法：遍历数组，将target - 当前元素存入map作为键，当前下标作为值，继续进行遍历，若map中的键有当前元素，则当前的下标为结束下标，map中存的值为起始下标  12345678910111213141516171819public int[] twoSum(int[] nums, int target) &amp;#123;       int[] array">
   
     <link rel="alternative" href="/atom.xml" title="宝石叔叔的博客" type="application/atom+xml">
   
@@ -181,7 +181,7 @@
       
         <font face="微软雅黑" color="black" size="5"><br><strong>第一种方法： 暴力枚举 不多说</strong><br><br><strong>第二种方法：遍历数组，将target - 当前元素存入map作为键，当前下标作为值，继续进行遍历，若map中的键有当前元素，则当前的下标为结束下标，map中存的值为起始下标</strong></font>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">       <span class="keyword">int</span>[] array = &#123;<span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line">	Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> TreeMap&lt;Integer, Integer&gt;();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(map.containsKey(target - nums[i])) &#123;</span><br><span class="line">			</span><br><span class="line">			array[<span class="number">1</span>] = i;</span><br><span class="line">			array[<span class="number">0</span>] = map.get(target - nums[i]);</span><br><span class="line">			<span class="keyword">return</span> array;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			map.put(nums[i], i);</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> array;</span><br><span class="line">   </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">       <span class="keyword">int</span>[] array = &#123;<span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line">	Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> TreeMap&lt;Integer, Integer&gt;();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;	</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(map.containsKey(target - nums[i])) &#123;</span><br><span class="line">			</span><br><span class="line">			array[<span class="number">1</span>] = i;</span><br><span class="line">			array[<span class="number">0</span>] = map.get(target - nums[i]);</span><br><span class="line">			<span class="keyword">return</span> array;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			map.put(nums[i], i);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> array;</span><br><span class="line">   </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -485,7 +485,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+              <a href="https://gengsuishang.github.io" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>莞尔的博客</a>
             </li>
           
             <li class="search-li">
