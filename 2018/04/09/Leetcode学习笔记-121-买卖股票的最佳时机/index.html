@@ -8,23 +8,23 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Leetcode学习笔记-121-买卖股票的最佳时机 | 宝石叔叔的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目：假设你有一个数组，其中第 i 个元素是一支给定股票第 i 天的价格。如果您只能完成最多一笔交易（即买入和卖出一股股票），则设计一个算法来找到最大的利润。1234输入: [7, 1, 5, 3, 6, 4]输出: 5最大利润 = 6-1 = 5（不是 7-1 = 6, 因为卖出价格需要大于买入价格）1234输入: [7, 6, 4, 3, 1]输出: 0在这种情况下, 没有交易完成, 即最大利">
+  <meta name="description" content="题目：假设你有一个数组，其中第 i 个元素是一支给定股票第 i 天的价格。 如果您只能完成最多一笔交易（即买入和卖出一股股票），则设计一个算法来找到最大的利润。 1234输入: [7, 1, 5, 3, 6, 4]输出: 5最大利润 = 6-1 = 5（不是 7-1 = 6, 因为卖出价格需要大于买入价格） 1234输入: [7, 6, 4, 3, 1]输出: 0在这种情况下, 没有交易完成, 即">
 <meta name="keywords" content="Array,Easy,Dynamic Programming">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode学习笔记-121-买卖股票的最佳时机">
 <meta property="og:url" content="http://yoursite.com/2018/04/09/Leetcode学习笔记-121-买卖股票的最佳时机/index.html">
 <meta property="og:site_name" content="宝石叔叔的博客">
-<meta property="og:description" content="题目：假设你有一个数组，其中第 i 个元素是一支给定股票第 i 天的价格。如果您只能完成最多一笔交易（即买入和卖出一股股票），则设计一个算法来找到最大的利润。1234输入: [7, 1, 5, 3, 6, 4]输出: 5最大利润 = 6-1 = 5（不是 7-1 = 6, 因为卖出价格需要大于买入价格）1234输入: [7, 6, 4, 3, 1]输出: 0在这种情况下, 没有交易完成, 即最大利">
+<meta property="og:description" content="题目：假设你有一个数组，其中第 i 个元素是一支给定股票第 i 天的价格。 如果您只能完成最多一笔交易（即买入和卖出一股股票），则设计一个算法来找到最大的利润。 1234输入: [7, 1, 5, 3, 6, 4]输出: 5最大利润 = 6-1 = 5（不是 7-1 = 6, 因为卖出价格需要大于买入价格） 1234输入: [7, 6, 4, 3, 1]输出: 0在这种情况下, 没有交易完成, 即">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-09T02:40:43.126Z">
+<meta property="og:updated_time" content="2018-04-09T04:10:55.708Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习笔记-121-买卖股票的最佳时机">
-<meta name="twitter:description" content="题目：假设你有一个数组，其中第 i 个元素是一支给定股票第 i 天的价格。如果您只能完成最多一笔交易（即买入和卖出一股股票），则设计一个算法来找到最大的利润。1234输入: [7, 1, 5, 3, 6, 4]输出: 5最大利润 = 6-1 = 5（不是 7-1 = 6, 因为卖出价格需要大于买入价格）1234输入: [7, 6, 4, 3, 1]输出: 0在这种情况下, 没有交易完成, 即最大利">
+<meta name="twitter:description" content="题目：假设你有一个数组，其中第 i 个元素是一支给定股票第 i 天的价格。 如果您只能完成最多一笔交易（即买入和卖出一股股票），则设计一个算法来找到最大的利润。 1234输入: [7, 1, 5, 3, 6, 4]输出: 5最大利润 = 6-1 = 5（不是 7-1 = 6, 因为卖出价格需要大于买入价格） 1234输入: [7, 6, 4, 3, 1]输出: 0在这种情况下, 没有交易完成, 即">
   
     <link rel="alternative" href="/atom.xml" title="宝石叔叔的博客" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/img/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
   <style type="text/css">
@@ -189,9 +189,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <font size="5"><br><strong>题目：</strong><br>假设你有一个数组，其中第 i 个元素是一支给定股票第 i 天的价格。<br><br>如果您只能完成最多一笔交易（即买入和卖出一股股票），则设计一个算法来找到最大的利润。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: [7, 1, 5, 3, 6, 4]</span><br><span class="line">输出: 5</span><br><span class="line"></span><br><span class="line">最大利润 = 6-1 = 5（不是 7-1 = 6, 因为卖出价格需要大于买入价格）</span><br></pre></td></tr></table></figure><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: [7, 6, 4, 3, 1]</span><br><span class="line">输出: 0</span><br><span class="line"></span><br><span class="line">在这种情况下, 没有交易完成, 即最大利润为 0。</span><br></pre></td></tr></table></figure><br><br><br><br><br><strong>解体思路：<br></strong><br>因为时间是不可逆的，所以不需要回头比较数据，<br>故只需要遍历一次数组：<br>利润 = 卖出- 买入<br>所以 让卖出尽可能大并让买入尽可能小。<br>最后 比较出所有利润中的最大值。</font>
-
-
+        <p><font size="5"><br><strong>题目：</strong><br>假设你有一个数组，其中第 i 个元素是一支给定股票第 i 天的价格。</font></p>
+<p>如果您只能完成最多一笔交易（即买入和卖出一股股票），则设计一个算法来找到最大的利润。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: [7, 1, 5, 3, 6, 4]</span><br><span class="line">输出: 5</span><br><span class="line"></span><br><span class="line">最大利润 = 6-1 = 5（不是 7-1 = 6, 因为卖出价格需要大于买入价格）</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: [7, 6, 4, 3, 1]</span><br><span class="line">输出: 0</span><br><span class="line"></span><br><span class="line">在这种情况下, 没有交易完成, 即最大利润为 0。</span><br></pre></td></tr></table></figure>
+<p><br><br><strong>解体思路：<br></strong><br>因为时间是不可逆的，所以不需要回头比较数据，<br>故只需要遍历一次数组：<br>利润 = 卖出- 买入<br>所以 让卖出尽可能大并让买入尽可能小。<br>最后 比较出所有利润中的最大值。</p>
 <h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">   <span class="keyword">int</span> maxPrice = <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">int</span> minPrice = Integer.MAX_VALUE;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> p : prices)&#123;</span><br><span class="line">       minPrice = Math.min(minPrice, p);</span><br><span class="line">       maxPrice = Math.max(maxPrice, p - minPrice);</span><br><span class="line">   &#125;</span><br><span class="line">    <span class="keyword">return</span> maxPrice;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxProfit</span><span class="params">(self, prices)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type prices: List[int]</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    maxPrice = <span class="number">0</span></span><br><span class="line">    minPrice = sys.maxsize</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> prices:</span><br><span class="line">       minPrice = min(minPrice, i)</span><br><span class="line">       maxPrice = max(maxPrice, i - minPrice)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> maxPrice</span><br></pre></td></tr></table></figure>
       
@@ -455,11 +457,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Divide and Conquer</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
+                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -468,10 +474,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Bit Manipulation</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
               </li>
              
               <li class="article-tag-list-item">
