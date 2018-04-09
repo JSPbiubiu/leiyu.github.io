@@ -9,14 +9,14 @@
   <title>Leetcode学习笔记-119-帕斯卡三角形II | 宝石叔叔的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="题目：给定一个索引 k，返回帕斯卡三角形（杨辉三角）的第 k 行。例如，给定 k = 3，则返回 [1, 3, 3, 1]。解体思路：此题跟118很相似，注意第0行是[1]。直接贴代码   Java：12345678910111213public List&amp;lt;Integer&amp;gt; getRow(int row) &amp;#123;      List&amp;lt;Integer&amp;gt; list = n">
-<meta name="keywords" content="Array">
+<meta name="keywords" content="Array,Easy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode学习笔记-119-帕斯卡三角形II">
 <meta property="og:url" content="http://yoursite.com/2018/04/08/Leetcode学习笔记-119-帕斯卡三角形II/index.html">
 <meta property="og:site_name" content="宝石叔叔的博客">
 <meta property="og:description" content="题目：给定一个索引 k，返回帕斯卡三角形（杨辉三角）的第 k 行。例如，给定 k = 3，则返回 [1, 3, 3, 1]。解体思路：此题跟118很相似，注意第0行是[1]。直接贴代码   Java：12345678910111213public List&amp;lt;Integer&amp;gt; getRow(int row) &amp;#123;      List&amp;lt;Integer&amp;gt; list = n">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-08T07:31:55.059Z">
+<meta property="og:updated_time" content="2018-04-09T02:44:18.135Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习笔记-119-帕斯卡三角形II">
 <meta name="twitter:description" content="题目：给定一个索引 k，返回帕斯卡三角形（杨辉三角）的第 k 行。例如，给定 k = 3，则返回 [1, 3, 3, 1]。解体思路：此题跟118很相似，注意第0行是[1]。直接贴代码   Java：12345678910111213public List&amp;lt;Integer&amp;gt; getRow(int row) &amp;#123;      List&amp;lt;Integer&amp;gt; list = n">
@@ -73,7 +73,7 @@
     			
             
     			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -160,6 +160,7 @@
           </div>
           <div id="js-content" class="content-ll">
             <article id="post-Leetcode学习笔记-119-帕斯卡三角形II" class="article article-type-post " itemscope itemprop="blogPost">
+
   <div class="article-inner">
     
       <header class="article-header">
@@ -175,6 +176,11 @@
   	<time datetime="2018-04-08T07:24:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-08</time>
 </a>
         
+        
+        		<span class="archive-article-date">
+        			阅读量 <span id="busuanzi_value_page_pv"></span>
+        		</span>
+        
       </header>
     
     <div class="article-entry" itemprop="articleBody">
@@ -182,8 +188,8 @@
         <font size="5"><br><strong>题目：</strong><br>给定一个索引 k，返回帕斯卡三角形（杨辉三角）的第 k 行。<br><br>例如，给定 k = 3，<br><br>则返回 [1, 3, 3, 1]。<br><br><br><br><strong>解体思路：<br></strong><br>此题跟118很相似，注意第0行是[1]。直接贴代码</font>
 
 
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">getRow</span><span class="params">(<span class="keyword">int</span> row)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">      List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;Integer&gt;(row + <span class="number">1</span>);</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= row; i++) &#123;</span><br><span class="line"></span><br><span class="line">          list.add(<span class="number">1</span>);</span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">int</span> j = i - <span class="number">1</span>; j &gt; <span class="number">0</span>; j--) &#123;</span><br><span class="line">              list.set(j, list.get(j) + list.get(j - <span class="number">1</span>));</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> list;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate</span><span class="params">(self, numRows)</span>:</span></span><br><span class="line">      <span class="string">"""</span></span><br><span class="line"><span class="string">      :type numRows: int</span></span><br><span class="line"><span class="string">      :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">      """</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">getRow</span><span class="params">(self, rowIndex)</span>:</span></span><br><span class="line">      <span class="string">"""</span></span><br><span class="line"><span class="string">      :type rowIndex: int</span></span><br><span class="line"><span class="string">      :rtype: List[int]</span></span><br><span class="line"><span class="string">      """</span></span><br><span class="line">      everyRow = []</span><br><span class="line">      <span class="keyword">for</span> i <span class="keyword">in</span> range(rowIndex + <span class="number">1</span>):</span><br><span class="line">          everyRow.insert(i, <span class="number">1</span>)</span><br><span class="line">          <span class="keyword">for</span> j <span class="keyword">in</span> range(i - <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>):</span><br><span class="line">              everyRow[j] = everyRow[j] + everyRow[j - <span class="number">1</span>]</span><br><span class="line">      <span class="keyword">return</span> everyRow</span><br></pre></td></tr></table></figure>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">getRow</span><span class="params">(<span class="keyword">int</span> row)</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">     List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;Integer&gt;(row + <span class="number">1</span>);</span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= row; i++) &#123;</span><br><span class="line"></span><br><span class="line">         list.add(<span class="number">1</span>);</span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> j = i - <span class="number">1</span>; j &gt; <span class="number">0</span>; j--) &#123;</span><br><span class="line">             list.set(j, list.get(j) + list.get(j - <span class="number">1</span>));</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> list;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate</span><span class="params">(self, numRows)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type numRows: int</span></span><br><span class="line"><span class="string">    :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getRow</span><span class="params">(self, rowIndex)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type rowIndex: int</span></span><br><span class="line"><span class="string">    :rtype: List[int]</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    everyRow = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(rowIndex + <span class="number">1</span>):</span><br><span class="line">        everyRow.insert(i, <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i - <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>):</span><br><span class="line">            everyRow[j] = everyRow[j] + everyRow[j - <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> everyRow</span><br></pre></td></tr></table></figure>
       
 
       
@@ -218,6 +224,10 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
         		</li>
       		
 		</ul>
@@ -343,13 +353,22 @@
     <div id="footer-info">
     	<div class="footer-left">
     		&copy; 2018 宝石
+    		<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    		<span id="busuanzi_container_site_uv">
+          你是第<span id="busuanzi_value_site_uv"></span>个来的小伙伴
+        </span>
     	</div>
+
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
       	</div>
     </div>
   </div>
+
+
+
 </footer>
+
     </div>
     <script>
 	var yiliaConfig = {
@@ -363,7 +382,7 @@
 		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,
-		showTags: false
+		showTags: true
 	}
 </script>
 
@@ -400,7 +419,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -429,15 +448,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Easy</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Divide and Conquer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
               </li>
              
               <li class="article-tag-list-item">
