@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Leetcode学习笔记-122-买股票的最佳时机II | 宝石叔叔的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目：假设有一个数组，它的第 i 个元素是一个给定的股票在第 i 天的价格。 设计一个算法来找到最大的利润。你可以完成尽可能多的交易（多次买卖股票）。然而，你不能同时参与多个交易（你必须在再次购买前出售股票）。 解体思路：简单的贪心:N天的总利润如何最大呢？就是一旦有获利空间就去赚钱，所以就是把每两天的价格增长量加起来就是总利润了，如果存在两天的价格增长量为负，那么就不进行交易。 Java：123">
+  <meta name="description" content="题目：假设有一个数组，它的第 i 个元素是一个给定的股票在第 i 天的价格设计一个算法来找到最大的利润。你可以完成尽可能多的交易（多次买卖股票）。然而，你不能同时参与多个交易（你必须在再次购买前出售股票）。解体思路：简单的贪心:N天的总利润如何最大呢？就是一旦有获利空间就去赚钱，所以就是把每两天的价格增长量加起来就是总利润了，如果存在两天的价格增长量为负，那么就不进行交易。 Java：123456">
 <meta name="keywords" content="Array,Easy,Greedy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode学习笔记-122-买股票的最佳时机II">
 <meta property="og:url" content="http://yoursite.com/2018/04/10/Leetcode学习笔记-122-买股票的最佳时机II/index.html">
 <meta property="og:site_name" content="宝石叔叔的博客">
-<meta property="og:description" content="题目：假设有一个数组，它的第 i 个元素是一个给定的股票在第 i 天的价格。 设计一个算法来找到最大的利润。你可以完成尽可能多的交易（多次买卖股票）。然而，你不能同时参与多个交易（你必须在再次购买前出售股票）。 解体思路：简单的贪心:N天的总利润如何最大呢？就是一旦有获利空间就去赚钱，所以就是把每两天的价格增长量加起来就是总利润了，如果存在两天的价格增长量为负，那么就不进行交易。 Java：123">
+<meta property="og:description" content="题目：假设有一个数组，它的第 i 个元素是一个给定的股票在第 i 天的价格设计一个算法来找到最大的利润。你可以完成尽可能多的交易（多次买卖股票）。然而，你不能同时参与多个交易（你必须在再次购买前出售股票）。解体思路：简单的贪心:N天的总利润如何最大呢？就是一旦有获利空间就去赚钱，所以就是把每两天的价格增长量加起来就是总利润了，如果存在两天的价格增长量为负，那么就不进行交易。 Java：123456">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-10T05:32:38.786Z">
+<meta property="og:updated_time" content="2018-04-10T10:55:07.895Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习笔记-122-买股票的最佳时机II">
-<meta name="twitter:description" content="题目：假设有一个数组，它的第 i 个元素是一个给定的股票在第 i 天的价格。 设计一个算法来找到最大的利润。你可以完成尽可能多的交易（多次买卖股票）。然而，你不能同时参与多个交易（你必须在再次购买前出售股票）。 解体思路：简单的贪心:N天的总利润如何最大呢？就是一旦有获利空间就去赚钱，所以就是把每两天的价格增长量加起来就是总利润了，如果存在两天的价格增长量为负，那么就不进行交易。 Java：123">
+<meta name="twitter:description" content="题目：假设有一个数组，它的第 i 个元素是一个给定的股票在第 i 天的价格设计一个算法来找到最大的利润。你可以完成尽可能多的交易（多次买卖股票）。然而，你不能同时参与多个交易（你必须在再次购买前出售股票）。解体思路：简单的贪心:N天的总利润如何最大呢？就是一旦有获利空间就去赚钱，所以就是把每两天的价格增长量加起来就是总利润了，如果存在两天的价格增长量为负，那么就不进行交易。 Java：123456">
   
     <link rel="alternative" href="/atom.xml" title="宝石叔叔的博客" type="application/atom+xml">
   
@@ -189,12 +189,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><font size="5"><br><strong>题目：</strong><br>假设有一个数组，它的第 i 个元素是一个给定的股票在第 i 天的价格。</font></p>
-<p>设计一个算法来找到最大的利润。你可以完成尽可能多的交易（多次买卖股票）。然而，你不能同时参与多个交易（你必须在再次购买前出售股票）。</p>
-<p><strong>解体思路：<br></strong><br>简单的贪心:N天的总利润如何最大呢？就是一旦有获利空间就去赚钱，所以就是把每两天的价格增长量加起来就是总利润了，如果存在两天的价格增长量为负，那么就不进行交易。</p>
+        <p><font size="5"><br><strong>题目：</strong><br>假设有一个数组，它的第 i 个元素是一个给定的股票在第 i 天的价格<br>设计一个算法来找到最大的利润。你可以完成尽可能多的交易（多次买卖股票）。然而，你不能同时参与多个交易（你必须在再次购买前出售股票）。<br><br><strong>解体思路：<br></strong><br>简单的贪心:N天的总利润如何最大呢？就是一旦有获利空间就去赚钱，所以就是把每两天的价格增长量加起来就是总利润了，如果存在两天的价格增长量为负，那么就不进行交易。<br></font></p>
 <h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; prices.length; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> n = prices[i] - prices[i - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span> (n &gt; <span class="number">0</span>)</span><br><span class="line">            max += n;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><p>一行即可。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxProfit</span><span class="params">(self, prices)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type prices: List[int]</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    res = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(prices)):</span><br><span class="line">        <span class="keyword">if</span> prices[i] - prices[i - <span class="number">1</span>] &gt; <span class="number">0</span>:</span><br><span class="line">            res += prices[i] - prices[i - <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxProfit</span><span class="params">(self, prices)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type prices: List[int]</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    res = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(prices)):</span><br><span class="line">        <span class="keyword">if</span> prices[i] - prices[i - <span class="number">1</span>] &gt; <span class="number">0</span>:</span><br><span class="line">            res += prices[i] - prices[i - <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
       
 
       
@@ -305,6 +302,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/04/10/Leetcode学习笔记-628-三个数的最大乘积/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Leetcode学习笔记-628-三个数的最大乘积
+        
+      </div>
+    </a>
   
   
     <a href="/2018/04/10/Leetcode学习笔记-217-存在重复/" id="article-nav-older" class="article-nav-link-wrap">
@@ -448,19 +454,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -484,15 +490,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Arrays</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
