@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Leetcode学习笔记-283-移动零 | 宝石叔叔的博客</title>
+  <title>Leetcode学习笔记-287-寻找重复数 | 宝石叔叔的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目：给定一个数组 nums, 编写一个函数将所有 0 移动到它的末尾，同时保持非零元素的相对顺序。例如， 定义 nums = [0, 1, 0, 3, 12]，调用函数之后， nums 应为 [1, 3, 12, 0, 0]。解体思路：只需要将非零元素按次序放入数组，最后补零。  Java：123456789101112131415public void moveZeroes(int[] num">
-<meta name="keywords" content="Array,Easy,Two Pointers">
+  <meta name="description" content="题目：一个长度为 n + 1 的整形数组，其中的数字都在 1 到 n 之间，包括 1 和 n ，可知至少有一个重复的数字存在。假设只有一个数字重复，找出这个重复的数字。注意：不能更改数组内容（假设数组是只读的）。只能使用恒定的额外空间，即要求空间复杂度是 O(1) 。时间复杂度小于 O(n2)数组中只有一个数字重复，但它可能不止一次重复出现。解体思路：思路是采用了二分法+抽屉原理。首先解释一下为什">
+<meta name="keywords" content="Array,Two Pointers,Binary Search,Medium">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode学习笔记-283-移动零">
-<meta property="og:url" content="http://yoursite.com/2018/04/07/Leetcode学习笔记-283-移动零/index.html">
+<meta property="og:title" content="Leetcode学习笔记-287-寻找重复数">
+<meta property="og:url" content="http://yoursite.com/2018/04/13/Leetcode学习笔记-287-寻找重复数/index.html">
 <meta property="og:site_name" content="宝石叔叔的博客">
-<meta property="og:description" content="题目：给定一个数组 nums, 编写一个函数将所有 0 移动到它的末尾，同时保持非零元素的相对顺序。例如， 定义 nums = [0, 1, 0, 3, 12]，调用函数之后， nums 应为 [1, 3, 12, 0, 0]。解体思路：只需要将非零元素按次序放入数组，最后补零。  Java：123456789101112131415public void moveZeroes(int[] num">
+<meta property="og:description" content="题目：一个长度为 n + 1 的整形数组，其中的数字都在 1 到 n 之间，包括 1 和 n ，可知至少有一个重复的数字存在。假设只有一个数字重复，找出这个重复的数字。注意：不能更改数组内容（假设数组是只读的）。只能使用恒定的额外空间，即要求空间复杂度是 O(1) 。时间复杂度小于 O(n2)数组中只有一个数字重复，但它可能不止一次重复出现。解体思路：思路是采用了二分法+抽屉原理。首先解释一下为什">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-09T02:44:53.896Z">
+<meta property="og:updated_time" content="2018-04-13T10:26:55.882Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode学习笔记-283-移动零">
-<meta name="twitter:description" content="题目：给定一个数组 nums, 编写一个函数将所有 0 移动到它的末尾，同时保持非零元素的相对顺序。例如， 定义 nums = [0, 1, 0, 3, 12]，调用函数之后， nums 应为 [1, 3, 12, 0, 0]。解体思路：只需要将非零元素按次序放入数组，最后补零。  Java：123456789101112131415public void moveZeroes(int[] num">
+<meta name="twitter:title" content="Leetcode学习笔记-287-寻找重复数">
+<meta name="twitter:description" content="题目：一个长度为 n + 1 的整形数组，其中的数字都在 1 到 n 之间，包括 1 和 n ，可知至少有一个重复的数字存在。假设只有一个数字重复，找出这个重复的数字。注意：不能更改数组内容（假设数组是只读的）。只能使用恒定的额外空间，即要求空间复杂度是 O(1) 。时间复杂度小于 O(n2)数组中只有一个数字重复，但它可能不止一次重复出现。解体思路：思路是采用了二分法+抽屉原理。首先解释一下为什">
   
     <link rel="alternative" href="/atom.xml" title="宝石叔叔的博客" type="application/atom+xml">
   
@@ -163,7 +163,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Leetcode学习笔记-283-移动零" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Leetcode学习笔记-287-寻找重复数" class="article article-type-post " itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -171,13 +171,13 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Leetcode学习笔记-283-移动零
+      Leetcode学习笔记-287-寻找重复数
     </h1>
   
 
         
-        <a href="/2018/04/07/Leetcode学习笔记-283-移动零/" class="archive-article-date">
-  	<time datetime="2018-04-07T10:53:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-07</time>
+        <a href="/2018/04/13/Leetcode学习笔记-287-寻找重复数/" class="archive-article-date">
+  	<time datetime="2018-04-13T10:11:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
         
@@ -189,10 +189,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <font size="5"><br><strong>题目：</strong><br>给定一个数组 nums, 编写一个函数将所有 0 移动到它的末尾，同时保持非零元素的相对顺序。<br><br>例如， 定义 nums = [0, 1, 0, 3, 12]，调用函数之后， nums 应为 [1, 3, 12, 0, 0]。<br><br><br><strong>解体思路：<br></strong><br>只需要将非零元素按次序放入数组，最后补零。</font>
+        <p><font size="5"><br><strong>题目：</strong><br>一个长度为 n + 1 的整形数组，其中的数字都在 1 到 n 之间，包括 1 和 n ，可知至少有一个重复的数字存在。假设只有一个数字重复，找出这个重复的数字。<br><br>注意：<br><br>不能更改数组内容（假设数组是只读的）。<br>只能使用恒定的额外空间，即要求空间复杂度是 O(1) 。<br>时间复杂度小于 O(n2)<br>数组中只有一个数字重复，但它可能不止一次重复出现。<br><br><strong>解体思路：<br></strong><br>思路是采用了二分法+抽屉原理。首先解释一下为什么用二分法，因为O(n2)时间复杂度不能A，所以往下应该是n*logn，很容易联想到二分法，因为其复杂度为logn。<br><br>抽屉原理是说假设你有11个苹果，要放进10个抽屉，那么至少有一个抽屉里是有两个苹果的。<br>对应到这题，1~n的n+1个数字，有1个数字会至少重复两次。<br>比如取数组为｛1，2，2，3，4，5｝，一共6个数，范围是1~5，其中位数应该是（5+1）/2 = 3，那么，如果小于等于3的数的个数如果超过了3，那么重复的数字一定出现在[1，3]之间，否则出现在[4，5]之间。以该数组为例，中位数为3，小于等于3的数一共有4个，大于3的数有两个，所以重复的数字在[1,3]之间。<br><br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">int</span> start = <span class="number">1</span>, end = nums.length - <span class="number">1</span>;</span><br><span class="line">      </span><br><span class="line"><span class="keyword">while</span> (start &lt; end) &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> mid = start + (end - start) / <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i : nums)</span><br><span class="line">		<span class="keyword">if</span> (i &lt;= mid)</span><br><span class="line">			count++;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> (count &gt; mid)</span><br><span class="line">		end = mid;</span><br><span class="line">	<span class="keyword">if</span> (count &lt;= mid)</span><br><span class="line">		start = mid + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> end;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plusOne</span><span class="params">(self, digits)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type digits: List[int]</span></span><br><span class="line"><span class="string">    :rtype: List[int]</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(digits) - <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> digits[i] &lt; <span class="number">9</span>:</span><br><span class="line">            digits[i] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> digits</span><br><span class="line">        </span><br><span class="line">        digits[i] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [<span class="number">1</span>] + digits</span><br></pre></td></tr></table></figure>
 
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">  	   </span><br><span class="line">  	   <span class="keyword">if</span>(nums[i] != <span class="number">0</span>)&#123;</span><br><span class="line">  		   nums[index] = nums[i];</span><br><span class="line">  		   index++;</span><br><span class="line">  	   &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> i = index; i &lt; nums.length; i++)&#123;</span><br><span class="line">  	   nums[i] = <span class="number">0</span>;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">moveZeroes</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :rtype: void Do not return anything, modify nums in-place instead.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">        <span class="keyword">if</span> nums[i] != <span class="number">0</span>:</span><br><span class="line">            nums[index] = nums[i]</span><br><span class="line">            index += <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(index, len(nums)):</span><br><span class="line">        nums[i] = <span class="number">0</span></span><br></pre></td></tr></table></figure>
       
 
       
@@ -230,11 +230,15 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Binary Search</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
         		</li>
       		
 		</ul>
@@ -290,7 +294,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/07/Leetcode学习笔记-283-移动零/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/13/Leetcode学习笔记-287-寻找重复数/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -304,18 +308,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/04/07/Leetcode学习笔记-27-移除元素/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Leetcode学习笔记-27-移除元素
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/04/07/Leetcode学习笔记-566-重塑矩阵/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Leetcode学习笔记-566-重塑矩阵</div>
+    <a href="/2018/04/13/Leetcode学习笔记-697-数组的度/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Leetcode学习笔记-697-数组的度</div>
       <i class="icon-circle-right"></i>
     </a>
   

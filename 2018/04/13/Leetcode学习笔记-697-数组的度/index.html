@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Leetcode学习笔记-283-移动零 | 宝石叔叔的博客</title>
+  <title>Leetcode学习笔记-697-数组的度 | 宝石叔叔的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目：给定一个数组 nums, 编写一个函数将所有 0 移动到它的末尾，同时保持非零元素的相对顺序。例如， 定义 nums = [0, 1, 0, 3, 12]，调用函数之后， nums 应为 [1, 3, 12, 0, 0]。解体思路：只需要将非零元素按次序放入数组，最后补零。  Java：123456789101112131415public void moveZeroes(int[] num">
-<meta name="keywords" content="Array,Easy,Two Pointers">
+  <meta name="description" content="题目：给定一个非空且只包含非负数的整数数组 nums, 数组的度的定义是指数组里任一元素出现频数的最大值。你的任务是找到与 nums 拥有相同大小的度的最短连续子数组，返回其长度。12345678910111213示例 1:输入: [1, 2, 2, 3, 1]输出: 2解释: 输入数组的度是2，因为元素1和2的出现频数最大，均为2.连续子数组里面拥有相同度的有如下所示:[1, 2, 2, 3,">
+<meta name="keywords" content="Array,Easy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode学习笔记-283-移动零">
-<meta property="og:url" content="http://yoursite.com/2018/04/07/Leetcode学习笔记-283-移动零/index.html">
+<meta property="og:title" content="Leetcode学习笔记-697-数组的度">
+<meta property="og:url" content="http://yoursite.com/2018/04/13/Leetcode学习笔记-697-数组的度/index.html">
 <meta property="og:site_name" content="宝石叔叔的博客">
-<meta property="og:description" content="题目：给定一个数组 nums, 编写一个函数将所有 0 移动到它的末尾，同时保持非零元素的相对顺序。例如， 定义 nums = [0, 1, 0, 3, 12]，调用函数之后， nums 应为 [1, 3, 12, 0, 0]。解体思路：只需要将非零元素按次序放入数组，最后补零。  Java：123456789101112131415public void moveZeroes(int[] num">
+<meta property="og:description" content="题目：给定一个非空且只包含非负数的整数数组 nums, 数组的度的定义是指数组里任一元素出现频数的最大值。你的任务是找到与 nums 拥有相同大小的度的最短连续子数组，返回其长度。12345678910111213示例 1:输入: [1, 2, 2, 3, 1]输出: 2解释: 输入数组的度是2，因为元素1和2的出现频数最大，均为2.连续子数组里面拥有相同度的有如下所示:[1, 2, 2, 3,">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-09T02:44:53.896Z">
+<meta property="og:updated_time" content="2018-04-13T09:16:46.650Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode学习笔记-283-移动零">
-<meta name="twitter:description" content="题目：给定一个数组 nums, 编写一个函数将所有 0 移动到它的末尾，同时保持非零元素的相对顺序。例如， 定义 nums = [0, 1, 0, 3, 12]，调用函数之后， nums 应为 [1, 3, 12, 0, 0]。解体思路：只需要将非零元素按次序放入数组，最后补零。  Java：123456789101112131415public void moveZeroes(int[] num">
+<meta name="twitter:title" content="Leetcode学习笔记-697-数组的度">
+<meta name="twitter:description" content="题目：给定一个非空且只包含非负数的整数数组 nums, 数组的度的定义是指数组里任一元素出现频数的最大值。你的任务是找到与 nums 拥有相同大小的度的最短连续子数组，返回其长度。12345678910111213示例 1:输入: [1, 2, 2, 3, 1]输出: 2解释: 输入数组的度是2，因为元素1和2的出现频数最大，均为2.连续子数组里面拥有相同度的有如下所示:[1, 2, 2, 3,">
   
     <link rel="alternative" href="/atom.xml" title="宝石叔叔的博客" type="application/atom+xml">
   
@@ -163,7 +163,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Leetcode学习笔记-283-移动零" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Leetcode学习笔记-697-数组的度" class="article article-type-post " itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -171,13 +171,13 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Leetcode学习笔记-283-移动零
+      Leetcode学习笔记-697-数组的度
     </h1>
   
 
         
-        <a href="/2018/04/07/Leetcode学习笔记-283-移动零/" class="archive-article-date">
-  	<time datetime="2018-04-07T10:53:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-07</time>
+        <a href="/2018/04/13/Leetcode学习笔记-697-数组的度/" class="archive-article-date">
+  	<time datetime="2018-04-13T08:55:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
         
@@ -189,10 +189,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <font size="5"><br><strong>题目：</strong><br>给定一个数组 nums, 编写一个函数将所有 0 移动到它的末尾，同时保持非零元素的相对顺序。<br><br>例如， 定义 nums = [0, 1, 0, 3, 12]，调用函数之后， nums 应为 [1, 3, 12, 0, 0]。<br><br><br><strong>解体思路：<br></strong><br>只需要将非零元素按次序放入数组，最后补零。</font>
+        <font size="5"><br><strong>题目：</strong><br>给定一个非空且只包含非负数的整数数组 nums, 数组的度的定义是指数组里任一元素出现频数的最大值。<br>你的任务是找到与 nums 拥有相同大小的度的最短连续子数组，返回其长度。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: [1, 2, 2, 3, 1]</span><br><span class="line">输出: 2</span><br><span class="line">解释: </span><br><span class="line">输入数组的度是2，因为元素1和2的出现频数最大，均为2.</span><br><span class="line">连续子数组里面拥有相同度的有如下所示:</span><br><span class="line">[1, 2, 2, 3, 1], [1, 2, 2, 3], [2, 2, 3, 1], [1, 2, 2], [2, 2, 3], [2, 2]</span><br><span class="line">最短连续子数组[2, 2]的长度为2，所以返回2.</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: [1,2,2,3,1,4,2]</span><br><span class="line">输出: 6</span><br></pre></td></tr></table></figure><br><br></font><br><font size="5"><br><strong>解体思路：<br></strong><br>遍历一遍数组，分别将每个出现的数的左，右下标以及出现的次数存入三个map中,然后拿到次数map中的最大值，然后在次数为最大值的这些元素中找到距离最短的长度即为答案<br><br>心得：Java中想拿到一个列表元素中最大值可以用util下的Collections.max函数。<br>Python中在对一个列表遍历正常为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">       print(i, nums[i])</span><br></pre></td></tr></table></figure><br><br></font><br><font size="5">但是显得略微笨重，Python自带一个迭代器，可以同时得到元素和下标,用法如下:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> index, element <span class="keyword">in</span> enumerate(nums):</span><br><span class="line">      print(index, element)</span><br></pre></td></tr></table></figure><br><br></font><br><font size="5">enumerate还可以再传入一个参数，代表起始下标的标准。</font>
 
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">  	   </span><br><span class="line">  	   <span class="keyword">if</span>(nums[i] != <span class="number">0</span>)&#123;</span><br><span class="line">  		   nums[index] = nums[i];</span><br><span class="line">  		   index++;</span><br><span class="line">  	   &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> i = index; i &lt; nums.length; i++)&#123;</span><br><span class="line">  	   nums[i] = <span class="number">0</span>;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">moveZeroes</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :rtype: void Do not return anything, modify nums in-place instead.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">        <span class="keyword">if</span> nums[i] != <span class="number">0</span>:</span><br><span class="line">            nums[index] = nums[i]</span><br><span class="line">            index += <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(index, len(nums)):</span><br><span class="line">        nums[i] = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><a id="more"></a>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findShortestSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    Map&lt;Integer, Integer&gt; leftIndex = <span class="keyword">new</span> HashMap&lt;&gt;(),</span><br><span class="line">                          rightIndex = <span class="keyword">new</span> HashMap&lt;&gt;(),</span><br><span class="line">                          count = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (leftIndex.get(nums[i]) == <span class="keyword">null</span>)</span><br><span class="line">            leftIndex.put(nums[i], i);</span><br><span class="line">        rightIndex.put(nums[i], i);</span><br><span class="line">        count.put(nums[i], count.getOrDefault(nums[i], <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> maxLen = Collections.max(count.values());</span><br><span class="line">    <span class="keyword">int</span> ans = nums.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> element : count.keySet()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (count.get(element) == maxLen) &#123;</span><br><span class="line">            ans = Math.min(ans, rightIndex.get(element) - leftIndex.get(element) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findShortestSubArray</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    leftIndex, rightIndex, count = &#123;&#125;, &#123;&#125;, &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> index, element <span class="keyword">in</span> enumerate(nums):</span><br><span class="line">        <span class="keyword">if</span> element <span class="keyword">not</span> <span class="keyword">in</span> leftIndex:</span><br><span class="line">            leftIndex[element] = index</span><br><span class="line">        rightIndex[element] = index</span><br><span class="line">        count[element] = count.get(element, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    maxLen = max(count.values())</span><br><span class="line">    ans = len(nums)</span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> count:</span><br><span class="line">        <span class="keyword">if</span> maxLen == count.get(key):</span><br><span class="line">            ans = min(ans, rightIndex[key] - leftIndex[key] + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
       
 
       
@@ -231,10 +232,6 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
         		</li>
       		
 		</ul>
@@ -290,7 +287,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/07/Leetcode学习笔记-283-移动零/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/13/Leetcode学习笔记-697-数组的度/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -304,18 +301,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/04/07/Leetcode学习笔记-27-移除元素/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/13/Leetcode学习笔记-287-寻找重复数/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Leetcode学习笔记-27-移除元素
+          Leetcode学习笔记-287-寻找重复数
         
       </div>
     </a>
   
   
-    <a href="/2018/04/07/Leetcode学习笔记-566-重塑矩阵/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Leetcode学习笔记-566-重塑矩阵</div>
+    <a href="/2018/04/12/Leetcode学习笔记-442-数组中重复的数据/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Leetcode学习笔记-442-数组中重复的数据</div>
       <i class="icon-circle-right"></i>
     </a>
   
