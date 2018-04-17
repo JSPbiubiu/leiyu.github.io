@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Array | 宝石叔叔的博客</title>
+  <title>Leetcode学习笔记-746-使用最小花费爬楼梯 | 宝石叔叔的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="孤身一人，又能有何作为。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="宝石叔叔的博客">
-<meta property="og:url" content="http://yoursite.com/tags/Array/page/4/index.html">
+  <meta name="description" content="题目：数组的每个索引做为一个阶梯，第 i个阶梯对应着一个非负数的体力花费值 costi。 每当你爬上一个阶梯你都要花费对应的体力花费值，然后你可以选择继续爬一个阶梯或者爬两个阶梯。 您需要找到达到楼层顶部的最低花费。在开始时，你可以选择从索引为 0 或 1 的元素作为初始阶梯。1234567891011121314示例 1:输入: cost = [10, 15, 20]输出: 15解释: 最低花费">
+<meta name="keywords" content="Array,Easy,Dynamic Programming">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode学习笔记-746-使用最小花费爬楼梯">
+<meta property="og:url" content="http://yoursite.com/2018/04/17/Leetcode学习笔记-746-使用最小花费爬楼梯/index.html">
 <meta property="og:site_name" content="宝石叔叔的博客">
-<meta property="og:description" content="孤身一人，又能有何作为。">
+<meta property="og:description" content="题目：数组的每个索引做为一个阶梯，第 i个阶梯对应着一个非负数的体力花费值 costi。 每当你爬上一个阶梯你都要花费对应的体力花费值，然后你可以选择继续爬一个阶梯或者爬两个阶梯。 您需要找到达到楼层顶部的最低花费。在开始时，你可以选择从索引为 0 或 1 的元素作为初始阶梯。1234567891011121314示例 1:输入: cost = [10, 15, 20]输出: 15解释: 最低花费">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-17T08:12:29.254Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="宝石叔叔的博客">
-<meta name="twitter:description" content="孤身一人，又能有何作为。">
+<meta name="twitter:title" content="Leetcode学习笔记-746-使用最小花费爬楼梯">
+<meta name="twitter:description" content="题目：数组的每个索引做为一个阶梯，第 i个阶梯对应着一个非负数的体力花费值 costi。 每当你爬上一个阶梯你都要花费对应的体力花费值，然后你可以选择继续爬一个阶梯或者爬两个阶梯。 您需要找到达到楼层顶部的最低花费。在开始时，你可以选择从索引为 0 或 1 的元素作为初始阶梯。1234567891011121314示例 1:输入: cost = [10, 15, 20]输出: 15解释: 最低花费">
   
     <link rel="alternative" href="/atom.xml" title="宝石叔叔的博客" type="application/atom+xml">
   
@@ -161,36 +163,68 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="w-Leetcode学习笔记-746-使用最小花费爬楼梯" class="article article-type-w " itemscope itemprop="blogPost">
+
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Leetcode学习笔记-746-使用最小花费爬楼梯
+    </h1>
+  
+
+        
+        <a href="/2018/04/17/Leetcode学习笔记-746-使用最小花费爬楼梯/" class="archive-article-date">
+  	<time datetime="2018-04-17T08:04:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-17</time>
+</a>
+        
+        
+        		<span class="archive-article-date">
+        			阅读量 <span id="busuanzi_value_page_pv"></span>
+        		</span>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>数组的每个索引做为一个阶梯，第 i个阶梯对应着一个非负数的体力花费值 cost<a href="索引从0开始">i</a>。</font></p>
+<p>每当你爬上一个阶梯你都要花费对应的体力花费值，然后你可以选择继续爬一个阶梯或者爬两个阶梯。</p>
+<p>您需要找到达到楼层顶部的最低花费。在开始时，你可以选择从索引为 0 或 1 的元素作为初始阶梯。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: cost = [10, 15, 20]</span><br><span class="line">输出: 15</span><br><span class="line">解释: 最低花费是从cost[1]开始，然后走两步即可到阶梯顶，一共花费15。</span><br><span class="line"> 示例 2:</span><br><span class="line"></span><br><span class="line">输入: cost = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]</span><br><span class="line">输出: 6</span><br><span class="line">解释: 最低花费方式是从cost[0]开始，逐个经过那些1，跳过cost[3]，一共花费6。</span><br><span class="line">注意：</span><br><span class="line"></span><br><span class="line">1.cost 的长度将会在 [2, 1000]。</span><br><span class="line">2.每一个 cost[i] 将会是一个Integer类型，范围为 [0, 999]。</span><br></pre></td></tr></table></figure></p>
+<p></p>
+<p><font size="5"><br><strong>解体思路：<br></strong><br>动态规划：找到关键的状态方程dp[i] = min(dp[i-1], dp[i-2])+cost[i],使得dp数组每一个位置都存放当前的最小答案<br><br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minCostClimbingStairs</span><span class="params">(<span class="keyword">int</span>[] cost)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[cost.length + <span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">0</span>] = cost[<span class="number">0</span>];</span><br><span class="line">    dp[<span class="number">1</span>] = cost[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= cost.length; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> costCurrent = i == cost.length ? <span class="number">0</span> : cost[i];</span><br><span class="line">        dp[i] = Math.min(dp[i - <span class="number">1</span>], dp[i - <span class="number">2</span>]) + costCurrent;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[cost.length];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">minCostClimbingStairs</span><span class="params">(self, cost)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type cost: List[int]</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    dp = list(cost) + [<span class="number">0</span>]  <span class="comment"># 多一个位置是终点时判断最后两步哪个最小</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, len(cost) + <span class="number">1</span>):</span><br><span class="line">        costCurrent = <span class="number">0</span> <span class="keyword">if</span> i == len(cost) <span class="keyword">else</span> cost[i]</span><br><span class="line">        dp[i] = min(dp[i - <span class="number">1</span>], dp[i - <span class="number">2</span>]) + costCurrent</span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/10/Leetcode学习笔记-167-两数之和II-输入有序数组/" class="archive-article-date">
-  	<time datetime="2018-04-10T09:57:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/10/Leetcode学习笔记-167-两数之和II-输入有序数组/">Leetcode学习笔记-167-两数之和II-输入有序数组</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -204,208 +238,112 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Binary Search</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Dynamic Programming</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/17/Leetcode学习笔记-746-使用最小花费爬楼梯/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/10/Leetcode学习笔记-628-三个数的最大乘积/" class="archive-article-date">
-  	<time datetime="2018-04-10T09:50:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-10</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/17/Leetcode学习笔记-717-1比特与2比特字符/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Leetcode学习笔记-717-1比特与2比特字符</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/10/Leetcode学习笔记-628-三个数的最大乘积/">Leetcode学习笔记-628-三个数的最大乘积</a>
-    </h1>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/10/Leetcode学习笔记-122-买股票的最佳时机II/" class="archive-article-date">
-  	<time datetime="2018-04-10T05:27:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/10/Leetcode学习笔记-122-买股票的最佳时机II/">Leetcode学习笔记-122-买股票的最佳时机II</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Greedy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/10/Leetcode学习笔记-217-存在重复/" class="archive-article-date">
-  	<time datetime="2018-04-10T03:43:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/10/Leetcode学习笔记-217-存在重复/">Leetcode学习笔记-217-存在重复</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hash</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/09/Leetcode学习笔记-448-找到所有数组中消失的数字/" class="archive-article-date">
-  	<time datetime="2018-04-09T10:14:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/09/Leetcode学习笔记-448-找到所有数组中消失的数字/">Leetcode学习笔记-448-找到所有数组中消失的数字</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/tags/Array/page/3/">&laquo; Prev</a><a class="page-number" href="/tags/Array/">1</a><a class="page-number" href="/tags/Array/page/2/">2</a><a class="page-number" href="/tags/Array/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/tags/Array/page/5/">5</a><a class="page-number" href="/tags/Array/page/6/">6</a><a class="page-number" href="/tags/Array/page/7/">7</a><a class="extend next" rel="next" href="/tags/Array/page/5/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -438,9 +376,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
