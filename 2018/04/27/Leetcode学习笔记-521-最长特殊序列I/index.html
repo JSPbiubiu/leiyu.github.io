@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Leetcode学习笔记-521-最长特殊序列I | 宝石叔叔的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目： 给定两个字符串，你需要从这两个字符串中找出最长的特殊序列。最长特殊序列定义如下：该序列为某字符串独有的最长子序列（即不能是其他字符串的子序列）。子序列可以通过删去字符串中的某些字符实现，但不能改变剩余字符的相对顺序。空序列为所有字符串的子序列，任何字符串为其自身的子序列。输入为两个字符串，输出最长特殊序列的长度。如果不存在，则返回 -1。123456789示例 :输入: &amp;quot;aba">
+  <meta name="description" content="题目：给定两个字符串，你需要从这两个字符串中找出最长的特殊序列。最长特殊序列定义如下：该序列为某字符串独有的最长子序列（即不能是其他字符串的子序列）。子序列可以通过删去字符串中的某些字符实现，但不能改变剩余字符的相对顺序。空序列为所有字符串的子序列，任何字符串为其自身的子序列。输入为两个字符串，输出最长特殊序列的长度。如果不存在，则返回 -1。123456789示例 :输入: &amp;quot;aba&amp;">
 <meta name="keywords" content="Easy,String">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode学习笔记-521-最长特殊序列I">
 <meta property="og:url" content="http://yoursite.com/2018/04/27/Leetcode学习笔记-521-最长特殊序列I/index.html">
 <meta property="og:site_name" content="宝石叔叔的博客">
-<meta property="og:description" content="题目： 给定两个字符串，你需要从这两个字符串中找出最长的特殊序列。最长特殊序列定义如下：该序列为某字符串独有的最长子序列（即不能是其他字符串的子序列）。子序列可以通过删去字符串中的某些字符实现，但不能改变剩余字符的相对顺序。空序列为所有字符串的子序列，任何字符串为其自身的子序列。输入为两个字符串，输出最长特殊序列的长度。如果不存在，则返回 -1。123456789示例 :输入: &amp;quot;aba">
+<meta property="og:description" content="题目：给定两个字符串，你需要从这两个字符串中找出最长的特殊序列。最长特殊序列定义如下：该序列为某字符串独有的最长子序列（即不能是其他字符串的子序列）。子序列可以通过删去字符串中的某些字符实现，但不能改变剩余字符的相对顺序。空序列为所有字符串的子序列，任何字符串为其自身的子序列。输入为两个字符串，输出最长特殊序列的长度。如果不存在，则返回 -1。123456789示例 :输入: &amp;quot;aba&amp;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-27T03:22:06.560Z">
+<meta property="og:updated_time" content="2018-04-27T03:22:46.184Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习笔记-521-最长特殊序列I">
-<meta name="twitter:description" content="题目： 给定两个字符串，你需要从这两个字符串中找出最长的特殊序列。最长特殊序列定义如下：该序列为某字符串独有的最长子序列（即不能是其他字符串的子序列）。子序列可以通过删去字符串中的某些字符实现，但不能改变剩余字符的相对顺序。空序列为所有字符串的子序列，任何字符串为其自身的子序列。输入为两个字符串，输出最长特殊序列的长度。如果不存在，则返回 -1。123456789示例 :输入: &amp;quot;aba">
+<meta name="twitter:description" content="题目：给定两个字符串，你需要从这两个字符串中找出最长的特殊序列。最长特殊序列定义如下：该序列为某字符串独有的最长子序列（即不能是其他字符串的子序列）。子序列可以通过删去字符串中的某些字符实现，但不能改变剩余字符的相对顺序。空序列为所有字符串的子序列，任何字符串为其自身的子序列。输入为两个字符串，输出最长特殊序列的长度。如果不存在，则返回 -1。123456789示例 :输入: &amp;quot;aba&amp;">
   
     <link rel="alternative" href="/atom.xml" title="宝石叔叔的博客" type="application/atom+xml">
   
@@ -189,8 +189,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><font size="5"><br><strong>题目：</strong></font></p>
-<p>给定两个字符串，你需要从这两个字符串中找出最长的特殊序列。最长特殊序列定义如下：该序列为某字符串独有的最长子序列（即不能是其他字符串的子序列）。<br>子序列可以通过删去字符串中的某些字符实现，但不能改变剩余字符的相对顺序。空序列为所有字符串的子序列，任何字符串为其自身的子序列。<br>输入为两个字符串，输出最长特殊序列的长度。如果不存在，则返回 -1。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例 :</span><br><span class="line"></span><br><span class="line">输入: &quot;aba&quot;, &quot;cdc&quot;</span><br><span class="line">输出: 3</span><br><span class="line">解析: 最长特殊序列可为 &quot;aba&quot; (或 &quot;cdc&quot;)</span><br><span class="line">说明:</span><br><span class="line"></span><br><span class="line">两个字符串长度均小于100。</span><br><span class="line">字符串中的字符仅含有 &apos;a&apos;~&apos;z&apos;。</span><br></pre></td></tr></table></figure></p>
+        <p><font size="5"><br><strong>题目：</strong><br>给定两个字符串，你需要从这两个字符串中找出最长的特殊序列。最长特殊序列定义如下：该序列为某字符串独有的最长子序列（即不能是其他字符串的子序列）。<br>子序列可以通过删去字符串中的某些字符实现，但不能改变剩余字符的相对顺序。空序列为所有字符串的子序列，任何字符串为其自身的子序列。<br>输入为两个字符串，输出最长特殊序列的长度。如果不存在，则返回 -1。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例 :</span><br><span class="line"></span><br><span class="line">输入: &quot;aba&quot;, &quot;cdc&quot;</span><br><span class="line">输出: 3</span><br><span class="line">解析: 最长特殊序列可为 &quot;aba&quot; (或 &quot;cdc&quot;)</span><br><span class="line">说明:</span><br><span class="line"></span><br><span class="line">两个字符串长度均小于100。</span><br><span class="line">字符串中的字符仅含有 &apos;a&apos;~&apos;z&apos;。</span><br></pre></td></tr></table></figure></font></p>
 <p></p>
 <p><font size="5"><br><strong>解体思路：<br></strong><br>很奇怪的题，看两个串是否相同就完事了。。。<br><br></font></p>
 <h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findLUSlength</span><span class="params">(String a, String b)</span> </span>&#123;</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">return</span> a.equals(b) ? -<span class="number">1</span> : Math.max(a.length(), b.length());</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
@@ -302,6 +301,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/04/27/Leetcode学习笔记-696-计数二进制子串/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Leetcode学习笔记-696-计数二进制子串
+        
+      </div>
+    </a>
   
   
     <a href="/2018/04/27/Leetcode学习笔记-788-检测大写字母/" id="article-nav-older" class="article-nav-link-wrap">
@@ -449,18 +457,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">String</a>
               </li>
              
@@ -469,11 +465,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Linked List</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
               </li>
              
               <li class="article-tag-list-item">
