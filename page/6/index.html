@@ -163,6 +163,94 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Leetcode学习笔记-345-反转字符串中的元音字母" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/29/Leetcode学习笔记-345-反转字符串中的元音字母/">Leetcode学习笔记-345-反转字符串中的元音字母</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/29/Leetcode学习笔记-345-反转字符串中的元音字母/" class="archive-article-date">
+  	<time datetime="2018-04-29T03:19:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-29</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>编写一个函数，以字符串作为输入，反转该字符串中的元音字母。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">编写一个函数，以字符串作为输入，反转该字符串中的元音字母。</span><br><span class="line"></span><br><span class="line">示例 1：</span><br><span class="line">给定 s = &quot;hello&quot;, 返回 &quot;holle&quot;.</span><br><span class="line"></span><br><span class="line">示例 2：</span><br><span class="line">给定 s = &quot;leetcode&quot;, 返回 &quot;leotcede&quot;.</span><br><span class="line"></span><br><span class="line">注意:</span><br><span class="line">元音字母不包括 &quot;y&quot;.</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br><strong>解体思路：</strong><br>利用双指针，当两个指针都指向原因字符，则相互交换，注意包含大写。<br><br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">reverseVowels</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">       String str = <span class="string">"AEIOUaeiou"</span>;</span><br><span class="line">       <span class="keyword">char</span>[] array = s.toCharArray();</span><br><span class="line">       <span class="keyword">int</span> start = <span class="number">0</span>, end = array.length - <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">for</span> (; start &lt; end; ) &#123;</span><br><span class="line">           <span class="keyword">if</span> (str.indexOf(array[start]) == -<span class="number">1</span>)</span><br><span class="line">               start++;</span><br><span class="line">           <span class="keyword">else</span> <span class="keyword">if</span> (str.indexOf(array[end]) == -<span class="number">1</span>)</span><br><span class="line">               end--;</span><br><span class="line">           <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="keyword">char</span> temp = array[start];</span><br><span class="line">               array[start] = array[end];</span><br><span class="line">               array[end] = temp;</span><br><span class="line">               start++;</span><br><span class="line">               end--;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> String.valueOf(array);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reverseVowels</span><span class="params">(self, s)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type s: str</span></span><br><span class="line"><span class="string">    :rtype: str</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    toList = list(s)</span><br><span class="line">    start, end, strs = <span class="number">0</span>, len(s) - <span class="number">1</span>, <span class="string">"AEIOUaeiou"</span></span><br><span class="line">    <span class="keyword">while</span> start &lt; end:</span><br><span class="line">        <span class="keyword">if</span> toList[start] <span class="keyword">not</span> <span class="keyword">in</span> strs:</span><br><span class="line">            start += <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> toList[end] <span class="keyword">not</span> <span class="keyword">in</span> strs:</span><br><span class="line">            end -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            toList[start], toList[end] = toList[end], toList[start]</span><br><span class="line">            start += <span class="number">1</span></span><br><span class="line">            end -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">""</span>.join(toList)</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/29/Leetcode学习笔记-345-反转字符串中的元音字母/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Leetcode学习笔记-551-学生出勤记录I" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -498,90 +586,6 @@
 
 
   
-    <article id="post-Leetcode学习笔记-520-检测大写字母" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/26/Leetcode学习笔记-520-检测大写字母/">Leetcode学习笔记-520-检测大写字母</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/26/Leetcode学习笔记-520-检测大写字母/" class="archive-article-date">
-  	<time datetime="2018-04-26T05:57:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-26</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>给定一个单词，你需要判断单词的大写使用是否正确。<br>我们定义，在以下情况时，单词的大写用法是正确的：<br><br>全部字母都是大写，比如”USA”。<br>单词中所有字母都不是大写，比如”leetcode”。<br>如果单词不只含有一个字母，只有首字母大写， 比如 “Google”。<br>否则，我们定义这个单词没有正确使用大写字母。<br><br></font></p>
-<p><font size="5"><br><strong>解体思路：<br></strong><br>按题目中分三种情况判断即可。<br><br>心得：Python中:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str.upper())         # 把所有字符中的小写字母转换成大写字母</span><br><span class="line">str.lower()          # 把所有字符中的大写字母转换成小写字母</span><br><span class="line">str.capitalize()     # 把第一个字母转化为大写字母，其余小写</span><br><span class="line">str.title()          # 把每个单词的第一个字母转化为大写，其余小写</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">detectCapitalUse</span><span class="params">(String word)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">char</span>[] c = word.toCharArray();</span><br><span class="line">       <span class="keyword">int</span> len = c.length;</span><br><span class="line">       <span class="keyword">if</span> (len == <span class="number">1</span>)</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">       <span class="keyword">if</span> (Character.isUpperCase(c[<span class="number">0</span>])) &#123;</span><br><span class="line">           <span class="keyword">if</span> (Character.isUpperCase(c[<span class="number">1</span>])) &#123;</span><br><span class="line">               <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; len; i++)</span><br><span class="line">                   <span class="keyword">if</span> (Character.isLowerCase(c[i]))</span><br><span class="line">                       <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">               <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; len; i++)</span><br><span class="line">                   <span class="keyword">if</span> (Character.isUpperCase(c[i]))</span><br><span class="line">                       <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; len; i++)</span><br><span class="line">               <span class="keyword">if</span> (Character.isUpperCase(c[i]))</span><br><span class="line">                   <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><p>one line:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">detectCapitalUse</span><span class="params">(self, word)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type word: str</span></span><br><span class="line"><span class="string">    :rtype: bool</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> word == word.upper() <span class="keyword">or</span> word == word.lower() <span class="keyword">or</span> word == word.capitalize()</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/26/Leetcode学习笔记-520-检测大写字母/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
@@ -696,10 +700,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
               </li>
              
@@ -708,7 +708,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
+                <a href="javascript:void(0)" class="js-tag color5">Math</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -716,15 +720,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Math</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Linked List</a>
+                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Medium</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Linked List</a>
               </li>
              
               <li class="article-tag-list-item">
