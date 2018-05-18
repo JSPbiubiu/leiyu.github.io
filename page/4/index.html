@@ -163,6 +163,160 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Leetcode学习笔记-806-写字符串需要的行数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/09/Leetcode学习笔记-806-写字符串需要的行数/">Leetcode学习笔记-806-写字符串需要的行数</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/09/Leetcode学习笔记-806-写字符串需要的行数/" class="archive-article-date">
+  	<time datetime="2018-05-09T07:21:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-09</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>我们要把给定的字符串 S 从左到右写到每一行上，每一行的最大宽度为100个单位，如果我们在写某个字母的时候会使这行超过了100 个单位，那么我们应该把这个字母写到下一行。我们给定了一个数组 widths ，这个数组 widths[0] 代表 ‘a’ 需要的单位， widths[1] 代表 ‘b’ 需要的单位，…， widths[25] 代表 ‘z’ 需要的单位。<br>现在回答两个问题：至少多少行能放下S，以及最后一行使用的宽度是多少个单位？将你的答案作为长度为2的整数列表返回。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line">输入: </span><br><span class="line">widths = [10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10]</span><br><span class="line">S = &quot;abcdefghijklmnopqrstuvwxyz&quot;</span><br><span class="line">输出: [3, 60]</span><br><span class="line">解释: </span><br><span class="line">所有的字符拥有相同的占用单位10。所以书写所有的26个字母，</span><br><span class="line">我们需要2个整行和占用60个单位的一行。</span><br><span class="line">示例 2:</span><br><span class="line">输入: </span><br><span class="line">widths = [4,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10]</span><br><span class="line">S = &quot;bbbcccdddaaa&quot;</span><br><span class="line">输出: [2, 4]</span><br><span class="line">解释: </span><br><span class="line">除去字母&apos;a&apos;所有的字符都是相同的单位10，并且字符串 &quot;bbbcccdddaa&quot; 将会覆盖 9 * 10 + 2 * 4 = 98 个单位.</span><br><span class="line">最后一个字母 &apos;a&apos; 将会被写到第二行，因为第一行只剩下2个单位了。</span><br><span class="line">所以，这个答案是2行，第二行有4个单位宽度。</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br><strong>解体思路：</strong><br>用两个变量来记录行数和每行的长度，当遍历完串之后即是正确答案。<br><br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] numberOfLines(<span class="keyword">int</span>[] widths, String S) &#123;</span><br><span class="line">       <span class="keyword">int</span> lastLen = <span class="number">0</span>, lineLen = <span class="number">100</span>, lineCount = <span class="number">1</span>, len = S.length();</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i) &#123;</span><br><span class="line">           <span class="keyword">int</span> c = widths[S.charAt(i) - <span class="string">'a'</span>];</span><br><span class="line">           <span class="keyword">if</span> (lineLen - c &lt; <span class="number">0</span>) &#123;</span><br><span class="line">               lineCount++;</span><br><span class="line">               lastLen = <span class="number">0</span>;</span><br><span class="line">               lineLen = <span class="number">100</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           lastLen += c;</span><br><span class="line">           lineLen -= c;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;lineCount, lastLen&#125;;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">numberOfLines</span><span class="params">(self, widths, S)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type widths: List[int]</span></span><br><span class="line"><span class="string">    :type S: str</span></span><br><span class="line"><span class="string">    :rtype: List[int]</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    lastLen, lineLen, lineCount, length = <span class="number">0</span>, <span class="number">100</span>, <span class="number">1</span>, len(S)</span><br><span class="line">    <span class="keyword">for</span> ch <span class="keyword">in</span> S:</span><br><span class="line">        c = widths[ord(ch) - ord(<span class="string">'a'</span>)]</span><br><span class="line">        <span class="keyword">if</span> lineLen - c &lt; <span class="number">0</span>:</span><br><span class="line">            lineCount += <span class="number">1</span></span><br><span class="line">            lastLen = <span class="number">0</span></span><br><span class="line">            lineLen = <span class="number">100</span></span><br><span class="line">        lastLen += c</span><br><span class="line">        lineLen -= c</span><br><span class="line">    <span class="keyword">return</span> [lineCount, lastLen]</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/09/Leetcode学习笔记-806-写字符串需要的行数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-三个月" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/07/三个月/">未来规划中的重要一步</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/07/三个月/" class="archive-article-date">
+  	<time datetime="2018-05-07T11:57:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-07</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一个非常值得我去争取的三个月"><a href="#一个非常值得我去争取的三个月" class="headerlink" title="一个非常值得我去争取的三个月"></a><p align="center">一个非常值得我去争取的三个月</p></h1><h2 id="nbsp-nbsp-nbsp-nbsp-最近这两天心情真的不错，追随自己心里所想的去做了！感觉自己比之前进步了不少hhh。希望自己还会继续保持一个乐观开朗的心态！一如年少模样（hhh最近听的歌）！争取完成这个为期三个月的目标！"><a href="#nbsp-nbsp-nbsp-nbsp-最近这两天心情真的不错，追随自己心里所想的去做了！感觉自己比之前进步了不少hhh。希望自己还会继续保持一个乐观开朗的心态！一如年少模样（hhh最近听的歌）！争取完成这个为期三个月的目标！" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;最近这两天心情真的不错，追随自己心里所想的去做了！感觉自己比之前进步了不少hhh。希望自己还会继续保持一个乐观开朗的心态！一如年少模样（hhh最近听的歌）！争取完成这个为期三个月的目标！"></a>&nbsp;&nbsp;&nbsp;&nbsp;最近这两天心情真的不错，追随自己心里所想的去做了！感觉自己比之前进步了不少hhh。希望自己还会继续保持一个乐观开朗的心态！一如年少模样（hhh最近听的歌）！争取完成这个为期三个月的目标！</h2><h3 id="宝石2018年5月7日晚记"><a href="#宝石2018年5月7日晚记" class="headerlink" title="宝石2018年5月7日晚记"></a><p align="right">宝石<br>2018年5月7日晚记</p></h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/07/三个月/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Leetcode学习笔记-575-分糖果" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -415,165 +569,6 @@
 
 
   
-    <article id="post-Leetcode学习笔记-821-字符的最短距离" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/06/Leetcode学习笔记-821-字符的最短距离/">Leetcode学习笔记-821-字符的最短距离</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/06/Leetcode学习笔记-821-字符的最短距离/" class="archive-article-date">
-  	<time datetime="2018-05-06T12:54:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-06</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>给定一个字符串 S 和一个字符 C。返回一个代表字符串 S 中每个字符到字符串 S 中的字符 C 的最短距离的数组。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: S = &quot;loveleetcode&quot;, C = &apos;e&apos;</span><br><span class="line">输出: [3, 2, 1, 0, 1, 0, 0, 1, 2, 2, 1, 0]</span><br><span class="line">说明:</span><br><span class="line"></span><br><span class="line">字符串 S 的长度范围为 [1, 10000]。</span><br><span class="line">C 是一个单字符，且保证是字符串 S 里的字符。</span><br><span class="line">S 和 C 中的所有字母均为小写字母。</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>先开一个等长数组，然后将位置变量初始值设为负的数组长度，这样从左到右扫数组的时候可以让当前值过大。<br>先从左到右扫描数组，若当前字符匹配目标字符，则将当前位置存放在位置变量中，数组元素值为位置变量减去当前位置。<br>再从右到左扫描一遍，若当前字符匹配匹配目标字符，则将当前位置存放在位置变量中，数组元素值为<br>min(当前元素的值，位置变量减去当前位置的绝对值），用绝对值是因为有可能上一次循环之后位置变量在前面，这样的话会出现负数。<br>最后返回数组。<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] shortestToChar(String S, <span class="keyword">char</span> C) &#123;</span><br><span class="line">       <span class="keyword">int</span> len = S.length();</span><br><span class="line">       <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">       <span class="keyword">int</span> currentPosition = -len;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i)&#123;</span><br><span class="line">           <span class="keyword">if</span> (S.charAt(i) == C)</span><br><span class="line">               currentPosition = i;</span><br><span class="line">           res[i] = i - currentPosition;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = len - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i)&#123;</span><br><span class="line">           <span class="keyword">if</span>(S.charAt(i) == C)</span><br><span class="line">               currentPosition = i;</span><br><span class="line">           res[i] = Math.min(res[i], Math.abs(currentPosition - i));</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> res;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shortestToChar</span><span class="params">(self, S, C)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type S: str</span></span><br><span class="line"><span class="string">    :type C: str</span></span><br><span class="line"><span class="string">    :rtype: List[int]</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    length = len(S)</span><br><span class="line">    res, currentPosition = [<span class="number">0</span>] * length, -length</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">        <span class="keyword">if</span> S[i] == C:</span><br><span class="line">            currentPosition = i</span><br><span class="line">        res[i] = i - currentPosition</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(length - <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">        <span class="keyword">if</span> S[i] == C:</span><br><span class="line">            currentPosition = i</span><br><span class="line">        res[i] = min(res[i], abs(currentPosition - i))</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/06/Leetcode学习笔记-821-字符的最短距离/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Leetcode学习笔记-804-唯一摩尔斯密码词" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/06/Leetcode学习笔记-804-唯一摩尔斯密码词/">Leetcode学习笔记-804-唯一摩尔斯密码词</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/06/Leetcode学习笔记-804-唯一摩尔斯密码词/" class="archive-article-date">
-  	<time datetime="2018-05-06T11:51:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-06</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>国际摩尔斯密码定义一种标准编码方式，将每个字母对应于一个由一系列点和短线组成的字符串， 比如: “a” 对应 “.-“, “b” 对应 “-…”, “c” 对应 “-.-.”, 等等。<br>为了方便，所有26个英文字母对应摩尔斯密码表如下：<br>[“.-“,”-…”,”-.-.”,”-..”,”.”,”..-.”,”–.”,”….”,”..”,”.—“,”-.-“,”.-..”,”–”,”-.”,”—“,”.–.”,”–.-“,”.-.”,”…”,”-“,”..-“,”…-“,”.–”,”-..-“,”-.–”,”–..”]<br>给定一个单词列表，每个单词可以写成每个字母对应摩尔斯密码的组合。例如，”cab” 可以写成 “-.-.-….-“，(即 “-.-.” + “-…” + “.-“字符串的结合)。我们将这样一个连接过程称作单词翻译。<br>返回我们可以获得所有词不同单词翻译的数量。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">例如:</span><br><span class="line">输入: words = [&quot;gin&quot;, &quot;zen&quot;, &quot;gig&quot;, &quot;msg&quot;]</span><br><span class="line">输出: 2</span><br><span class="line">解释: </span><br><span class="line">各单词翻译如下:</span><br><span class="line">&quot;gin&quot; -&gt; &quot;--...-.&quot;</span><br><span class="line">&quot;zen&quot; -&gt; &quot;--...-.&quot;</span><br><span class="line">&quot;gig&quot; -&gt; &quot;--...--.&quot;</span><br><span class="line">&quot;msg&quot; -&gt; &quot;--...--.&quot;</span><br><span class="line"></span><br><span class="line">共有 2 种不同翻译, &quot;--...-.&quot; 和 &quot;--...--.&quot;.</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>将题中给好的密码列表创建成一个数组，然后遍历单词数组，把每一个单词翻译完之后放入一个set中，最后看set的大小即可<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">uniqueMorseRepresentations</span><span class="params">(String[] words)</span> </span>&#123;</span><br><span class="line">       String[] mo = &#123;<span class="string">".-"</span>, <span class="string">"-..."</span>, <span class="string">"-.-."</span>, <span class="string">"-.."</span>, <span class="string">"."</span>, <span class="string">"..-."</span>,</span><br><span class="line">               <span class="string">"--."</span>, <span class="string">"...."</span>, <span class="string">".."</span>, <span class="string">".---"</span>, <span class="string">"-.-"</span>, <span class="string">".-.."</span>, <span class="string">"--"</span>,</span><br><span class="line">               <span class="string">"-."</span>, <span class="string">"---"</span>, <span class="string">".--."</span>, <span class="string">"--.-"</span>, <span class="string">".-."</span>, <span class="string">"..."</span>, <span class="string">"-"</span>, <span class="string">"..-"</span>,</span><br><span class="line">               <span class="string">"...-"</span>, <span class="string">".--"</span>, <span class="string">"-..-"</span>, <span class="string">"-.--"</span>, <span class="string">"--.."</span>&#125;;</span><br><span class="line">       Set&lt;String&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">       <span class="keyword">for</span> (String word : words) &#123;</span><br><span class="line">           StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; word.length(); ++i)</span><br><span class="line">               sb.append(mo[word.charAt(i) - <span class="string">'a'</span>]);</span><br><span class="line">           set.add(sb.toString());</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> set.size();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">uniqueMorseRepresentations</span><span class="params">(self, words)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type words: List[str]</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    mo = [<span class="string">".-"</span>, <span class="string">"-..."</span>, <span class="string">"-.-."</span>, <span class="string">"-.."</span>, <span class="string">"."</span>, <span class="string">"..-."</span>, <span class="string">"--."</span>, <span class="string">"...."</span>, <span class="string">".."</span>, <span class="string">".---"</span>, <span class="string">"-.-"</span>, <span class="string">".-.."</span>, <span class="string">"--"</span>, <span class="string">"-."</span>, <span class="string">"---"</span>,</span><br><span class="line">          <span class="string">".--."</span>, <span class="string">"--.-"</span>, <span class="string">".-."</span>, <span class="string">"..."</span>, <span class="string">"-"</span>, <span class="string">"..-"</span>, <span class="string">"...-"</span>, <span class="string">".--"</span>, <span class="string">"-..-"</span>, <span class="string">"-.--"</span>, <span class="string">"--.."</span>]</span><br><span class="line">    res = set()</span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">        password = <span class="string">""</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(word)):</span><br><span class="line">            password += mo[ord(word[i]) - ord(<span class="string">'a'</span>)]</span><br><span class="line">        res.add(password)</span><br><span class="line">    <span class="keyword">return</span> len(res)</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/06/Leetcode学习笔记-804-唯一摩尔斯密码词/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
@@ -700,14 +695,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
               </li>
              
@@ -717,6 +704,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Linked List</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -752,11 +747,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Sort</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color5">Sort</a>
               </li>
              
               <li class="article-tag-list-item">
