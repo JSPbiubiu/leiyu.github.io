@@ -163,7 +163,7 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Leetcode学习笔记-287-寻找重复数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Leetcode学习笔记-58-最后一个单词的长度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -171,13 +171,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/Leetcode学习笔记-287-寻找重复数/">Leetcode学习笔记-287-寻找重复数</a>
+      <a class="article-title" href="/2018/04/18/Leetcode学习笔记-58-最后一个单词的长度/">Leetcode学习笔记-58-最后一个单词的长度</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/Leetcode学习笔记-287-寻找重复数/" class="archive-article-date">
-  	<time datetime="2018-04-13T10:11:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+        <a href="/2018/04/18/Leetcode学习笔记-58-最后一个单词的长度/" class="archive-article-date">
+  	<time datetime="2018-04-18T10:38:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-18</time>
 </a>
         
         
@@ -185,12 +185,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><font size="5"><br><strong>题目：</strong><br>一个长度为 n + 1 的整形数组，其中的数字都在 1 到 n 之间，包括 1 和 n ，可知至少有一个重复的数字存在。假设只有一个数字重复，找出这个重复的数字。<br><br>注意：<br><br>不能更改数组内容（假设数组是只读的）。<br>只能使用恒定的额外空间，即要求空间复杂度是 O(1) 。<br>时间复杂度小于 O(n2)<br>数组中只有一个数字重复，但它可能不止一次重复出现。<br><br><strong>解体思路：<br></strong><br>思路是采用了二分法+抽屉原理。首先解释一下为什么用二分法，因为O(n2)时间复杂度不能A，所以往下应该是n*logn，很容易联想到二分法，因为其复杂度为logn。<br><br>抽屉原理是说假设你有11个苹果，要放进10个抽屉，那么至少有一个抽屉里是有两个苹果的。<br><br>对应到这题，1~n的n+1个数字，有1个数字会至少重复两次。<br><br>比如取数组为｛1，2，2，3，4，5｝，一共6个数，范围是1~5，其中位数应该是（5+1）/2 = 3，那么，如果小于等于3的数的个数如果超过了3，那么重复的数字一定出现在[1，3]之间，否则出现在[4，5]之间。以该数组为例，中位数为3，小于等于3的数一共有4个，大于3的数有两个，所以重复的数字在[1,3]之间。<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">1</span>, end = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (start &lt; end) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> mid = start + (end - start) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i : nums)</span><br><span class="line">            <span class="keyword">if</span> (i &lt;= mid)</span><br><span class="line">                count++;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (count &gt; mid)</span><br><span class="line">            end = mid;</span><br><span class="line">        <span class="keyword">if</span> (count &lt;= mid)</span><br><span class="line">            start = mid + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> end;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2>
-        
-          <a class="article-more-a" href="/2018/04/13/Leetcode学习笔记-287-寻找重复数/#more">more >></a>
-        
+        <p><font size="5"><br><strong>题目：</strong><br>给定一个仅包含大小写字母和空格 ‘ ‘ 的字符串，返回其最后一个单词的长度。如果不存在最后一个单词，请返回 0 。<br><br>说明：一个单词是指由字母组成，但不包含任何空格的字符串。<br><br><strong>解体思路：<br></strong><br>第一种方法:按一个或多个空格切割 是“\s+”。找到字符串数组最后一个元素的长度<br>第二种方法:首先去掉字符串两端空格 ，然后找到最后出现空格的位置的下标，然后用字符串总长度减去当前下标 + 1<br><br>心得：Python rstrip() 删除 string 字符串末尾的指定字符（默认为空格）。<br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLastWord</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">   s = s.trim();</span><br><span class="line">   <span class="keyword">int</span> last = s.lastIndexOf(<span class="string">' '</span>) + <span class="number">1</span>;</span><br><span class="line">   <span class="keyword">return</span> s.length() - last;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lengthOfLastWord</span><span class="params">(self, s)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type s: str</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> len(s.rstrip().split(<span class="string">' '</span>)[<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -203,19 +201,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Binary Search</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
         		</li>
       		
 		</ul>
@@ -225,7 +215,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/Leetcode学习笔记-287-寻找重复数/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/18/Leetcode学习笔记-58-最后一个单词的长度/">展开全文 >></a>
         </p>
       
 
@@ -255,7 +245,7 @@
 
 
   
-    <article id="post-Leetcode学习笔记-697-数组的度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="w-Leetcode学习笔记-746-使用最小花费爬楼梯" class="article article-type-w  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -263,13 +253,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/13/Leetcode学习笔记-697-数组的度/">Leetcode学习笔记-697-数组的度</a>
+      <a class="article-title" href="/2018/04/17/Leetcode学习笔记-746-使用最小花费爬楼梯/">Leetcode学习笔记-746-使用最小花费爬楼梯</a>
     </h1>
   
 
         
-        <a href="/2018/04/13/Leetcode学习笔记-697-数组的度/" class="archive-article-date">
-  	<time datetime="2018-04-13T08:55:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+        <a href="/2018/04/17/Leetcode学习笔记-746-使用最小花费爬楼梯/" class="archive-article-date">
+  	<time datetime="2018-04-17T08:04:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-17</time>
 </a>
         
         
@@ -277,12 +267,100 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <font size="5"><br><strong>题目：</strong><br>给定一个非空且只包含非负数的整数数组 nums, 数组的度的定义是指数组里任一元素出现频数的最大值。<br>你的任务是找到与 nums 拥有相同大小的度的最短连续子数组，返回其长度。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: [1, 2, 2, 3, 1]</span><br><span class="line">输出: 2</span><br><span class="line">解释: </span><br><span class="line">输入数组的度是2，因为元素1和2的出现频数最大，均为2.</span><br><span class="line">连续子数组里面拥有相同度的有如下所示:</span><br><span class="line">[1, 2, 2, 3, 1], [1, 2, 2, 3], [2, 2, 3, 1], [1, 2, 2], [2, 2, 3], [2, 2]</span><br><span class="line">最短连续子数组[2, 2]的长度为2，所以返回2.</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: [1,2,2,3,1,4,2]</span><br><span class="line">输出: 6</span><br></pre></td></tr></table></figure><br><br></font><br><font size="5"><br><strong>解体思路：<br></strong><br>遍历一遍数组，分别将每个出现的数的左，右下标以及出现的次数存入三个map中,然后拿到次数map中的最大值，然后在次数为最大值的这些元素中找到距离最短的长度即为答案<br><br>心得：Java中想拿到一个列表元素中最大值可以用util下的Collections.max函数。<br>Python中在对一个列表遍历正常为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">       print(i, nums[i])</span><br></pre></td></tr></table></figure><br><br></font><br><font size="5">但是显得略微笨重，Python自带一个迭代器，可以同时得到元素和下标,用法如下:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> index, element <span class="keyword">in</span> enumerate(nums):</span><br><span class="line">      print(index, element)</span><br></pre></td></tr></table></figure><br><br></font><br><font size="5">enumerate还可以再传入一个参数，代表起始下标的标准。</font>
+        <p><font size="5"><br><strong>题目：</strong><br>数组的每个索引做为一个阶梯，第 i个阶梯对应着一个非负数的体力花费值 cost：i(索引从0开始)。<br>每当你爬上一个阶梯你都要花费对应的体力花费值，然后你可以选择继续爬一个阶梯或者爬两个阶梯。<br>您需要找到达到楼层顶部的最低花费。在开始时，你可以选择从索引为 0 或 1 的元素作为初始阶梯。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: cost = [10, 15, 20]</span><br><span class="line">输出: 15</span><br><span class="line">解释: 最低花费是从cost[1]开始，然后走两步即可到阶梯顶，一共花费15。</span><br><span class="line"> 示例 2:</span><br><span class="line"></span><br><span class="line">输入: cost = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]</span><br><span class="line">输出: 6</span><br><span class="line">解释: 最低花费方式是从cost[0]开始，逐个经过那些1，跳过cost[3]，一共花费6。</span><br><span class="line">注意：</span><br><span class="line"></span><br><span class="line">1.cost 的长度将会在 [2, 1000]。</span><br><span class="line">2.每一个 cost[i] 将会是一个Integer类型，范围为 [0, 999]。</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br><strong>解体思路：<br></strong><br>动态规划：找到关键的状态方程dp[i] = min(dp[i-1], dp[i-2])+cost[i],使得dp数组每一个位置都存放当前的最小答案<br><br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minCostClimbingStairs</span><span class="params">(<span class="keyword">int</span>[] cost)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[cost.length + <span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">0</span>] = cost[<span class="number">0</span>];</span><br><span class="line">    dp[<span class="number">1</span>] = cost[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= cost.length; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> costCurrent = i == cost.length ? <span class="number">0</span> : cost[i];</span><br><span class="line">        dp[i] = Math.min(dp[i - <span class="number">1</span>], dp[i - <span class="number">2</span>]) + costCurrent;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[cost.length];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">minCostClimbingStairs</span><span class="params">(self, cost)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type cost: List[int]</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    dp = list(cost) + [<span class="number">0</span>]  <span class="comment"># 多一个位置是终点时判断最后两步哪个最小</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, len(cost) + <span class="number">1</span>):</span><br><span class="line">        costCurrent = <span class="number">0</span> <span class="keyword">if</span> i == len(cost) <span class="keyword">else</span> cost[i]</span><br><span class="line">        dp[i] = min(dp[i - <span class="number">1</span>], dp[i - <span class="number">2</span>]) + costCurrent</span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
 
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Dynamic Programming</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/17/Leetcode学习笔记-746-使用最小花费爬楼梯/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
         
-          <a class="article-more-a" href="/2018/04/13/Leetcode学习笔记-697-数组的度/#more">more >></a>
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
         
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="w-Leetcode学习笔记-717-1比特与2比特字符" class="article article-type-w  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/17/Leetcode学习笔记-717-1比特与2比特字符/">Leetcode学习笔记-717-1比特与2比特字符</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/17/Leetcode学习笔记-717-1比特与2比特字符/" class="archive-article-date">
+  	<time datetime="2018-04-17T07:23:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-17</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>有两种特殊字符。第一种字符可以用一比特0来表示。第二种字符可以用两比特(10 或 11)来表示。现给一个由若干比特组成的字符串。问最后一个字符是否必定为一个一比特字符。给定的字符串总是由0结束。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line">输入: </span><br><span class="line">bits = [1, 0, 0]</span><br><span class="line">输出: True</span><br><span class="line">解释: </span><br><span class="line">唯一的编码方式是一个两比特字符和一个一比特字符。所以最后一个字符是一比特字符。</span><br><span class="line"></span><br><span class="line">示例 2:</span><br><span class="line">输入: </span><br><span class="line">bits = [1, 1, 1, 0]</span><br><span class="line">输出: False</span><br><span class="line">解释: </span><br><span class="line">唯一的编码方式是两比特字符和两比特字符。所以最后一个字符不是一比特字符。</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br><strong>解体思路：<br></strong><br>从头扫描数组，当遇到1时直接跳过下一个数，判断最后是否指向最后一个元素即可<br><br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isOneBitCharacter</span><span class="params">(<span class="keyword">int</span>[] bits)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; bits.length; i++)</span><br><span class="line">        <span class="keyword">if</span>(bits[i] == <span class="number">1</span>)</span><br><span class="line">            i++;</span><br><span class="line">    <span class="keyword">return</span> i == bits.length - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><p>注意：Python在for循环中不可修改循环变量的值！<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isOneBitCharacter</span><span class="params">(self, bits)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type bits: List[int]</span></span><br><span class="line"><span class="string">    :rtype: bool</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; len(bits):</span><br><span class="line">        <span class="keyword">if</span> i == len(bits) - <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">if</span> bits[i] == <span class="number">1</span>:</span><br><span class="line">            i += <span class="number">2</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure></p>
+
       
 
       
@@ -309,7 +387,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/13/Leetcode学习笔记-697-数组的度/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/17/Leetcode学习笔记-717-1比特与2比特字符/">展开全文 >></a>
         </p>
       
 
@@ -339,7 +417,7 @@
 
 
   
-    <article id="post-Leetcode学习笔记-442-数组中重复的数据" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Leetcode学习笔记-80-从排序阵列中删除重复II" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -347,13 +425,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/12/Leetcode学习笔记-442-数组中重复的数据/">Leetcode学习笔记-442-数组中重复的数据</a>
+      <a class="article-title" href="/2018/04/13/Leetcode学习笔记-80-从排序阵列中删除重复II/">Leetcode学习笔记-80-从排序阵列中删除重复II</a>
     </h1>
   
 
         
-        <a href="/2018/04/12/Leetcode学习笔记-442-数组中重复的数据/" class="archive-article-date">
-  	<time datetime="2018-04-12T11:17:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-12</time>
+        <a href="/2018/04/13/Leetcode学习笔记-80-从排序阵列中删除重复II/" class="archive-article-date">
+  	<time datetime="2018-04-13T12:37:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
         
@@ -361,9 +439,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><font size="5"><br><strong>题目：</strong><br>给定一个整数数组 a，其中1 ≤ a[i] ≤ n （n为数组长度）, 其中有些元素出现两次而其他元素出现一次。找到所有出现两次的元素。<br><br>你可以不用到任何额外空间并在O(n)时间复杂度内解决这个问题吗？<br><br><strong>解体思路：<br></strong><br>利用数组输入的特点 1&lt;=a(n)&lt;=n,则可以直接利用原数组当hash表用。因为原数组都是正数，标为负数表示出现过，就可以找出所有出现过的数。 <br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">findDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    List&lt;Integer&gt; l1 = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> index = Math.abs(nums[i]) - <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(nums[index] &lt; <span class="number">0</span>)</span><br><span class="line">            l1.add(index + <span class="number">1</span>);</span><br><span class="line">            </span><br><span class="line">        nums[index] = -nums[index];</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findDuplicates</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :rtype: List[int]</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    res = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">        index = abs(nums[i]) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> nums[index] &lt; <span class="number">0</span>:</span><br><span class="line">            res.append(index + <span class="number">1</span>)</span><br><span class="line">        nums[index] = -nums[index]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+        <p><font size="5"><br><strong>题目：</strong><br>“26-删除重复项目” 的进阶：如果重复最多被允许两次，又该怎么办呢？<br><br>例如：给定排序数列 nums = [1,1,1,2,2,3]<br><br>你的函数应该返回长度为 5，nums 的前五个元素是 1, 1, 2, 2 和 3。<br><br><strong>解体思路：<br></strong><br>数组是排好序的，所以只需要新建一个变量i  用来记录下标和长度，若当前数 &gt; 更改后数组中第【i - 2】<br>个元素的值，则添加到数组中并使i++<br><br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> x : nums)         </span><br><span class="line">        <span class="keyword">if</span>(i &lt; <span class="number">2</span> || x &gt; nums[i - <span class="number">2</span>])</span><br><span class="line">            nums[i++] = x;        </span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">removeDuplicates</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> ele <span class="keyword">in</span> nums:</span><br><span class="line">        <span class="keyword">if</span> i &lt; <span class="number">2</span> <span class="keyword">or</span> ele &gt; nums[i - <span class="number">2</span>]:</span><br><span class="line">            nums[i] = ele</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> i</span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -377,179 +456,15 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/12/Leetcode学习笔记-442-数组中重复的数据/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Leetcode学习笔记-238-除自身以外数组的乘积" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/12/Leetcode学习笔记-238-除自身以外数组的乘积/">Leetcode学习笔记-238-除自身以外数组的乘积</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/12/Leetcode学习笔记-238-除自身以外数组的乘积/" class="archive-article-date">
-  	<time datetime="2018-04-12T10:50:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-12</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>一个长度为 n 的整形数组nums，其中 n &gt; 1，返回一个数组 output ，其中 output[i] 等于nums中除nums[i]以外所有元素的乘积。<br><br>不用除法 且在O(n)内解决这个问题。<br><br>例如，输入 [1,2,3,4]，返回 [24,12,8,6]。<br><br>进阶：<br>你可以在常数空间复杂度内解决这个问题吗？（注意：出于空间复杂度分析的目的，输出数组不被视为额外空间。）<br><br><strong>解体思路：<br></strong><br>Given numbers [2, 3, 4, 5], regarding the third number 4, the product of array except 4 is 2<em>3</em>5 which consists of two parts: left 2<em>3 and right 5. The product is left</em>right. We can get lefts and rights:<br><br>Numbers:     2    3    4    5<br>Lefts:       2   2x3 2x3x4<br>Rights:         3x4x5 4x5   5<br>Let’s fill the empty with 1:<br><br>Numbers:     2    3    4    5<br>Lefts:       1    2  2x3 2x3x4<br>Rights:    3x4x5 4x5   5    1<br>We can calculate lefts and rights in 2 loops. The time complexity is O(n).<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">public</span> <span class="keyword">int</span>[] productExceptSelf(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">      <span class="keyword">int</span> len = nums.length;</span><br><span class="line"><span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line"><span class="keyword">int</span> left = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (i &gt; <span class="number">0</span>)</span><br><span class="line">		left = left * nums[i - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">	res[i] = left;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> right = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = len - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (i &lt; nums.length - <span class="number">1</span>)</span><br><span class="line">		right = right * nums[i + <span class="number">1</span>];</span><br><span class="line">		</span><br><span class="line">	res[i] *= right;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">productExceptSelf</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :rtype: List[int]</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    output = []</span><br><span class="line">    left = <span class="number">1</span></span><br><span class="line">    len = len(nums)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len):</span><br><span class="line">        <span class="keyword">if</span> i &gt; <span class="number">0</span>:</span><br><span class="line">            left *= nums[i - <span class="number">1</span>]</span><br><span class="line">        output.append(left)</span><br><span class="line"></span><br><span class="line">    right = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len - <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">        <span class="keyword">if</span> i &lt; len - <span class="number">1</span>:</span><br><span class="line">            right *= nums[i + <span class="number">1</span>]</span><br><span class="line">        output[i] *= right</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> output</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/12/Leetcode学习笔记-238-除自身以外数组的乘积/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Leetcode学习笔记-532-数组中的K-diff数对" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/11/Leetcode学习笔记-532-数组中的K-diff数对/">Leetcode学习笔记-532-数组中的K-diff数对</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/11/Leetcode学习笔记-532-数组中的K-diff数对/" class="archive-article-date">
-  	<time datetime="2018-04-11T08:26:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-11</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>给定一个整数数组和一个整数 k, 你需要在数组里找到不同的 k-diff 数对。这里将 k-diff 数对定义为一个整数对 (i, j), 其中 i 和 j 都是数组中的数字，且两数之差的绝对值是 k<br><br><strong>解体思路：<br></strong><br>当k &lt; 0 时 返回0<br><br>创建两个set集合，一个集合存数组元素，一个集合存结果，一个整形count用来存结果数<br><br>当k = 0时，也就是找两个相同的数并且只找一次，先遍历数组,当当前元素不在集合中，就添加进去，若集合中存在该元素，则进而去结果集合中找，若未找到，则说明是第一次出现，count++并将当前元素存<br>入结果集合中，这样下一次出现该元素时结果集合就存在该数，而不需要count++<br><br>当k&gt;0时，遍历数组，将数组元素存入数组元素集合(set自动去重),将当前元素+ k存入结果集合。<br>这样元素集合中有几个结果集合的数，count就为多少。<br><br>心得:Python中两个集合可以用操作符&amp;求交集。<br><br>Python collections.Counter:<br>Counter类的目的是用来跟踪值出现的次数。它是一个无序的容器类型，以字典的键值对形式存储，其中元素作为key，其计数作为value。<br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2>
-        
-          <a class="article-more-a" href="/2018/04/11/Leetcode学习笔记-532-数组中的K-diff数对/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -558,7 +473,97 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/11/Leetcode学习笔记-532-数组中的K-diff数对/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/Leetcode学习笔记-80-从排序阵列中删除重复II/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-75-分类颜色" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/Leetcode学习笔记-75-分类颜色/">Leetcode学习笔记-75-分类颜色</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/Leetcode学习笔记-75-分类颜色/" class="archive-article-date">
+  	<time datetime="2018-04-13T12:22:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>给定一个包含红色、白色和蓝色，且含有 n 个元素的数组，对它们进行排序，使得相同颜色的元素相邻，颜色顺序为红色、白色、蓝色。<br>此题中，我们使用整数 0, 1 和 2 分别表示红色，白色和蓝色。<br><br>注意:不能使用代码库中的排序函数来解决这道题。<br><br>进阶：<br><br>一个相当直观的解决方案是使用计数排序的 two-pass 算法。<br>首先，迭代计算出0，1 和 2 元素的个数，然后重写当前数组。<br>你能想出一个仅使用恒定空间的 one-pass 算法吗？<br><br><strong>解体思路：<br></strong><br>扫描了两遍数组<br><br>一遍的暂时不会。以后补充！<br><br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">int</span> red = <span class="number">0</span>, white = <span class="number">0</span>, blue = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> x : nums)&#123;</span><br><span class="line">	<span class="keyword">if</span>(x == <span class="number">0</span>)</span><br><span class="line">		red++;</span><br><span class="line">	<span class="keyword">if</span>(x == <span class="number">1</span>)</span><br><span class="line">		white++;</span><br><span class="line">	<span class="keyword">if</span>(x == <span class="number">2</span>)</span><br><span class="line">		blue++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(index &lt; red)</span><br><span class="line">	nums[index++] = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(index &lt; white + red)</span><br><span class="line">	nums[index++] = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span>(index &lt; blue + white + red)</span><br><span class="line">	nums[index++] = <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sortColors</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :rtype: void Do not return anything, modify nums in-place instead.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    red, white, blue = <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> elem <span class="keyword">in</span> nums:</span><br><span class="line">        <span class="keyword">if</span> elem == <span class="number">0</span>:</span><br><span class="line">            red += <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> elem == <span class="number">1</span>:</span><br><span class="line">            white += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            blue += <span class="number">1</span></span><br><span class="line">    index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> index &lt; red:</span><br><span class="line">        nums[index] = <span class="number">0</span></span><br><span class="line">        index += <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> index &lt; white + red:</span><br><span class="line">        nums[index] = <span class="number">1</span></span><br><span class="line">        index += <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> index &lt; blue + white + red:</span><br><span class="line">        nums[index] = <span class="number">2</span></span><br><span class="line">        index += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Sort</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/Leetcode学习笔记-75-分类颜色/">展开全文 >></a>
         </p>
       
 
@@ -590,7 +595,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/15/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/17/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/15/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/17/">Next &raquo;</a>
     </nav>
   
 
@@ -698,15 +703,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Easy</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -718,7 +719,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
+                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -726,19 +727,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Linked List</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Medium</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Divide and Conquer</a>
+                <a href="javascript:void(0)" class="js-tag color2">Linked List</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Divide and Conquer</a>
               </li>
              
               <li class="article-tag-list-item">
