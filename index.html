@@ -187,8 +187,8 @@
       
         <p><font size="5"><br><strong>题目：</strong><br>TinyURL是一种URL简化服务， 比如：当你输入一个URL <a href="https://leetcode.com/problems/design-tinyurl" target="_blank" rel="noopener">https://leetcode.com/problems/design-tinyurl</a> 时，它将返回一个简化的URL <a href="http://tinyurl.com/4e9iAk" target="_blank" rel="noopener">http://tinyurl.com/4e9iAk</a>.<br><br>要求：设计一个 TinyURL 的加密 encode 和解密 decode 的方法。你的加密和解密算法如何设计和运作是没有限制的，你只需要保证一个URL可以被加密成一个TinyURL，并且这个TinyURL可以用解密方法恢复成原本的URL。<br><br></font></p>
 <p><font size="5"><br><strong>解体思路：</strong><br>hash实际应用问题，利用map的键值映射关系来加密和解密。<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Codec</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   	Map&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">   	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">   	<span class="comment">// Encodes a URL to a shortened URL.</span></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> String <span class="title">encode</span><span class="params">(String longUrl)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       	String shorturl = <span class="string">"http://tinyurl.com/4e9iAk"</span> + i;</span><br><span class="line">       	i++;</span><br><span class="line">       	map.put(shorturl, longUrl);</span><br><span class="line">       	<span class="keyword">return</span> shorturl;</span><br><span class="line">   	&#125;</span><br><span class="line"></span><br><span class="line">   	<span class="comment">// Decodes a shortened URL to its original URL.</span></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> String <span class="title">decode</span><span class="params">(String shortUrl)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       	<span class="keyword">return</span> map.get(shortUrl);</span><br><span class="line">   	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Codec</span>:</span></span><br><span class="line">	enAndDe, i = &#123;&#125;, <span class="number">0</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">encode</span><span class="params">(self, longUrl)</span>:</span></span><br><span class="line">    	<span class="string">"""Encodes a URL to a shortened URL.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    	:type longUrl: str</span></span><br><span class="line"><span class="string">    	:rtype: str</span></span><br><span class="line"><span class="string">    	"""</span></span><br><span class="line">    	shortURL = <span class="string">"http://tinyurl.com/4e9iAk"</span> + str(self.i)</span><br><span class="line">    	self.enAndDe[shortURL] = longUrl</span><br><span class="line">    	self.i += <span class="number">1</span></span><br><span class="line">    	<span class="keyword">return</span> shortURL</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">decode</span><span class="params">(self, shortUrl)</span>:</span></span><br><span class="line">    	<span class="string">"""Decodes a shortened URL to its original URL.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    	:type shortUrl: str</span></span><br><span class="line"><span class="string">    	:rtype: str</span></span><br><span class="line"><span class="string">    	"""</span></span><br><span class="line">    	<span class="keyword">return</span> self.enAndDe[shortUrl]</span><br></pre></td></tr></table></figure>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Encodes a URL to a shortened URL.</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">encode</span><span class="params">(String longUrl)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    String shorturl = <span class="string">"http://tinyurl.com/4e9iAk"</span> + i;</span><br><span class="line">    i++;</span><br><span class="line">    map.put(shorturl, longUrl);</span><br><span class="line">    <span class="keyword">return</span> shorturl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Decodes a shortened URL to its original URL.</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">decode</span><span class="params">(String shortUrl)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> map.get(shortUrl);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">enAndDe, i = &#123;&#125;, <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode</span><span class="params">(self, longUrl)</span>:</span></span><br><span class="line">    <span class="string">"""Encodes a URL to a shortened URL.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :type longUrl: str</span></span><br><span class="line"><span class="string">    :rtype: str</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    shortURL = <span class="string">"http://tinyurl.com/4e9iAk"</span> + str(self.i)</span><br><span class="line">    self.enAndDe[shortURL] = longUrl</span><br><span class="line">    self.i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> shortURL</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decode</span><span class="params">(self, shortUrl)</span>:</span></span><br><span class="line">    <span class="string">"""Decodes a shortened URL to its original URL.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :type shortUrl: str</span></span><br><span class="line"><span class="string">    :rtype: str</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> self.enAndDe[shortUrl]</span><br></pre></td></tr></table></figure>
 
       
 
@@ -202,11 +202,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -703,11 +703,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Easy</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
+                <a href="javascript:void(0)" class="js-tag color2">Medium</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -715,19 +719,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Math</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Medium</a>
+                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -736,10 +740,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
               </li>
              
               <li class="article-tag-list-item">
