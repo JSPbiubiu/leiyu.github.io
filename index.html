@@ -163,6 +163,135 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-简单的神经网络-判断图片中是否有猫" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/16/简单的神经网络-判断图片中是否有猫/">简单的神经网络--判断图片中是否有猫</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/16/简单的神经网络-判断图片中是否有猫/" class="archive-article-date">
+  	<time datetime="2018-07-16T07:55:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-16</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br>这段代码利用BP神经网络，主要实现的功能是判断一张图片是否有cat，实现的是二分类，有就为1，没有就为0。(numpy库实现了很多矩阵运算，用起来很方便）<br><br><br>关键：<br><br><strong>z=w<sup>T</sup><code>*</code>x+b</strong><br><br><strong>a=sigmoid(z)其中sigmoid函数为1/(1+exp(-x))</strong><br><br><strong>损失函数L(a,y)=-(ylog(a) + (1-y)log(1-a))</strong><br><br><strong>cost函数J(w,b)=(1/m)<code>*</code>∑L(a,y)</strong><br></font><br><code>`</code> python<br>import numpy as np<br>import matplotlib.pyplot as plt<br>import h5py<br>import scipy<br>from PIL import Image<br>from scipy import ndimage<br>from lr_utils import load_dataset</p>
+<p>#sigmoid函数<br>def sigmoid(z):<br>    s = 1./(1+np.exp(-z))<br>    return(s)</p>
+<p>#初始化权值阈值<br>def initialiize_with_zeros(dim):</p>
+<pre><code>#这里只有一个神经元，w是一维的
+w = np.zeros(shape = (dim,1), dtype = np.float32)
+b = 0
+#断言函数，判断是否为真
+assert(w.shape == (dim,1))
+assert(isinstance(b,float) or isinstance(b,int))
+return(w,b)
+</code></pre><p>def propagate(w,b,X,Y):<br>    m = X.shape[1]</p>
+<pre><code>#forward propagation
+A = sigmoid(np.dot(w.T,X) + b)
+cost = (-1./m)*np.sum(Y*np.log(A) + (1-Y)*np.log(1-A),axis = 1)#按行相加
+#backward propagation
+dw = (1./m)*np.dot(X,((A-Y).T))#dw就是损失函数对w的求导
+db = (1./m)*np.sum(A-Y, axis=1)#axis=0按列相加，axis=1按行相加
+assert(dw.shape == w.shape)
+assert(db.dtype == float)
+cost = np.squeeze(cost)#squeeze函数的作用是去掉维度为1的维,在这就是将一个一维变成一个数字
+grads = {&quot;dw&quot;: dw, &quot;db&quot;: db}
+return grads, cost
+</code></pre><p>#梯度下降法优化<br>def optimize(w,b,X,Y,num_iterations,learning_rate,print_cost = False):<br>    costs = []<br>    for i in range(num_iterations):<br>        grads, cost = propagate(w=w, b=b, X=X, Y=Y)<br>        dw = grads[“dw”]<br>        db = grads[“db”]<br>        w = w - learning_rate<em>dw<br>        b = b -  learning_rate</em>db<br>        if i % 100 == 0:<br>             costs.append(cost)<br>        if print_cost and i % 100 == 0:<br>            print (“Cost after iteration %i: %f” %(i, cost))<br>     params = {“w”: w, “b”: b}<br>     grads = {“dw”: dw, “db”: db}<br>     return params, grads, costs</p>
+<p>def predict(w, b, X):<br>    m = X.shape[1]<br>    Y_prediction = np.zeros((1,m))<br>    w = w.reshape(X.shape[0], 1)<br>    A = sigmoid(np.dot(w.T, X) + b)<br>    for i in range(A.shape[1]):<br>        if A[0, i] &gt;= 0.5:<br>            Y_prediction[0, i] = 1<br>        else:<br>            Y_prediction[0, i] = 0<br>    assert(Y_prediction.shape == (1, m))</p>
+<pre><code>return Y_prediction
+</code></pre><p>def model(X_train, Y_train, X_test, Y_test, num_iterations = 2000, learning_rate = 0.5, print_cost = False):</p>
+<pre><code>#初始化权值阈值
+w, b = initialiize_with_zeros(X_train.shape[0])
+#梯度下降法寻优获取最佳权值阈值
+parameters, grads, costs = optimize(w, b, X_train, Y_train, num_iterations, learning_rate, print_cost)
+w = parameters[&quot;w&quot;]
+b = parameters[&quot;b&quot;]
+#测试集进行预测
+Y_prediction_test = predict(w, b, X_test)
+Y_prediction_tr 87 ain = predict(w, b, X_train)
+#输出正确率
+ print(&quot;train accuracy: {} %&quot;.format(100 - np.mea(np.abs(Y_prediction_train - Y_train)) * 100))
+print(&quot;test accuracy: {} %&quot;.format(100 - np.mean(np.abs(Y_prediction_test - Y_test)) * 100))
+#将所有结果以字典形式保存并返回
+d = {&quot;costs&quot;: costs,
+     &quot;Y_prediction_test&quot;: Y_prediction_test, 
+     &quot;Y_prediction_train&quot; : Y_prediction_train, 
+     &quot;w&quot; : w, 
+     &quot;b&quot; : b,
+     &quot;learning_rate&quot; : learning_rate,
+     &quot;num_iterations&quot;: num_iterations}
+
+return d
+</code></pre><p>‘’’主程序’’’</p>
+<p>#获取训练数据，测试数据<br>train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()</p>
+<p>#reshape()方法来更改数组的形状，train_set_x_orig.shape[0]是行数，-1是代表列数未知，需要numpy自动计算出列数</p>
+<p>#这里的列数：就是一张图片64<em>64</em>3数据变成一行数据的个数<br>train_set_x_flatten = train_set_x_orig.reshape(train_set_x_orig.shape[0], -1).T<br>test_set_x_flatten = test_set_x_orig.reshape(test_set_x_orig.shape[0], -1).T</p>
+<p>#标准化，颜色的数值是0~255<br>train_set_x = train_set_x_flatten/255.<br>test_set_x = test_set_x_flatten/255.</p>
+<p>#训练模型<br>d = model(train_set_x, train_set_y, test_set_x, test_set_y, num_iterations = 2000, learning_rate = 0.005, print_cost = True)<br>print(d)</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">神经网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/16/简单的神经网络-判断图片中是否有猫/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-爬取新浪新闻中的手机资讯并存放到excel" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -486,90 +615,6 @@
 
 
   
-    <article id="post-Leetcode学习笔记-500-键盘行" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/15/Leetcode学习笔记-500-键盘行/">Leetcode学习笔记-500-键盘行</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/15/Leetcode学习笔记-500-键盘行/" class="archive-article-date">
-  	<time datetime="2018-06-15T03:13:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>给定一个单词列表，只返回可以使用在键盘同一行的字母打印出来的单词。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">示例1:</span><br><span class="line">输入: [&quot;Hello&quot;, &quot;Alaska&quot;, &quot;Dad&quot;, &quot;Peace&quot;]</span><br><span class="line">输出: [&quot;Alaska&quot;, &quot;Dad&quot;]</span><br><span class="line"></span><br><span class="line">注意:</span><br><span class="line">你可以重复使用键盘上同一字符。</span><br><span class="line">你可以假设输入的字符串将只包含字母。</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<p><font size="5"><br><strong>解体思路：<br></strong><br>把三排英文字母存入三个set中，将每个单词都转换成小写并去重，判断是否是这三排其中一排的子集。<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">public</span> String[] findWords(String[] words) &#123;</span><br><span class="line">      Set&lt;Character&gt; s1 = <span class="keyword">new</span> HashSet&lt;Character&gt;(</span><br><span class="line">		Arrays.asList(<span class="keyword">new</span> Character[] &#123; <span class="string">'q'</span>, <span class="string">'w'</span>, <span class="string">'e'</span>, <span class="string">'r'</span>, <span class="string">'t'</span>, <span class="string">'y'</span>, <span class="string">'u'</span>, <span class="string">'i'</span>, <span class="string">'o'</span>, <span class="string">'p'</span> &#125;));</span><br><span class="line">Set&lt;Character&gt; s2 = <span class="keyword">new</span> HashSet&lt;Character&gt;(</span><br><span class="line">		Arrays.asList(<span class="keyword">new</span> Character[] &#123; <span class="string">'a'</span>, <span class="string">'s'</span>, <span class="string">'d'</span>, <span class="string">'f'</span>, <span class="string">'g'</span>, <span class="string">'h'</span>, <span class="string">'j'</span>, <span class="string">'k'</span>, <span class="string">'l'</span> &#125;));</span><br><span class="line">Set&lt;Character&gt; s3 = <span class="keyword">new</span> HashSet&lt;Character&gt;(</span><br><span class="line">		Arrays.asList(<span class="keyword">new</span> Character[] &#123; <span class="string">'z'</span>, <span class="string">'x'</span>, <span class="string">'c'</span>, <span class="string">'v'</span>, <span class="string">'b'</span>, <span class="string">'n'</span>, <span class="string">'m'</span> &#125;));</span><br><span class="line">List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; words.length; i++) &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span>[] ar = words[i].toLowerCase().toCharArray();</span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">char</span> c : ar) &#123;</span><br><span class="line">		<span class="keyword">if</span> (s1.contains(c))</span><br><span class="line">			count++;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (count == ar.length) &#123;</span><br><span class="line">		res.add(words[i]);</span><br><span class="line">		<span class="keyword">continue</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">char</span> c : ar) &#123;</span><br><span class="line">		<span class="keyword">if</span> (s2.contains(c))</span><br><span class="line">			count++;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (count == ar.length) &#123;</span><br><span class="line">		res.add(words[i]);</span><br><span class="line">		<span class="keyword">continue</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">char</span> c : ar) &#123;</span><br><span class="line">		<span class="keyword">if</span> (s3.contains(c))</span><br><span class="line">			count++;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (count == ar.length) &#123;</span><br><span class="line">		res.add(words[i]);</span><br><span class="line">		<span class="keyword">continue</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> res.toArray(<span class="keyword">new</span> String[res.size()]);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findWords</span><span class="params">(self, words)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type words: List[str]</span></span><br><span class="line"><span class="string">    :rtype: List[str]</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    res = []</span><br><span class="line">    first, second, third = set(<span class="string">"qwertyuiop"</span>), set(<span class="string">"asdfghjkl"</span>), set(<span class="string">"zxcvbnm"</span>)</span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">        wordSet = set(str.lower(word))</span><br><span class="line">        <span class="keyword">if</span> wordSet.issubset(first) <span class="keyword">or</span> wordSet.issubset(second) <span class="keyword">or</span> wordSet.issubset(third):</span><br><span class="line">            res.append(word)</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash Table</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/15/Leetcode学习笔记-500-键盘行/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -680,15 +725,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Easy</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Medium</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -696,11 +741,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
+                <a href="javascript:void(0)" class="js-tag color5">Math</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Math</a>
+                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -716,7 +761,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Medium</a>
+                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -724,19 +769,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Divide and Conquer</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Stack</a>
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Set</a>
+                <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -745,6 +786,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Set</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -761,6 +806,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
             
             <div class="clearfix"></div>
