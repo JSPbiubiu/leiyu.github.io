@@ -163,6 +163,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Leetcode学习笔记-819-最常见的单词" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/03/Leetcode学习笔记-819-最常见的单词/">Leetcode学习笔记-819-最常见的单词</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/03/Leetcode学习笔记-819-最常见的单词/" class="archive-article-date">
+  	<time datetime="2018-05-03T11:51:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-03</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>给定一个段落 (paragraph) 和一个禁用单词列表 (banned)。返回出现次数最多，同时不在禁用列表中的单词。题目保证至少有一个词不在禁用列表中，而且答案唯一。<br>禁用列表中的单词用小写字母表示，不含标点符号。段落中的单词不区分大小写。答案都是小写字母。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">示例:</span><br><span class="line">输入: </span><br><span class="line">paragraph = &quot;Bob hit a ball, the hit BALL flew far after it was hit.&quot;</span><br><span class="line">banned = [&quot;hit&quot;]</span><br><span class="line">输出: &quot;ball&quot;</span><br><span class="line">解释: </span><br><span class="line">&quot;hit&quot; 出现了3次，但它是一个禁用的单词。</span><br><span class="line">&quot;ball&quot; 出现了2次 (同时没有其他单词出现2次)，所以它是段落里出现次数最多的，且不在禁用列表中的单词。 </span><br><span class="line">注意，所有这些单词在段落里不区分大小写，标点符号需要忽略（即使是紧挨着单词也忽略， 比如 &quot;ball,&quot;）， </span><br><span class="line">&quot;hit&quot;不是最终的答案，虽然它出现次数更多，但它在禁用单词列表中。</span><br><span class="line">说明:</span><br><span class="line"></span><br><span class="line">1 &lt;= 段落长度 &lt;= 1000.</span><br><span class="line">1 &lt;= 禁用单词个数 &lt;= 100.</span><br><span class="line">1 &lt;= 禁用单词长度 &lt;= 10.</span><br><span class="line">答案是唯一的, 且都是小写字母 (即使在 paragraph 里是大写的，即使是一些特定的名词，答案都是小写的。)</span><br><span class="line">paragraph 只包含字母、空格和下列标点符号!?&apos;,;.</span><br><span class="line">paragraph 里单词之间都由空格隔开。</span><br><span class="line">不存在没有连字符或者带有连字符的单词。</span><br><span class="line">单词里只包含字母，不会出现省略号或者其他标点符号。</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br><strong>解体思路：</strong><br>先将被ban单词放到set中，然后将这段话全部换成小写然后按那几个符号（用到了正则）划分成字符数组，<br>当其中的单词不在set中，则添加到map中，找出出现次数最多的单词即可。<br><br>心得：Python中的str.split不支持正则表达式，若想要用正则，则需要用re模块中的re.split(regex, str)。<br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">mostCommonWord</span><span class="params">(String paragraph, String[] banned)</span> </span>&#123;</span><br><span class="line">       Map&lt;String, Integer&gt; words = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">       Set&lt;String&gt; ban = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">       String[] para = paragraph.toLowerCase().split(<span class="string">"[ !?',;.]+"</span>);</span><br><span class="line">       String answer = <span class="string">""</span>;</span><br><span class="line">       <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span> (String s : banned)</span><br><span class="line">           ban.add(s);</span><br><span class="line">       <span class="keyword">for</span> (String s : para)</span><br><span class="line">           <span class="keyword">if</span> (!ban.contains(s)) &#123;</span><br><span class="line"></span><br><span class="line">               <span class="keyword">int</span> curr = words.getOrDefault(s, <span class="number">0</span>) + <span class="number">1</span>;</span><br><span class="line">               <span class="keyword">if</span> (curr &gt; max) &#123;</span><br><span class="line">                   max = curr;</span><br><span class="line">                   answer = s;</span><br><span class="line">               &#125;</span><br><span class="line">               words.put(s, curr);</span><br><span class="line">           &#125;</span><br><span class="line">       <span class="keyword">return</span> answer;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mostCommonWord</span><span class="params">(self, paragraph, banned)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type paragraph: str</span></span><br><span class="line"><span class="string">    :type banned: List[str]</span></span><br><span class="line"><span class="string">    :rtype: str</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    ban = set(banned)</span><br><span class="line">    para = re.split(<span class="string">"[ !?',;.]+"</span>, paragraph.lower())</span><br><span class="line">    words, res, maxlen = &#123;&#125;, <span class="string">""</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> para:</span><br><span class="line">        <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> ban:</span><br><span class="line">            cur = words.get(word, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> cur &gt; maxlen:</span><br><span class="line">                maxlen = cur</span><br><span class="line">                res = word</span><br><span class="line">            words[word] = cur</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/03/Leetcode学习笔记-819-最常见的单词/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-老了啊，没有年轻时的莽撞" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -277,11 +361,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
         		</li>
       		
 		</ul>
@@ -361,11 +445,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
         		</li>
       		
 		</ul>
@@ -445,11 +529,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
         		</li>
       		
 		</ul>
@@ -460,94 +544,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/05/02/Leetcode学习笔记-434-字符串中的单词数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Leetcode学习笔记-20-有效的括号" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/01/Leetcode学习笔记-20-有效的括号/">Leetcode学习笔记-20-有效的括号</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/01/Leetcode学习笔记-20-有效的括号/" class="archive-article-date">
-  	<time datetime="2018-05-01T05:30:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-01</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’ 的字符串，判断字符串是否有效。<br>有效字符串需满足：<br>左括号必须用相同类型的右括号闭合。<br>左括号必须以正确的顺序闭合。<br>注意空字符串可被认为是有效字符串。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: &quot;()&quot;</span><br><span class="line">输出: true</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: &quot;()[]&#123;&#125;&quot;</span><br><span class="line">输出: true</span><br><span class="line">示例 3:</span><br><span class="line"></span><br><span class="line">输入: &quot;(]&quot;</span><br><span class="line">输出: false</span><br><span class="line">示例 4:</span><br><span class="line"></span><br><span class="line">输入: &quot;([)]&quot;</span><br><span class="line">输出: false</span><br><span class="line">示例 5:</span><br><span class="line"></span><br><span class="line">输入: &quot;&#123;[]&#125;&quot;</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>利用栈，当出现左半边符号时，压入栈右半边符号，若当前栈不为空并且当前字符元素与栈顶元素相等，则弹栈，若为空，则返回false。若遍历完字符数组后，栈为空则说明此字符串合法，反之，不合法。<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValid</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">       Stack&lt;Character&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">       <span class="keyword">int</span> len = s.length();</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i) &#123;</span><br><span class="line">           <span class="keyword">char</span> ch = s.charAt(i);</span><br><span class="line">           <span class="keyword">if</span> (ch == <span class="string">'('</span>)</span><br><span class="line">               stack.push(<span class="string">')'</span>);</span><br><span class="line">           <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">'&#123;'</span>)</span><br><span class="line">               stack.push(<span class="string">'&#125;'</span>);</span><br><span class="line">           <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">'['</span>)</span><br><span class="line">               stack.push(<span class="string">']'</span>);</span><br><span class="line">           <span class="keyword">else</span> <span class="keyword">if</span> (stack.isEmpty() || ch != stack.pop())</span><br><span class="line">               <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> stack.isEmpty();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isValid</span><span class="params">(self, s)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type s: str</span></span><br><span class="line"><span class="string">    :rtype: bool</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    stack = []</span><br><span class="line">    <span class="keyword">for</span> ch <span class="keyword">in</span> s:</span><br><span class="line">        <span class="keyword">if</span> ch <span class="keyword">in</span> [<span class="string">'['</span>, <span class="string">'&#123;'</span>, <span class="string">'('</span>]:</span><br><span class="line">            stack.append(ch)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> len(stack) == <span class="number">0</span> <span class="keyword">or</span> stack.pop() + ch <span class="keyword">not</span> <span class="keyword">in</span> [<span class="string">'&#123;&#125;'</span>, <span class="string">'[]'</span>, <span class="string">'()'</span>]:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">    <span class="keyword">return</span> len(stack) == <span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Stack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/01/Leetcode学习笔记-20-有效的括号/">展开全文 >></a>
         </p>
       
 
@@ -683,6 +679,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Array</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Medium</a>
               </li>
              
@@ -695,18 +707,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Array</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
               </li>
              
@@ -715,11 +715,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Tree</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
