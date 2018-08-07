@@ -163,6 +163,94 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Leetcode学习笔记-537-复数乘法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/17/Leetcode学习笔记-537-复数乘法/">Leetcode学习笔记-537-复数乘法</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/17/Leetcode学习笔记-537-复数乘法/" class="archive-article-date">
+  	<time datetime="2018-05-17T02:52:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-17</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>给定两个表示复数的字符串。<br>返回表示它们乘积的字符串。注意，根据定义 i^2 = -1 。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: &quot;1+1i&quot;, &quot;1+1i&quot;</span><br><span class="line">输出: &quot;0+2i&quot;</span><br><span class="line">解释: (1 + i) * (1 + i) = 1 + i2 + 2 * i = 2i ，你需要将它转换为 0+2i 的形式。</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: &quot;1+-1i&quot;, &quot;1+-1i&quot;</span><br><span class="line">输出: &quot;0+-2i&quot;</span><br><span class="line">解释: (1 - i) * (1 - i) = 1 + i2 - 2 * i = -2i ，你需要将它转换为 0+-2i 的形式。 </span><br><span class="line">注意:</span><br><span class="line"></span><br><span class="line">输入字符串不包含额外的空格。</span><br><span class="line">输入字符串将以 a+bi 的形式给出，其中整数 a 和 b 的范围均在 [-100, 100] 之间。输出也应当符合这种形式。</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br><strong>解体思路：</strong><br>注意（a + b） <em> (c + d) = a </em> c + b <em> d + a </em> d + b * c        i^2 = -1;<br>利用字符串切割  注意“+” 在正则表达式有特殊含义，所以切割时要加转义字”\+”<br><br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">complexNumberMultiply</span><span class="params">(String a, String b)</span> </span>&#123;</span><br><span class="line">       </span><br><span class="line">       String[] a1 = a.split(<span class="string">"\\+"</span>);</span><br><span class="line">	String[] a2 = b.split(<span class="string">"\\+"</span>);</span><br><span class="line">	<span class="keyword">int</span> x1 = Integer.parseInt(a1[<span class="number">0</span>]);</span><br><span class="line">	<span class="keyword">int</span> y1 = Integer.parseInt(a1[<span class="number">1</span>].replace(<span class="string">"i"</span>, <span class="string">""</span>));</span><br><span class="line">	<span class="keyword">int</span> x2 = Integer.parseInt(a2[<span class="number">0</span>]);</span><br><span class="line">	<span class="keyword">int</span> y2 = Integer.parseInt(a2[<span class="number">1</span>].replace(<span class="string">"i"</span>, <span class="string">""</span>));</span><br><span class="line">	<span class="keyword">int</span> x1x2y1y2 = (x1 * x2) + (-<span class="number">1</span> * y1 * y2);</span><br><span class="line">	<span class="keyword">int</span> x1y2x2y1 = (x1 * y2) + (x2 * y1);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> x1x2y1y2 + <span class="string">"+"</span> + x1y2x2y1 + <span class="string">"i"</span>;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">complexNumberMultiply</span><span class="params">(self, a, b)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type a: str</span></span><br><span class="line"><span class="string">    :type b: str</span></span><br><span class="line"><span class="string">    :rtype: str</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    stra, strb = a.split(<span class="string">'+'</span>), b.split(<span class="string">'+'</span>)</span><br><span class="line">    x1, y1, x2, y2 = int(stra[<span class="number">0</span>]), int(stra[<span class="number">1</span>][<span class="number">0</span>:len(stra[<span class="number">1</span>]) - <span class="number">1</span>]), int(strb[<span class="number">0</span>]), int(strb[<span class="number">1</span>][<span class="number">0</span>:len(strb[<span class="number">1</span>]) - <span class="number">1</span>])</span><br><span class="line">    real = x1 * x2 + y1 * y2 * <span class="number">-1</span></span><br><span class="line">    image = x1 * y2 + x2 * y1</span><br><span class="line">    <span class="keyword">return</span> str(real) + <span class="string">'+'</span> + str(image) + <span class="string">'i'</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/17/Leetcode学习笔记-537-复数乘法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Leetcode学习笔记-404-左叶子之和" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -503,90 +591,6 @@
 
 
   
-    <article id="post-Leetcode学习笔记-762-二进制表示中质数个计算置位" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/14/Leetcode学习笔记-762-二进制表示中质数个计算置位/">Leetcode学习笔记-762-二进制表示中质数个计算置位</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/14/Leetcode学习笔记-762-二进制表示中质数个计算置位/" class="archive-article-date">
-  	<time datetime="2018-05-14T02:34:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-14</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>给定两个整数 L 和 R ，找到闭区间 [L, R] 范围内，计算置位位数为质数的整数个数。<br>（注意，计算置位代表二进制表示中1的个数。例如 21 的二进制表示 10101 有 3 个计算置位。还有，1 不是质数。）<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: L = 6, R = 10</span><br><span class="line">输出: 4</span><br><span class="line">解释:</span><br><span class="line">6 -&gt; 110 (2 个计算置位，2 是质数)</span><br><span class="line">7 -&gt; 111 (3 个计算置位，3 是质数)</span><br><span class="line">9 -&gt; 1001 (2 个计算置位，2 是质数)</span><br><span class="line">10-&gt; 1010 (2 个计算置位，2 是质数)</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: L = 10, R = 15</span><br><span class="line">输出: 5</span><br><span class="line">解释:</span><br><span class="line">10 -&gt; 1010 (2 个计算置位, 2 是质数)</span><br><span class="line">11 -&gt; 1011 (3 个计算置位, 3 是质数)</span><br><span class="line">12 -&gt; 1100 (2 个计算置位, 2 是质数)</span><br><span class="line">13 -&gt; 1101 (3 个计算置位, 3 是质数)</span><br><span class="line">14 -&gt; 1110 (3 个计算置位, 3 是质数)</span><br><span class="line">15 -&gt; 1111 (4 个计算置位, 4 不是质数)</span><br><span class="line">注意:</span><br><span class="line"></span><br><span class="line">L, R 是 L &lt;= R 且在 [1, 10^6] 中的整数。</span><br><span class="line">R - L 的最大值为 10000。</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>算每个数字的二进制种1的个数，在判断是否是质数，最后统计出个数即可。<br><br>还有一种方法就是因为10的六次方二进制位最多20位，也就是1的质数个数可能只有2，3，5，7，11，13，17，19。这样就不需要判断是否是质数，之间判断是否在这些数中即可。<br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countPrimeSetBits</span><span class="params">(<span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = L; i &lt;= R; i++) &#123;</span><br><span class="line">           <span class="keyword">int</span> count = <span class="number">0</span>, temp = i;</span><br><span class="line">           <span class="keyword">while</span> (temp != <span class="number">0</span>) &#123;</span><br><span class="line">               <span class="keyword">if</span> (temp % <span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">                   count++;</span><br><span class="line">               temp /= <span class="number">2</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> (isPrimer(count))</span><br><span class="line">               res++;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> res;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isPrimer</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (x &lt; <span class="number">2</span>)</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= Math.sqrt(x); ++i)</span><br><span class="line">           <span class="keyword">if</span> (x % i == <span class="number">0</span>)</span><br><span class="line">               <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countPrimeSetBits</span><span class="params">(self, L, R)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type L: int</span></span><br><span class="line"><span class="string">    :type R: int</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    res = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(L, R + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> bin(i).count(<span class="string">'1'</span>) <span class="keyword">in</span> [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">13</span>,<span class="number">17</span>,<span class="number">19</span>]:</span><br><span class="line">            res += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Bit Manipulation</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/14/Leetcode学习笔记-762-二进制表示中质数个计算置位/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
@@ -701,15 +705,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -725,6 +729,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
               </li>
              
@@ -737,15 +749,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Linked List</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -757,15 +761,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Stack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Set</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -777,6 +777,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Sort</a>
               </li>
              
@@ -785,11 +789,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
