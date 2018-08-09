@@ -163,6 +163,89 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Leetcode学习笔记-788-检测大写字母" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/27/Leetcode学习笔记-788-检测大写字母/">Leetcode学习笔记-788-检测大写字母</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/27/Leetcode学习笔记-788-检测大写字母/" class="archive-article-date">
+  	<time datetime="2018-04-27T02:01:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-27</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>我们称一个数 X 为好数, 如果它的每位数字逐个地被旋转 180 度后，我们仍可以得到一个有效的，且和 X 不同的数。要求每位数字都要被旋转。<br><br>如果一个数的每位数字被旋转以后仍然还是一个数字， 则这个数是有效的。0, 1, 和 8 被旋转后仍然是它们自己；2 和 5 可以互相旋转成对方；6 和 9 同理，除了这些以外其他的数字旋转以后都不再是有效的数字。<br><br>现在我们有一个正整数 N, 计算从 1 到 N 中有多少个数 X 是好数？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例:</span><br><span class="line">输入: 10</span><br><span class="line">输出: 4</span><br><span class="line">解释: </span><br><span class="line">在[1, 10]中有四个好数： 2, 5, 6, 9。</span><br><span class="line">注意 1 和 10 不是好数, 因为他们在旋转之后不变。</span><br><span class="line">注意:</span><br><span class="line"></span><br><span class="line">N 的取值范围是 [1, 10000]。</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br><strong>解体思路：<br></strong><br>这道题用常规解法复杂度过高。。。<br>可以用DP：一个大于10小于N的数i，可以分为i / 10 和i % 10两部分，这两部分如果都是好数那么在一起也是好数，这样可以开一个DP数组，存放之前这些数的状态，如果两部分至少有一部分是好数就是好数。<br>dp[i] = 0 代表旋转后非法<br>dp[i] = 1 代表旋转后不变<br>dp[i] = 2 代表旋转后好数<br><br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rotatedDigits</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[N + <span class="number">1</span>];</span><br><span class="line">       <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= N; ++i) &#123;</span><br><span class="line">           <span class="keyword">if</span> (i &lt; <span class="number">10</span>) &#123;</span><br><span class="line"></span><br><span class="line">               <span class="keyword">if</span> (i == <span class="number">0</span> || i == <span class="number">1</span> || i == <span class="number">8</span>)</span><br><span class="line">                   dp[i] = <span class="number">1</span>;</span><br><span class="line">               <span class="keyword">else</span> <span class="keyword">if</span> (i == <span class="number">2</span> || i == <span class="number">5</span> || i == <span class="number">6</span> || i == <span class="number">9</span>) &#123;</span><br><span class="line">                   dp[i] = <span class="number">2</span>;</span><br><span class="line">                   res++;</span><br><span class="line">               &#125; <span class="keyword">else</span></span><br><span class="line">                   dp[i] = <span class="number">0</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">               <span class="keyword">int</span> left = i / <span class="number">10</span>, right = i % <span class="number">10</span>;</span><br><span class="line">               <span class="keyword">if</span> (dp[left] == <span class="number">0</span> || dp[right] == <span class="number">0</span>)</span><br><span class="line">                   dp[i] = <span class="number">0</span>;</span><br><span class="line">               <span class="keyword">else</span> <span class="keyword">if</span> (dp[left] == <span class="number">1</span> &amp;&amp; dp[right] == <span class="number">1</span>)</span><br><span class="line">                   dp[i] = <span class="number">1</span>;</span><br><span class="line">               <span class="keyword">else</span> &#123;</span><br><span class="line">                   dp[i] = <span class="number">2</span>;</span><br><span class="line">                   res++;</span><br><span class="line">               &#125;</span><br><span class="line"></span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> res;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rotatedDigits</span><span class="params">(self, N)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type N: int</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    dp, res = [<span class="number">0</span>] * (N + <span class="number">1</span>), <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> i &lt; <span class="number">10</span>:</span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">in</span> (<span class="number">0</span>, <span class="number">1</span>, <span class="number">8</span>):</span><br><span class="line">                dp[i] = <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> i <span class="keyword">in</span> (<span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">9</span>):</span><br><span class="line">                dp[i] = <span class="number">2</span></span><br><span class="line">                res += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                dp[i] = <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            left, right = i // <span class="number">10</span>, i % <span class="number">10</span></span><br><span class="line">            <span class="keyword">if</span> dp[left] == <span class="number">0</span> <span class="keyword">or</span> dp[right] == <span class="number">0</span>:</span><br><span class="line">                dp[i] = <span class="number">0</span></span><br><span class="line">            <span class="keyword">elif</span> dp[left] == <span class="number">1</span> <span class="keyword">and</span> dp[right] == <span class="number">1</span>:</span><br><span class="line">                dp[i] = <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                dp[i] = <span class="number">2</span></span><br><span class="line">                res += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/27/Leetcode学习笔记-788-检测大写字母/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Leetcode学习笔记-520-检测大写字母" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -503,90 +586,6 @@
 
 
   
-    <article id="post-Leetcode学习笔记-665-非递减数列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/25/Leetcode学习笔记-665-非递减数列/">Leetcode学习笔记-665-非递减数列</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/25/Leetcode学习笔记-665-非递减数列/" class="archive-article-date">
-  	<time datetime="2018-04-25T08:14:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-25</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>给定一个长度为 n 的整数数组，你的任务是判断在最多改变 1 个元素的情况下，该数组能否变成一个非递减数列。<br><br>我们是这样定义一个非递减数列的： 对于数组中所有的 i (1 &lt;= i &lt; n)，满足 array[i] &lt;= array[i + 1]。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: [4,2,3]</span><br><span class="line">输出: True</span><br><span class="line">解释: 你可以通过把第一个4变成1来使得它成为一个非递减数列。</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: [4,2,1]</span><br><span class="line">输出: False</span><br><span class="line">解释: 你不能在只改变一个元素的情况下将其变为非递减数列。</span><br><span class="line"></span><br><span class="line">说明:  n 的范围为 [1, 10,000]。</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<p><font size="5"><br><strong>解体思路：<br></strong><br>假设有一个数列a1a2a3a4a5,在a3之前一切正常，但是a4 &lt; a3，这时候有两种解决方案：一种是抬高a4，一种是降低a3，判断的依据就看a4和a2的关系，若a4&lt;a2,则最好的解决方案就是抬高a4,抬高到a3的值刚好，反之亦然。<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">checkPossibility</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> length = nums.length, needChange = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length - <span class="number">1</span>; ++i)</span><br><span class="line">           <span class="keyword">if</span> (nums[i + <span class="number">1</span>] &lt; nums[i]) &#123;</span><br><span class="line">               needChange++;</span><br><span class="line">               <span class="keyword">if</span> (needChange &gt; <span class="number">1</span>)</span><br><span class="line">                   <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">               <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i + <span class="number">1</span>] &lt; nums[i - <span class="number">1</span>])</span><br><span class="line">                   nums[i + <span class="number">1</span>] = nums[i];</span><br><span class="line">               <span class="keyword">else</span></span><br><span class="line">                   nums[i] = nums[i + <span class="number">1</span>];</span><br><span class="line">           &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">checkPossibility</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">       <span class="string">"""</span></span><br><span class="line"><span class="string">       :type nums: List[int]</span></span><br><span class="line"><span class="string">       :rtype: bool</span></span><br><span class="line"><span class="string">       """</span></span><br><span class="line">       length, needChange = len(nums), <span class="number">0</span></span><br><span class="line">       <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, length - <span class="number">1</span>):</span><br><span class="line">           <span class="keyword">if</span> nums[i + <span class="number">1</span>] &lt; nums[i]:</span><br><span class="line">               needChange += <span class="number">1</span></span><br><span class="line">               <span class="keyword">if</span> needChange &gt; <span class="number">1</span>:</span><br><span class="line">                   <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">               <span class="keyword">if</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> nums[i + <span class="number">1</span>] &lt; nums[i - <span class="number">1</span>]:</span><br><span class="line">                   nums[i + <span class="number">1</span>] = nums[i]</span><br><span class="line">               <span class="keyword">else</span>:</span><br><span class="line">                   nums[i] = nums[i + <span class="number">1</span>]</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/25/Leetcode学习笔记-665-非递减数列/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/17/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/19/">Next &raquo;</a>
@@ -701,7 +700,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -709,7 +708,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -717,19 +716,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">String</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Medium</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">String</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Math</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -738,14 +737,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Bit Manipulation</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Stack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Design</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -761,11 +752,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Divide and Conquer</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
+                <a href="javascript:void(0)" class="js-tag color1">Stack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Design</a>
               </li>
              
               <li class="article-tag-list-item">
