@@ -163,6 +163,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Leetcode学习笔记-682-棒球比赛" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/10/Leetcode学习笔记-682-棒球比赛/">Leetcode学习笔记-682-棒球比赛</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/10/Leetcode学习笔记-682-棒球比赛/" class="archive-article-date">
+  	<time datetime="2018-05-10T00:27:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-10</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>你现在是棒球比赛记录员。<br>给定一个字符串列表，每个字符串可以是以下四种类型之一：<br>1.整数（一轮的得分）：直接表示您在本轮中获得的积分数。<br>2.”+”（一轮的得分）：表示本轮获得的得分是前两轮有效 回合得分的总和。<br>3.”D”（一轮的得分）：表示本轮获得的得分是前一轮有效 回合得分的两倍。<br>4.”C”（一个操作，这不是一个回合的分数）：表示您获得的最后一个有效 回合的分数是无效的，应该被移除。<br>每一轮的操作都是永久性的，可能会对前一轮和后一轮产生影响。<br>你需要返回你在所有回合中得分的总和。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: [&quot;5&quot;,&quot;2&quot;,&quot;C&quot;,&quot;D&quot;,&quot;+&quot;]</span><br><span class="line">输出: 30</span><br><span class="line">解释: </span><br><span class="line">第1轮：你可以得到5分。总和是：5。</span><br><span class="line">第2轮：你可以得到2分。总和是：7。</span><br><span class="line">操作1：第2轮的数据无效。总和是：5。</span><br><span class="line">第3轮：你可以得到10分（第2轮的数据已被删除）。总数是：15。</span><br><span class="line">第4轮：你可以得到5 + 10 = 15分。总数是：30。</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: [&quot;5&quot;,&quot;-2&quot;,&quot;4&quot;,&quot;C&quot;,&quot;D&quot;,&quot;9&quot;,&quot;+&quot;,&quot;+&quot;]</span><br><span class="line">输出: 27</span><br><span class="line">解释: </span><br><span class="line">第1轮：你可以得到5分。总和是：5。</span><br><span class="line">第2轮：你可以得到-2分。总数是：3。</span><br><span class="line">第3轮：你可以得到4分。总和是：7。</span><br><span class="line">操作1：第3轮的数据无效。总数是：3。</span><br><span class="line">第4轮：你可以得到-4分（第三轮的数据已被删除）。总和是：-1。</span><br><span class="line">第5轮：你可以得到9分。总数是：8。</span><br><span class="line">第6轮：你可以得到-4 + 9 = 5分。总数是13。</span><br><span class="line">第7轮：你可以得到9 + 5 = 14分。总数是27。</span><br><span class="line">注意：</span><br><span class="line"></span><br><span class="line">输入列表的大小将介于1和1000之间。</span><br><span class="line">列表中的每个整数都将介于-30000和30000之间。</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br><strong>解体思路：</strong><br>开一个存放操作后结果的值栈：<br>当是整数，直接压入值栈；<br>当是”+”，将当前栈中最后两个值的和压入栈<br>当是”D”，将当前栈中最后一个值的二倍压入栈<br>当是”C”，将当前栈中最后一个值弹出，最后求出栈中值的和即为答案。<br><br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calPoints</span><span class="params">(String[] ops)</span> </span>&#123;</span><br><span class="line">       Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">       <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span> (String op : ops) &#123;</span><br><span class="line">           <span class="keyword">char</span> ch = op.charAt(<span class="number">0</span>);</span><br><span class="line">           <span class="keyword">if</span> (Character.isDigit(ch) || ch == <span class="string">'-'</span>) &#123;</span><br><span class="line">               stack.push(Integer.parseInt(op));</span><br><span class="line">               res += stack.peek();</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> (ch == <span class="string">'C'</span>)</span><br><span class="line">               res -= stack.pop();</span><br><span class="line">           <span class="keyword">if</span> (ch == <span class="string">'D'</span>) &#123;</span><br><span class="line">               stack.push(stack.peek() * <span class="number">2</span>);</span><br><span class="line">               res += stack.peek();</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> (ch == <span class="string">'+'</span>) &#123;</span><br><span class="line">               <span class="keyword">int</span> temp = stack.pop();</span><br><span class="line">               <span class="keyword">int</span> r = stack.peek() + temp;</span><br><span class="line">               stack.push(temp);</span><br><span class="line">               stack.push(r);</span><br><span class="line">               res += r;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> res;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calPoints</span><span class="params">(self, ops)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type ops: List[str]</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    stack, res = [], <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> op <span class="keyword">in</span> ops:</span><br><span class="line">        <span class="keyword">if</span> str.isdigit(op[<span class="number">0</span>]) <span class="keyword">or</span> op[<span class="number">0</span>] == <span class="string">'-'</span>:</span><br><span class="line">            stack.append(int(op))</span><br><span class="line">            res += stack[<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">if</span> op == <span class="string">'C'</span>:</span><br><span class="line">            res -= stack.pop()</span><br><span class="line">        <span class="keyword">if</span> op == <span class="string">'D'</span>:</span><br><span class="line">            stack.append(stack[<span class="number">-1</span>] * <span class="number">2</span>)</span><br><span class="line">            res += stack[<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">if</span> op == <span class="string">'+'</span>:</span><br><span class="line">            stack.append(stack[<span class="number">-1</span>] + stack[<span class="number">-2</span>])</span><br><span class="line">            res += stack[<span class="number">-1</span>]</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Stack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/10/Leetcode学习笔记-682-棒球比赛/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Leetcode学习笔记-806-写字符串需要的行数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -485,93 +569,9 @@
 
 
   
-    <article id="post-Leetcode学习笔记-693-交替位二进制数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/07/Leetcode学习笔记-693-交替位二进制数/">Leetcode学习笔记-693-交替位二进制数</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/07/Leetcode学习笔记-693-交替位二进制数/" class="archive-article-date">
-  	<time datetime="2018-05-07T03:41:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-07</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>给定一个正整数，检查他是否为交替位二进制数：换句话说，就是他的二进制数相邻的两个位数永不相等。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: 5</span><br><span class="line">输出: True</span><br><span class="line">解释:</span><br><span class="line">5的二进制数是: 101</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: 7</span><br><span class="line">输出: False</span><br><span class="line">解释:</span><br><span class="line">7的二进制数是: 111</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>利用当前整数得出二进制串<br>然后按位判断即可<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasAlternatingBits</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">       String bit = Integer.toBinaryString(n);</span><br><span class="line">       <span class="keyword">int</span> len = bit.length();</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i) &#123;</span><br><span class="line">           <span class="keyword">if</span> (i + <span class="number">1</span> &lt; len) &#123;</span><br><span class="line">               <span class="keyword">if</span> (bit.charAt(i) == <span class="string">'0'</span> &amp;&amp; bit.charAt(i + <span class="number">1</span>) != <span class="string">'1'</span>)</span><br><span class="line">                   <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">               <span class="keyword">if</span> (bit.charAt(i) == <span class="string">'1'</span> &amp;&amp; bit.charAt(i + <span class="number">1</span>) != <span class="string">'0'</span>)</span><br><span class="line">                   <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hasAlternatingBits</span><span class="params">(self, n)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type n: int</span></span><br><span class="line"><span class="string">    :rtype: bool</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    bit = bin(n)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"00"</span> <span class="keyword">not</span> <span class="keyword">in</span> bit <span class="keyword">and</span> <span class="string">"11"</span> <span class="keyword">not</span> <span class="keyword">in</span> bit</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Bit Manipulation</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/07/Leetcode学习笔记-693-交替位二进制数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/11/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/13/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/11/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/13/">Next &raquo;</a>
     </nav>
   
 
@@ -683,11 +683,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -707,18 +711,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
               </li>
              
@@ -731,15 +723,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Linked List</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
+                <a href="javascript:void(0)" class="js-tag color4">Divide and Conquer</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Divide and Conquer</a>
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
