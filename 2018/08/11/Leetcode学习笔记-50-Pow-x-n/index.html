@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="宝石叔叔的博客">
 <meta property="og:description" content="题目：实现 pow(x, n) ，即计算 x 的 n 次幂函数。12345678示例:输入: 2.00000, -2输出: 0.25000解释: 2-2 = 1/22 = 1/4 = 0.25说明:-100.0 &amp;lt; x &amp;lt; 100.0n 是 32 位有符号整数，其数值范围是 [−231, 231 − 1] 。 解题思路：最原始想法是直接while累乘一路到底，不过未免有点low，于是换">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-11T05:33:33.684Z">
+<meta property="og:updated_time" content="2018-08-11T05:35:19.350Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习笔记-50-Pow(x, n)">
 <meta name="twitter:description" content="题目：实现 pow(x, n) ，即计算 x 的 n 次幂函数。12345678示例:输入: 2.00000, -2输出: 0.25000解释: 2-2 = 1/22 = 1/4 = 0.25说明:-100.0 &amp;lt; x &amp;lt; 100.0n 是 32 位有符号整数，其数值范围是 [−231, 231 − 1] 。 解题思路：最原始想法是直接while累乘一路到底，不过未免有点low，于是换">
@@ -190,7 +190,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><font size="5"><br><strong>题目：</strong><br>实现 pow(x, n) ，即计算 x 的 n 次幂函数。<br></font><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">示例:</span><br><span class="line">输入: 2.00000, -2</span><br><span class="line">输出: 0.25000</span><br><span class="line">解释: 2-2 = 1/22 = 1/4 = 0.25</span><br><span class="line"></span><br><span class="line">说明:</span><br><span class="line">-100.0 &lt; x &lt; 100.0</span><br><span class="line">n 是 32 位有符号整数，其数值范围是 [−231, 231 − 1] 。</span><br></pre></td></tr></table></figure></p>
-<p><font size="5"><br><strong>解题思路：<br></strong><br>最原始想法是直接while累乘一路到底，不过未免有点low，于是换了个思路：<br>比如2的8次方可以写成(2^4) <em> (2^4) = (2^2) </em> (2^2) <em> (2^2) </em> (2^2)  = 2 <em> 2 </em> 2 <em> 2 </em> 2 <em> 2 </em> 2 * 2<br>可以发现算出左边就知道右边。这样复杂度就由O(N)降到O(logN)<br>于是写了个递归，注意边界， 当n取到最小值时，改成n取最大值最后再乘一个x（因为最小值是-2147483648，最大值是2147483647）。<br></font></p>
+<p><font size="5"><br><strong>解题思路：<br></strong><br>最原始想法是直接while累乘一路到底，不过未免有点low，于是换了个思路：<br>比如2的8次方可以写成(2^4) * (2^4) = (2^2) * (2^2) * (2^2) * (2^2)  = 2 * 2 * 2 * 2 * 2 * 2 * 2 * 2<br>可以发现算出左边就知道右边。这样复杂度就由O(N)降到O(logN)<br>于是写了个递归，注意边界， 当n取到最小值时，改成n取最大值最后再乘一个x（因为最小值是-2147483648，最大值是2147483647）。<br></font></p>
 <h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">myPow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">double</span> temp = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">if</span> (n == <span class="number">0</span> || x == <span class="number">1</span>)</span><br><span class="line">           <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">if</span> (x == <span class="number">0</span>)</span><br><span class="line">           <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">if</span> (n == <span class="number">1</span>)</span><br><span class="line">           <span class="keyword">return</span> x;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> (n &gt; <span class="number">0</span>) &#123;</span><br><span class="line">           temp = myPow(x, n / <span class="number">2</span>);</span><br><span class="line">           <span class="keyword">return</span> n % <span class="number">2</span> == <span class="number">1</span> ? temp * temp * x : temp * temp;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="keyword">if</span> (n == Integer.MIN_VALUE)</span><br><span class="line">               <span class="keyword">return</span> <span class="number">1</span> / (myPow(x, Integer.MAX_VALUE) * x);</span><br><span class="line">           <span class="keyword">else</span></span><br><span class="line">               <span class="keyword">return</span> <span class="number">1</span> / (myPow(x, Math.abs(n)));</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">myPow</span><span class="params">(self, x, n)</span>:</span></span><br><span class="line">       <span class="string">"""</span></span><br><span class="line"><span class="string">       :type x: float</span></span><br><span class="line"><span class="string">       :type n: int</span></span><br><span class="line"><span class="string">       :rtype: float</span></span><br><span class="line"><span class="string">       """</span></span><br><span class="line">       temp = <span class="number">0</span></span><br><span class="line">       <span class="keyword">if</span> n == <span class="number">0</span> <span class="keyword">or</span> x == <span class="number">1</span>:</span><br><span class="line">           <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">       <span class="keyword">if</span> x == <span class="number">0</span>:</span><br><span class="line">           <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">           <span class="keyword">return</span> x</span><br><span class="line">       <span class="keyword">if</span> n &gt; <span class="number">0</span>:</span><br><span class="line">           temp = self.myPow(x, n // <span class="number">2</span>)</span><br><span class="line">           <span class="keyword">return</span> temp * temp * x <span class="keyword">if</span> n % <span class="number">2</span> <span class="keyword">else</span> temp * temp</span><br><span class="line">       <span class="keyword">else</span>:</span><br><span class="line">           <span class="keyword">return</span> <span class="number">1</span> / (self.myPow(x, abs(n)))</span><br></pre></td></tr></table></figure>
 
@@ -314,6 +314,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/08/12/Leetcode学习笔记-60-第k个排列/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Leetcode学习笔记-60-第k个排列
+        
+      </div>
+    </a>
   
   
     <a href="/2018/08/10/Leetcode学习笔记-152-乘积最大子序列/" id="article-nav-older" class="article-nav-link-wrap">
@@ -487,11 +496,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,11 +544,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
+                <a href="javascript:void(0)" class="js-tag color2">Linked List</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Linked List</a>
+                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
               </li>
              
               <li class="article-tag-list-item">
