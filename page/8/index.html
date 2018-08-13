@@ -163,6 +163,86 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-具有一层隐藏层的数据分类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/23/具有一层隐藏层的数据分类/">具有一层隐藏层的数据分类</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/23/具有一层隐藏层的数据分类/" class="archive-article-date">
+  	<time datetime="2018-07-23T10:29:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-23</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <font size="5"><br>不同的颜色表示不同的类别，可以看到数据不是简单的线性可分类型。下面使用两层神经网络对数据进行分类。<br></font><br><img src="/img/data.png" alt="avatar"><br><font size="5"><br>构建自己的浅层神经网络<br>该编程作业将实现神经网络的步骤通过一个个的函数来实现，从上到下依次为：<br>1. 确定各层神经元个数；<br>2. 初始化参数；<br>3. 前向传播，求神经网络的输出值；<br>4. 计算cost；<br>5. 后向传播，求各参数的偏导数值；<br>6. 更新各参数值（使用偏导数、学习效率alpha），完成一次迭代；<br>7. 达到迭代次数，确定神经网络的最终参数；<br>8. 使用参数修正的神经网络预测样本；<br>9. 求准确率。<br>关键公式：<br><img src="/img/gongshi.png" alt="avatar"><br></font>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># Package imports</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> testCases <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> sklearn</span><br><span class="line"><span class="keyword">import</span> sklearn.datasets</span><br><span class="line"><span class="keyword">import</span> sklearn.linear_model</span><br><span class="line"><span class="keyword">from</span> planar_utils <span class="keyword">import</span> plot_decision_boundary, sigmoid, load_planar_dataset, load_extra_datasets</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">1</span>) <span class="comment"># set a seed so that the results are consistent</span></span><br><span class="line"></span><br><span class="line">X, Y = load_planar_dataset() </span><br><span class="line"><span class="comment"># Visualize the data:</span></span><br><span class="line">plt.scatter(X[<span class="number">0</span>, :], X[<span class="number">1</span>, :], c=np.squeeze(Y), s=<span class="number">40</span>, cmap=plt.cm.Spectral)</span><br><span class="line"></span><br><span class="line">shape_X = X.shape</span><br><span class="line">shape_Y = Y.shape</span><br><span class="line">m = shape_X[<span class="number">1</span>]  <span class="comment"># training set size</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">layer_sizes</span><span class="params">(X, Y)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Arguments:</span></span><br><span class="line"><span class="string">    X -- input dataset of shape (input size, number of examples)</span></span><br><span class="line"><span class="string">    Y -- labels of shape (output size, number of examples)</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">    n_x -- the size of the input layer</span></span><br><span class="line"><span class="string">    n_h -- the size of the hidden layer</span></span><br><span class="line"><span class="string">    n_y -- the size of the output layer</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment">### START CODE HERE ### (≈ 3 lines of code)</span></span><br><span class="line">    n_x = X.shape[<span class="number">0</span>] <span class="comment"># size of input layer</span></span><br><span class="line">    n_h = <span class="number">4</span></span><br><span class="line">    n_y = Y.shape[<span class="number">0</span>] <span class="comment"># size of output layer</span></span><br><span class="line">    <span class="comment">### END CODE HERE ###</span></span><br><span class="line">    <span class="keyword">return</span> (n_x, n_h, n_y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化w, b</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">initialize_parameters</span><span class="params">(n_x, n_h, n_y)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Argument:</span></span><br><span class="line"><span class="string">    n_x -- size of the input layer</span></span><br><span class="line"><span class="string">    n_h -- size of the hidden layer</span></span><br><span class="line"><span class="string">    n_y -- size of the output layer</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">    params -- python dictionary containing your parameters:</span></span><br><span class="line"><span class="string">                    W1 -- weight matrix of shape (n_h, n_x)</span></span><br><span class="line"><span class="string">                    b1 -- bias vector of shape (n_h, 1)</span></span><br><span class="line"><span class="string">                    W2 -- weight matrix of shape (n_y, n_h)</span></span><br><span class="line"><span class="string">                    b2 -- bias vector of shape (n_y, 1)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    </span><br><span class="line">    np.random.seed(<span class="number">2</span>) <span class="comment"># we set up a seed so that your output matches ours although the initialization is random.</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">### START CODE HERE ### (≈ 4 lines of code)</span></span><br><span class="line">    W1 = np.random.randn(n_h, n_x)</span><br><span class="line">    b1 = np.zeros((n_h, <span class="number">1</span>))</span><br><span class="line">    W2 = np.random.randn(n_y, n_h)</span><br><span class="line">    b2 = np.zeros((n_y, <span class="number">1</span>))</span><br><span class="line">    <span class="comment">### END CODE HERE ###</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">assert</span> (W1.shape == (n_h, n_x))</span><br><span class="line">    <span class="keyword">assert</span> (b1.shape == (n_h, <span class="number">1</span>))</span><br><span class="line">    <span class="keyword">assert</span> (W2.shape == (n_y, n_h))</span><br><span class="line">    <span class="keyword">assert</span> (b2.shape == (n_y, <span class="number">1</span>))</span><br><span class="line">    </span><br><span class="line">    parameters = &#123;<span class="string">"W1"</span>: W1,</span><br><span class="line">                  <span class="string">"b1"</span>: b1,</span><br><span class="line">                  <span class="string">"W2"</span>: W2,</span><br><span class="line">                  <span class="string">"b2"</span>: b2&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> parameters</span><br><span class="line"><span class="comment"># 前向传播求y hat</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">forward_propagation</span><span class="params">(X, parameters)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Argument:</span></span><br><span class="line"><span class="string">    X -- input data of size (n_x, m)</span></span><br><span class="line"><span class="string">    parameters -- python dictionary containing your parameters (output of initialization function)</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">    A2 -- The sigmoid output of the second activation</span></span><br><span class="line"><span class="string">    cache -- a dictionary containing "Z1", "A1", "Z2" and "A2"</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># Retrieve each parameter from the dictionary "parameters"</span></span><br><span class="line">    <span class="comment">### START CODE HERE ### (≈ 4 lines of code)</span></span><br><span class="line">    W1 = parameters[<span class="string">"W1"</span>]</span><br><span class="line">    b1 = parameters[<span class="string">"b1"</span>]</span><br><span class="line">    W2 = parameters[<span class="string">"W2"</span>]</span><br><span class="line">    b2 = parameters[<span class="string">"b2"</span>]</span><br><span class="line">    <span class="comment">### END CODE HERE ###</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Implement Forward Propagation to calculate A2 (probabilities)</span></span><br><span class="line">    <span class="comment">### START CODE HERE ### (≈ 4 lines of code)</span></span><br><span class="line">    Z1 = np.dot(W1, X) + b1</span><br><span class="line">    A1 = np.tanh(Z1)</span><br><span class="line">    Z2 = np.dot(W2, A1) + b2</span><br><span class="line">    A2 = sigmoid(Z2)</span><br><span class="line">    <span class="comment">### END CODE HERE ###</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">assert</span>(A2.shape == (<span class="number">1</span>, X.shape[<span class="number">1</span>]))</span><br><span class="line">    </span><br><span class="line">    cache = &#123;<span class="string">"Z1"</span>: Z1,</span><br><span class="line">             <span class="string">"A1"</span>: A1,</span><br><span class="line">             <span class="string">"Z2"</span>: Z2,</span><br><span class="line">             <span class="string">"A2"</span>: A2&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> A2, cache</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2018/07/23/具有一层隐藏层的数据分类/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">神经网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/23/具有一层隐藏层的数据分类/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-简单的神经网络-判断图片中是否有猫" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -478,90 +558,6 @@
 
 
   
-    <article id="post-Leetcode学习笔记-463-岛屿的周长" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/17/Leetcode学习笔记-463-岛屿的周长/">Leetcode学习笔记-463-岛屿的周长</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/17/Leetcode学习笔记-463-岛屿的周长/" class="archive-article-date">
-  	<time datetime="2018-06-17T02:06:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-17</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>给定一个包含 0 和 1 的二维网格地图，其中 1 表示陆地 0 表示水域。网格中的格子水平和垂直方向相连（对角线方向不相连）。整个网格被水完全包围，但其中恰好有一个岛屿（或者说，一个或多个表示陆地的格子相连组成的岛屿）。岛屿中没有“湖”（“湖” 指水域在岛屿内部且不和岛屿周围的水相连）。格子是边长为 1 的正方形。网格为长方形，且宽度和高度均不超过 100 。计算这个岛屿的周长。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[[0,1,0,0],</span><br><span class="line"> [1,1,1,0],</span><br><span class="line"> [0,1,0,0],</span><br><span class="line"> [1,1,0,0]]</span><br><span class="line"></span><br><span class="line">答案: 16</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<p><font size="5"><br><strong>解体思路：<br></strong><br>一块陆地四条边，两块挨着的陆地六条边， 也就是说 一个陆地挨着另一个陆地则少两条边。<br>所以求出陆地的个数X4 -挨着的个数X2即可<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">islandPerimeter</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> land = <span class="number">0</span>, neighbor = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; grid.length; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; grid[i].length; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (grid[i][j] == <span class="number">1</span>) &#123;</span><br><span class="line">                land++;</span><br><span class="line">                <span class="keyword">if</span> (i + <span class="number">1</span> &lt; grid.length &amp;&amp; grid[i + <span class="number">1</span>][j] == <span class="number">1</span>)</span><br><span class="line">                    neighbor++;</span><br><span class="line">                <span class="keyword">if</span> (j + <span class="number">1</span> &lt; grid[i].length &amp;&amp; grid[i][j + <span class="number">1</span>] == <span class="number">1</span>)</span><br><span class="line">                    neighbor++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> land * <span class="number">4</span> - neighbor * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">islandPerimeter</span><span class="params">(self, grid)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type grid: List[List[int]]</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    land, neighbor, row, col = <span class="number">0</span>, <span class="number">0</span>, len(grid), len(grid[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(row):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(col):</span><br><span class="line">            <span class="keyword">if</span> grid[i][j] == <span class="number">1</span>:</span><br><span class="line">                land += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> i + <span class="number">1</span> &lt; row <span class="keyword">and</span> grid[i + <span class="number">1</span>][j] == <span class="number">1</span>:</span><br><span class="line">                    neighbor += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> j + <span class="number">1</span> &lt; col <span class="keyword">and</span> grid[i][j + <span class="number">1</span>] == <span class="number">1</span>:</span><br><span class="line">                    neighbor += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> land * <span class="number">4</span> - neighbor * <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash Table</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/17/Leetcode学习笔记-463-岛屿的周长/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
@@ -692,6 +688,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Medium</a>
               </li>
              
@@ -704,14 +708,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
               </li>
              
@@ -720,7 +716,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
+                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -728,11 +724,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
+                <a href="javascript:void(0)" class="js-tag color4">Divide and Conquer</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Divide and Conquer</a>
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">

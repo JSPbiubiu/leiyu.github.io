@@ -163,6 +163,89 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Leetcode学习笔记-733-图像渲染" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/13/Leetcode学习笔记-733-图像渲染/">Leetcode学习笔记-733-图像渲染</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/13/Leetcode学习笔记-733-图像渲染/" class="archive-article-date">
+  	<time datetime="2018-08-13T13:53:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-13</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>有一幅以二维整数数组表示的图画，每一个整数表示该图画的像素值大小，数值在 0 到 65535 之间。<br>给你一个坐标 (sr, sc) 表示图像渲染开始的像素值（行 ，列）和一个新的颜色值 newColor，让你重新上色这幅图像。<br>为了完成上色工作，从初始坐标开始，记录初始坐标的上下左右四个方向上像素值与初始坐标相同的相连像素点，接着再记录这四个方向上符合条件的像素点与他们对应四个方向上像素值与初始坐标相同的相连像素点，……，重复该过程。将所有有记录的像素点的颜色值改为新的颜色值。<br>最后返回经过上色渲染后的图像。<br></font><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line">输入: </span><br><span class="line">image = [[1,1,1],[1,1,0],[1,0,1]]</span><br><span class="line">sr = 1, sc = 1, newColor = 2</span><br><span class="line">输出: [[2,2,2],[2,2,0],[2,0,1]]</span><br><span class="line">解析: </span><br><span class="line">在图像的正中间，(坐标(sr,sc)=(1,1)),</span><br><span class="line">在路径上所有符合条件的像素点的颜色都被更改成2。</span><br><span class="line">注意，右下角的像素没有更改为2，</span><br><span class="line">因为它不是在上下左右四个方向上与初始点相连的像素点。</span><br><span class="line"></span><br><span class="line">注意:</span><br><span class="line">image 和 image[0] 的长度在范围 [1, 50] 内。</span><br><span class="line">给出的初始点将满足 0 &lt;= sr &lt; image.length 和 0 &lt;= sc &lt; image[0].length。</span><br><span class="line">image[i][j] 和 newColor 表示的颜色值在范围 [0, 65535]内。</span><br></pre></td></tr></table></figure></p>
+<p><font size="5"><br><strong>解题思路：<br></strong><br>一个类似dfs走迷宫问题，找出除出发点以外其他所有能走到的地方（将该地方涂上新颜色）。<br>需要注意的是dfs之后本身也应该被涂上颜色。<br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] next = &#123;&#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, -<span class="number">1</span>&#125;, &#123;-<span class="number">1</span>, <span class="number">0</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">int</span>[][] book;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[][] floodFill(<span class="keyword">int</span>[][] image, <span class="keyword">int</span> sr, <span class="keyword">int</span> sc, <span class="keyword">int</span> newColor) &#123;</span><br><span class="line"></span><br><span class="line">    book = <span class="keyword">new</span> <span class="keyword">int</span>[image.length][image[<span class="number">0</span>].length];</span><br><span class="line">    dfs(image, sr, sc, newColor, image[sr][sc]);</span><br><span class="line">    image[sr][sc] = newColor;</span><br><span class="line">    <span class="keyword">return</span> image;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] image, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> newColor, <span class="keyword">int</span> sameColor)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (x &lt; <span class="number">0</span> || x &gt; image.length - <span class="number">1</span> || y &lt; <span class="number">0</span> || y &gt; image[<span class="number">0</span>].length - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">3</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> x1 = x + next[i][<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> y1 = y + next[i][<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span> (x1 &lt; <span class="number">0</span> || x1 &gt; image.length - <span class="number">1</span> || y1 &lt; <span class="number">0</span> || y1 &gt; image[<span class="number">0</span>].length - <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span> (book[x1][y1] == <span class="number">0</span> &amp;&amp; image[x1][y1] == sameColor) &#123;</span><br><span class="line">            image[x1][y1] = newColor;</span><br><span class="line">            book[x1][y1] = <span class="number">1</span>;</span><br><span class="line">            dfs(image, x1, y1, newColor, sameColor);</span><br><span class="line">            book[x1][y1] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">next = [[<span class="number">0</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">-1</span>], [<span class="number">-1</span>, <span class="number">0</span>]]</span><br><span class="line">book = []</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">floodFill</span><span class="params">(self, image, sr, sc, newColor)</span>:</span></span><br><span class="line">    self.book = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(image[<span class="number">0</span>]))] <span class="keyword">for</span> j <span class="keyword">in</span> range(len(image))]</span><br><span class="line">    self.dfs(image, sr, sc, newColor, image[sr][sc])</span><br><span class="line">    image[sr][sc] = newColor</span><br><span class="line">    <span class="keyword">return</span> image</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(self, image, x, y, newColor, sameColor)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> x &lt; <span class="number">0</span> <span class="keyword">or</span> y &lt; <span class="number">0</span> <span class="keyword">or</span> x &gt; len(image) - <span class="number">1</span> <span class="keyword">or</span> y &gt; len(image[<span class="number">0</span>]) - <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">        x1 = x + self.next[i][<span class="number">0</span>]</span><br><span class="line">        y1 = y + self.next[i][<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> x1 &lt; <span class="number">0</span> <span class="keyword">or</span> y1 &lt; <span class="number">0</span> <span class="keyword">or</span> x1 &gt; len(image) - <span class="number">1</span> <span class="keyword">or</span> y1 &gt; len(image[<span class="number">0</span>]) - <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">if</span> self.book[x1][y1] == <span class="number">0</span> <span class="keyword">and</span> image[x1][y1] == sameColor:</span><br><span class="line">            image[x1][y1] = newColor</span><br><span class="line">            self.book[x1][y1] = <span class="number">1</span></span><br><span class="line">            self.dfs(image, x1, y1, newColor, sameColor)</span><br><span class="line">            self.book[x1][y1] = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DFS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/13/Leetcode学习笔记-733-图像渲染/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Leetcode学习笔记-796-旋转字符串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -497,91 +580,6 @@
 
 
   
-    <article id="post-Leetcode学习笔记-60-第k个排列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/12/Leetcode学习笔记-60-第k个排列/">Leetcode学习笔记-60-第k个排列</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/12/Leetcode学习笔记-60-第k个排列/" class="archive-article-date">
-  	<time datetime="2018-08-12T10:02:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-12</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>给出集合 [1,2,3,…,n]，其所有元素共有 n! 种排列。<br>给定 n 和 k，返回第 k 个排列。<br></font><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line">输入: n = 3, k = 3</span><br><span class="line">输出: &quot;213&quot;</span><br><span class="line"></span><br><span class="line">示例 2:</span><br><span class="line">输入: n = 4, k = 9</span><br><span class="line">输出: &quot;2314&quot;</span><br><span class="line"></span><br><span class="line">说明：</span><br><span class="line">给定 n 的范围是 [1, 9]。</span><br><span class="line">给定 k 的范围是[1,  n!]。</span><br></pre></td></tr></table></figure></p>
-<p><font size="5"><br><strong>解题思路：<br></strong><br>数学方法不会，只是按正常dfs求全排列去做的，只不过到第k次停止。<br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> time = <span class="number">0</span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getPermutation</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[n], book = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">       Arrays.fill(res, <span class="number">0</span>);</span><br><span class="line">       Arrays.fill(book, <span class="number">0</span>);</span><br><span class="line">       time = k;</span><br><span class="line">       dfs(res, book, n, <span class="number">0</span>);</span><br><span class="line">       StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i : res)</span><br><span class="line">           sb.append(i);</span><br><span class="line">       <span class="keyword">return</span> sb.toString();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[] res, <span class="keyword">int</span>[] book, <span class="keyword">int</span> n, <span class="keyword">int</span> step)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> (step == n) &#123;</span><br><span class="line">           time--;</span><br><span class="line">           <span class="keyword">return</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">           <span class="keyword">if</span>(time &lt;= <span class="number">0</span>)</span><br><span class="line">               <span class="keyword">return</span>;</span><br><span class="line">           <span class="keyword">if</span> (book[i] == <span class="number">0</span>) &#123;</span><br><span class="line">               book[i] = <span class="number">1</span>;</span><br><span class="line">               res[step] = i;</span><br><span class="line">               dfs(res, book, n, step + <span class="number">1</span>);</span><br><span class="line">               book[i] = <span class="number">0</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Backtracking</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/12/Leetcode学习笔记-60-第k个排列/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -712,6 +710,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Medium</a>
               </li>
              
@@ -724,14 +730,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
               </li>
              
@@ -740,7 +738,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
+                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -748,11 +746,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
+                <a href="javascript:void(0)" class="js-tag color4">Divide and Conquer</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Divide and Conquer</a>
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
