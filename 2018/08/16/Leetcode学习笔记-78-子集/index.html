@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Leetcode学习笔记-160-相交链表 | 宝石叔叔的博客</title>
+  <title>Leetcode学习笔记-78-子集 | 宝石叔叔的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目：编写一个程序，找到两个单链表相交的起始节点。例如，下面的两个链表：12345A:          a1 → a2                   ↘                     c1 → c2 → c3                   ↗            B:     b1 → b2 → b3  注意：如果两个链表没有交点，返回 null.在返回结果后，两个链表仍">
-<meta name="keywords" content="Easy,Linked List">
+  <meta name="description" content="题目：给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。说明：解集不能包含重复的子集。12345678910111213示例:输入: nums = [1,2,3]输出:[  [3],  [1],  [2],  [1,2,3],  [1,3],  [2,3],  [1,2],  []] 解题思路：这道题挺有趣的，题中的(1,2,3)，我们可以看成一个三个比特的组合：比如0">
+<meta name="keywords" content="Array,Bit Manipulation,Medium,Backtracking">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode学习笔记-160-相交链表">
-<meta property="og:url" content="http://yoursite.com/2018/04/22/Leetcode学习笔记-160-相交链表/index.html">
+<meta property="og:title" content="Leetcode学习笔记-78-子集">
+<meta property="og:url" content="http://yoursite.com/2018/08/16/Leetcode学习笔记-78-子集/index.html">
 <meta property="og:site_name" content="宝石叔叔的博客">
-<meta property="og:description" content="题目：编写一个程序，找到两个单链表相交的起始节点。例如，下面的两个链表：12345A:          a1 → a2                   ↘                     c1 → c2 → c3                   ↗            B:     b1 → b2 → b3  注意：如果两个链表没有交点，返回 null.在返回结果后，两个链表仍">
+<meta property="og:description" content="题目：给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。说明：解集不能包含重复的子集。12345678910111213示例:输入: nums = [1,2,3]输出:[  [3],  [1],  [2],  [1,2,3],  [1,3],  [2,3],  [1,2],  []] 解题思路：这道题挺有趣的，题中的(1,2,3)，我们可以看成一个三个比特的组合：比如0">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-22T13:17:01.527Z">
+<meta property="og:updated_time" content="2018-08-16T13:11:02.665Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode学习笔记-160-相交链表">
-<meta name="twitter:description" content="题目：编写一个程序，找到两个单链表相交的起始节点。例如，下面的两个链表：12345A:          a1 → a2                   ↘                     c1 → c2 → c3                   ↗            B:     b1 → b2 → b3  注意：如果两个链表没有交点，返回 null.在返回结果后，两个链表仍">
+<meta name="twitter:title" content="Leetcode学习笔记-78-子集">
+<meta name="twitter:description" content="题目：给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。说明：解集不能包含重复的子集。12345678910111213示例:输入: nums = [1,2,3]输出:[  [3],  [1],  [2],  [1,2,3],  [1,3],  [2,3],  [1,2],  []] 解题思路：这道题挺有趣的，题中的(1,2,3)，我们可以看成一个三个比特的组合：比如0">
   
     <link rel="alternative" href="/atom.xml" title="宝石叔叔的博客" type="application/atom+xml">
   
@@ -163,7 +163,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Leetcode学习笔记-160-相交链表" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Leetcode学习笔记-78-子集" class="article article-type-post " itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -171,13 +171,13 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Leetcode学习笔记-160-相交链表
+      Leetcode学习笔记-78-子集
     </h1>
   
 
         
-        <a href="/2018/04/22/Leetcode学习笔记-160-相交链表/" class="archive-article-date">
-  	<time datetime="2018-04-22T12:58:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-22</time>
+        <a href="/2018/08/16/Leetcode学习笔记-78-子集/" class="archive-article-date">
+  	<time datetime="2018-08-16T12:49:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-16</time>
 </a>
         
         
@@ -189,14 +189,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><font size="5"><br><strong>题目：</strong><br>编写一个程序，找到两个单链表相交的起始节点。<br>例如，下面的两个链表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A:          a1 → a2</span><br><span class="line">                   ↘</span><br><span class="line">                     c1 → c2 → c3</span><br><span class="line">                   ↗            </span><br><span class="line">B:     b1 → b2 → b3</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<p><font size="5"><br>注意：<br>如果两个链表没有交点，返回 null.<br>在返回结果后，两个链表仍须保持原有的结构。<br>可假定整个链表结构中没有循环。<br>程序尽量满足 O(n) 时间复杂度，且仅用 O(1) 内存。<br></font></p>
-<p><font size="5"><br><strong>解体思路：<br></strong><br>先求出两个链表长度，若相等，则同时下移，若有节点相等，则返回若其中一个大于另一个链表，则将长的链表起始节点移动到与短链表起始位置相同的地方。<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> ListNode <span class="title">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    ListNode node1 = headA;</span><br><span class="line">    ListNode node2 = headB;</span><br><span class="line">    <span class="keyword">int</span> lenA = len(headA), lenB = len(headB);</span><br><span class="line">    <span class="keyword">if</span>(lenA &gt; lenB)&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lenA - lenB; i++)</span><br><span class="line">            node1 = node1.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(lenB &gt; lenA)&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lenB - lenA; i++)</span><br><span class="line">            node2 = node2.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(node1 != node2)&#123;</span><br><span class="line">        node1 = node1.next;</span><br><span class="line">        node2 = node2.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> node1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">len</span><span class="params">(ListNode head)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(head != <span class="keyword">null</span>)&#123;</span><br><span class="line">        head = head.next;</span><br><span class="line">        len++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><a id="more"></a>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getIntersectionNode</span><span class="params">(self, headA, headB)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type head1, head1: ListNode</span></span><br><span class="line"><span class="string">    :rtype: ListNode</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    lenA, lenB = self.length(headA), self.length(headB)</span><br><span class="line">    <span class="keyword">if</span> lenA &gt; lenB:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(lenA - lenB):</span><br><span class="line">            headA = headA.next</span><br><span class="line">    <span class="keyword">if</span> lenB &gt; lenA:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(lenB - lenA):</span><br><span class="line">            headB = headB.next</span><br><span class="line">    <span class="keyword">while</span> headA != headB:</span><br><span class="line">        headA = headA.next</span><br><span class="line">        headB = headB.next</span><br><span class="line">    <span class="keyword">return</span> headA</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">length</span><span class="params">(self, head)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type head: ListNode</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    length = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> head:</span><br><span class="line">        head = head.next</span><br><span class="line">        length += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> length</span><br></pre></td></tr></table></figure>
-
+        <p><font size="5"><br><strong>题目：</strong><br>给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。<br>说明：解集不能包含重复的子集。<br></font><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">示例:</span><br><span class="line">输入: nums = [1,2,3]</span><br><span class="line">输出:</span><br><span class="line">[</span><br><span class="line">  [3],</span><br><span class="line">  [1],</span><br><span class="line">  [2],</span><br><span class="line">  [1,2,3],</span><br><span class="line">  [1,3],</span><br><span class="line">  [2,3],</span><br><span class="line">  [1,2],</span><br><span class="line">  []</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p><font size="5"><br><strong>解题思路：<br></strong><br>这道题挺有趣的，题中的(1,2,3)，我们可以看成一个三个比特的组合：<br>比如0 0 0就代表空集，1 1 1就代表全集， 1 0 0 就代表(1)(可正可反，反的时候就是代表(3)<br>这样我们就可以推出3个不同的元素就有power(2, 3)个子集。<br>这样我们就可以进行位操作，0 - 2^n - 1的数的二进制数位为1的位置，就把对应的元素填入集合中。<br>((1 &lt;&lt; i )&amp; sign) != 0的意思是用第i位是1比特与当前sign相与，若结果不为0就代表sign的第i位比是1<br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; subsets(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">0</span>, end = <span class="number">1</span> &lt;&lt; nums.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> sign = start; sign &lt; end; sign++) &#123;</span><br><span class="line">        List&lt;Integer&gt; list = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (((<span class="number">1</span> &lt;&lt; i) &amp; sign) != <span class="number">0</span>)</span><br><span class="line">                list.add(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        res.add(list);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subsets</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    res, end = [], <span class="number">1</span> &lt;&lt; len(nums)</span><br><span class="line">    <span class="keyword">for</span> sign <span class="keyword">in</span> range(end):</span><br><span class="line">        subset = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">if</span> ((<span class="number">1</span> &lt;&lt; i) &amp; sign) != <span class="number">0</span>:</span><br><span class="line">                subset.append(nums[i])</span><br><span class="line">        res.append(subset)</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
       
 
       
@@ -240,11 +236,19 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Linked List</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Bit Manipulation</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Backtracking</a>
         		</li>
       		
 		</ul>
@@ -300,7 +304,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/22/Leetcode学习笔记-160-相交链表/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/16/Leetcode学习笔记-78-子集/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -314,18 +318,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/04/23/Leetcode学习笔记-674-最长连续递增序列/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Leetcode学习笔记-674-最长连续递增序列
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/04/22/Leetcode学习笔记-203-删除链表中的元素/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Leetcode学习笔记-203-删除链表中的元素</div>
+    <a href="/2018/08/16/Leetcode学习笔记-22-括号生成/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Leetcode学习笔记-22-括号生成</div>
       <i class="icon-circle-right"></i>
     </a>
   
