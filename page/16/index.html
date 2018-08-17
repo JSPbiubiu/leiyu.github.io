@@ -163,6 +163,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Leetcode学习笔记-9-回文数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/13/Leetcode学习笔记-9-回文数/">Leetcode学习笔记-9-回文数</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/13/Leetcode学习笔记-9-回文数/" class="archive-article-date">
+  	<time datetime="2018-05-13T01:43:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-13</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: 121</span><br><span class="line">输出: true</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: -121</span><br><span class="line">输出: false</span><br><span class="line">解释: 从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。</span><br><span class="line">示例 3:</span><br><span class="line"></span><br><span class="line">输入: 10</span><br><span class="line">输出: false</span><br><span class="line">解释: 从右向左读, 为 01 。因此它不是一个回文数。</span><br><span class="line">进阶:</span><br><span class="line"></span><br><span class="line">你能不将整数转为字符串来解决这个问题吗？</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br><strong>解体思路：</strong><br>此数如果小于零则肯定不是回文数，若大于0，则将该数反转，反转后如果和原数相等则是回文。<br><br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (x &lt; <span class="number">0</span>)</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       <span class="keyword">int</span> reverse = <span class="number">0</span>, temp = x;</span><br><span class="line">       <span class="keyword">while</span> (x != <span class="number">0</span>) &#123;</span><br><span class="line">           reverse = reverse * <span class="number">10</span> + x % <span class="number">10</span>;</span><br><span class="line">           x /= <span class="number">10</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> reverse == temp;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isPalindrome</span><span class="params">(self, x)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type x: int</span></span><br><span class="line"><span class="string">    :rtype: bool</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> x &lt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">    rev, temp = <span class="number">0</span>, x</span><br><span class="line">    <span class="keyword">while</span> x:</span><br><span class="line">        rev = rev * <span class="number">10</span> + x % <span class="number">10</span></span><br><span class="line">        x //= <span class="number">10</span></span><br><span class="line">    <span class="keyword">return</span> temp == rev</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/13/Leetcode学习笔记-9-回文数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Leetcode学习笔记-257-二叉树的所有路径" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -497,81 +581,6 @@
 
 
   
-    <article id="post-三个月" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/07/三个月/">未来规划中的重要一步</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/07/三个月/" class="archive-article-date">
-  	<time datetime="2018-05-07T11:57:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-07</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="一个非常值得我去争取的三个月"><a href="#一个非常值得我去争取的三个月" class="headerlink" title="一个非常值得我去争取的三个月"></a><p align="center">一个非常值得我去争取的三个月</p></h1><h2 id="nbsp-nbsp-nbsp-nbsp-最近这两天心情真的不错，追随自己心里所想的去做了！感觉自己比之前进步了不少hhh。希望自己还会继续保持一个乐观开朗的心态！一如年少模样（hhh最近听的歌）！争取完成这个为期三个月的目标！"><a href="#nbsp-nbsp-nbsp-nbsp-最近这两天心情真的不错，追随自己心里所想的去做了！感觉自己比之前进步了不少hhh。希望自己还会继续保持一个乐观开朗的心态！一如年少模样（hhh最近听的歌）！争取完成这个为期三个月的目标！" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;最近这两天心情真的不错，追随自己心里所想的去做了！感觉自己比之前进步了不少hhh。希望自己还会继续保持一个乐观开朗的心态！一如年少模样（hhh最近听的歌）！争取完成这个为期三个月的目标！"></a>&nbsp;&nbsp;&nbsp;&nbsp;最近这两天心情真的不错，追随自己心里所想的去做了！感觉自己比之前进步了不少hhh。希望自己还会继续保持一个乐观开朗的心态！一如年少模样（hhh最近听的歌）！争取完成这个为期三个月的目标！</h2><h3 id="宝石2018年5月7日晚记"><a href="#宝石2018年5月7日晚记" class="headerlink" title="宝石2018年5月7日晚记"></a><p align="right">宝石<br>2018年5月7日晚记</p></h3>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/07/三个月/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/15/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/17/">Next &raquo;</a>
@@ -682,11 +691,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -714,7 +723,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Math</a>
+                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -726,11 +735,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Medium</a>
+                <a href="javascript:void(0)" class="js-tag color5">Math</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
+                <a href="javascript:void(0)" class="js-tag color2">Medium</a>
               </li>
              
               <li class="article-tag-list-item">
