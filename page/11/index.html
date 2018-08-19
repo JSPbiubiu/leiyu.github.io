@@ -163,6 +163,92 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Leetcode学习笔记-705-设计哈希集合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/03/Leetcode学习笔记-705-设计哈希集合/">Leetcode学习笔记-705-设计哈希集合</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/03/Leetcode学习笔记-705-设计哈希集合/" class="archive-article-date">
+  	<time datetime="2018-08-03T01:45:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-03</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>不使用任何内建的哈希表库设计一个哈希集合<br>具体地说，你的设计应该包含以下的功能<br>add(value)：向哈希集合中插入一个值。<br>contains(value) ：返回哈希集合中是否存在这个值。<br>remove(value)：将给定值从哈希集合中删除。如果哈希集合中没有这个值，什么也不做。<br><br>注意：<br>所有的值都在 [1, 1000000]的范围内。<br>操作的总数目在[1, 10000]范围内。<br>不要使用内建的哈希集合库。<br></font></p>
+<p><font size="5"><br><strong>解题思路：<br></strong><br>实现哈希集合中的操作可以简单的使用数组，值为数组下标，数组元素为布尔类型，存入时置为true，移除时置为假。<br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHashSet</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">boolean</span> set[];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyHashSet</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        set = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">1000001</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        set[key] = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        set[key] = <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> set[key];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHashSet</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.set = [<span class="keyword">False</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1000001</span>)]</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(self, key)</span>:</span></span><br><span class="line">        self.set[key] = <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">remove</span><span class="params">(self, key)</span>:</span></span><br><span class="line">        self.set[key] = <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">contains</span><span class="params">(self, key)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.set[key]</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash Table</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Design</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/03/Leetcode学习笔记-705-设计哈希集合/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Leetcode学习笔记-232-用栈实现队列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -503,82 +589,6 @@
 
 
   
-    <article id="post-简单的神经网络-判断图片中是否有猫" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/16/简单的神经网络-判断图片中是否有猫/">简单的神经网络--判断图片中是否有猫</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/16/简单的神经网络-判断图片中是否有猫/" class="archive-article-date">
-  	<time datetime="2018-07-16T07:55:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-16</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br>这段代码利用BP神经网络，主要实现的功能是判断一张图片是否有cat，实现的是二分类，有就为1，没有就为0。(numpy库实现了很多矩阵运算，用起来很方便）<br><br><br>关键：<br><br><strong>z=w<sup>T</sup><code>*</code>x+b</strong><br><br><strong>a=sigmoid(z)其中sigmoid函数为1/(1+exp(-x))</strong><br><br><strong>损失函数L(a,y)=-(ylog(a) + (1-y)log(1-a))</strong><br><br><strong>cost函数J(w,b)=(1/m)<code>*</code>∑L(a,y)</strong><br></font><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> h5py</span><br><span class="line"><span class="keyword">import</span> scipy</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> ndimage</span><br><span class="line"><span class="keyword">from</span> lr_utils <span class="keyword">import</span> load_dataset</span><br><span class="line"></span><br><span class="line"><span class="comment">#sigmoid函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sigmoid</span><span class="params">(z)</span>:</span></span><br><span class="line">    s = <span class="number">1.</span>/(<span class="number">1</span>+np.exp(-z))</span><br><span class="line">    <span class="keyword">return</span>(s)</span><br><span class="line"></span><br><span class="line"><span class="comment">#初始化权值阈值</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">initialiize_with_zeros</span><span class="params">(dim)</span>:</span></span><br><span class="line">    <span class="comment">#这里只有一个神经元，w是一维的</span></span><br><span class="line">    w = np.zeros(shape = (dim,<span class="number">1</span>), dtype = np.float32)</span><br><span class="line">    b = <span class="number">0</span></span><br><span class="line">    <span class="comment">#断言函数，判断是否为真</span></span><br><span class="line">    <span class="keyword">assert</span>(w.shape == (dim,<span class="number">1</span>))</span><br><span class="line">    <span class="keyword">assert</span>(isinstance(b,float) <span class="keyword">or</span> isinstance(b,int))</span><br><span class="line">    <span class="keyword">return</span>(w,b)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">propagate</span><span class="params">(w,b,X,Y)</span>:</span></span><br><span class="line">    m = X.shape[<span class="number">1</span>]</span><br><span class="line">    <span class="comment">#forward propagation</span></span><br><span class="line">    A = sigmoid(np.dot(w.T,X) + b)</span><br><span class="line">    cost = (<span class="number">-1.</span>/m)*np.sum(Y*np.log(A) + (<span class="number">1</span>-Y)*np.log(<span class="number">1</span>-A),axis = <span class="number">1</span>)<span class="comment">#按行相加</span></span><br><span class="line">    <span class="comment">#backward propagation</span></span><br><span class="line">    dw = (<span class="number">1.</span>/m)*np.dot(X,((A-Y).T))<span class="comment">#dw就是损失函数对w的求导</span></span><br><span class="line">    db = (<span class="number">1.</span>/m)*np.sum(A-Y, axis=<span class="number">1</span>)<span class="comment">#axis=0按列相加，axis=1按行相加</span></span><br><span class="line">    <span class="keyword">assert</span>(dw.shape == w.shape)</span><br><span class="line">    <span class="keyword">assert</span>(db.dtype == float)</span><br><span class="line">    cost = np.squeeze(cost)<span class="comment">#squeeze函数的作用是去掉维度为1的维,在这就是将一个一维变成一个数字</span></span><br><span class="line">    grads = &#123;<span class="string">"dw"</span>: dw, <span class="string">"db"</span>: db&#125;</span><br><span class="line">    <span class="keyword">return</span> grads, cost</span><br><span class="line"></span><br><span class="line"><span class="comment">#梯度下降法优化</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">optimize</span><span class="params">(w,b,X,Y,num_iterations,learning_rate,print_cost = False)</span>:</span></span><br><span class="line">    costs = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(num_iterations):</span><br><span class="line">        grads, cost = propagate(w=w, b=b, X=X, Y=Y)        </span><br><span class="line">        dw = grads[<span class="string">"dw"</span>]</span><br><span class="line">        db = grads[<span class="string">"db"</span>]   </span><br><span class="line">        w = w - learning_rate*dw</span><br><span class="line">        b = b -  learning_rate*db</span><br><span class="line">        <span class="keyword">if</span> i % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">             costs.append(cost)</span><br><span class="line">        <span class="keyword">if</span> print_cost <span class="keyword">and</span> i % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">print</span> (<span class="string">"Cost after iteration %i: %f"</span> %(i, cost))</span><br><span class="line">     params = &#123;<span class="string">"w"</span>: w, <span class="string">"b"</span>: b&#125;</span><br><span class="line">     grads = &#123;<span class="string">"dw"</span>: dw, <span class="string">"db"</span>: db&#125;</span><br><span class="line">     <span class="keyword">return</span> params, grads, costs</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(w, b, X)</span>:</span></span><br><span class="line">    m = X.shape[<span class="number">1</span>]</span><br><span class="line">    Y_prediction = np.zeros((<span class="number">1</span>,m))</span><br><span class="line">    w = w.reshape(X.shape[<span class="number">0</span>], <span class="number">1</span>)   </span><br><span class="line">    A = sigmoid(np.dot(w.T, X) + b)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(A.shape[<span class="number">1</span>]):    </span><br><span class="line">        <span class="keyword">if</span> A[<span class="number">0</span>, i] &gt;= <span class="number">0.5</span>:</span><br><span class="line">            Y_prediction[<span class="number">0</span>, i] = <span class="number">1</span>    </span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            Y_prediction[<span class="number">0</span>, i] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">assert</span>(Y_prediction.shape == (<span class="number">1</span>, m))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> Y_prediction</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">model</span><span class="params">(X_train, Y_train, X_test, Y_test, num_iterations = <span class="number">2000</span>, learning_rate = <span class="number">0.5</span>, print_cost = False)</span>:</span></span><br><span class="line">    <span class="comment">#初始化权值阈值</span></span><br><span class="line">    w, b = initialiize_with_zeros(X_train.shape[<span class="number">0</span>])</span><br><span class="line">    <span class="comment">#梯度下降法寻优获取最佳权值阈值</span></span><br><span class="line">    parameters, grads, costs = optimize(w, b, X_train, Y_train, num_iterations, learning_rate, print_cost)</span><br><span class="line">    w = parameters[<span class="string">"w"</span>]</span><br><span class="line">    b = parameters[<span class="string">"b"</span>]</span><br><span class="line">    <span class="comment">#测试集进行预测</span></span><br><span class="line">    Y_prediction_test = predict(w, b, X_test)</span><br><span class="line">    Y_prediction_train = predict(w, b, X_train)</span><br><span class="line">    <span class="comment">#输出正确率</span></span><br><span class="line">     print(<span class="string">"train accuracy: &#123;&#125; %"</span>.format(<span class="number">100</span> - np.mean(np.abs(Y_prediction_train - Y_train)) * <span class="number">100</span>))</span><br><span class="line">    print(<span class="string">"test accuracy: &#123;&#125; %"</span>.format(<span class="number">100</span> - np.mean(np.abs(Y_prediction_test - Y_test)) * <span class="number">100</span>))</span><br><span class="line">    <span class="comment">#将所有结果以字典形式保存并返回</span></span><br><span class="line">    d = &#123;<span class="string">"costs"</span>: costs,</span><br><span class="line">         <span class="string">"Y_prediction_test"</span>: Y_prediction_test, </span><br><span class="line">         <span class="string">"Y_prediction_train"</span> : Y_prediction_train, </span><br><span class="line">         <span class="string">"w"</span> : w, </span><br><span class="line">         <span class="string">"b"</span> : b,</span><br><span class="line">         <span class="string">"learning_rate"</span> : learning_rate,</span><br><span class="line">         <span class="string">"num_iterations"</span>: num_iterations&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> d</span><br><span class="line"></span><br><span class="line"><span class="string">'''主程序'''</span></span><br><span class="line"><span class="comment">#获取训练数据，测试数据</span></span><br><span class="line">train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()</span><br><span class="line"></span><br><span class="line"><span class="comment">#reshape()方法来更改数组的形状，train_set_x_orig.shape[0]是行数，-1是代表列数未知，需要numpy自动计算出列数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#这里的列数：就是一张图片64*64*3数据变成一行数据的个数</span></span><br><span class="line">train_set_x_flatten = train_set_x_orig.reshape(train_set_x_orig.shape[<span class="number">0</span>], <span class="number">-1</span>).T</span><br><span class="line">test_set_x_flatten = test_set_x_orig.reshape(test_set_x_orig.shape[<span class="number">0</span>], <span class="number">-1</span>).T</span><br><span class="line"></span><br><span class="line"><span class="comment">#标准化，颜色的数值是0~255</span></span><br><span class="line">train_set_x = train_set_x_flatten/<span class="number">255.</span></span><br><span class="line">test_set_x = test_set_x_flatten/<span class="number">255.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#训练模型</span></span><br><span class="line">d = model(train_set_x, train_set_y, test_set_x, test_set_y, num_iterations = <span class="number">2000</span>, learning_rate = <span class="number">0.005</span>, print_cost = <span class="keyword">True</span>)</span><br><span class="line">print(d)</span><br><span class="line"></span><br><span class="line"><span class="comment">## START CODE HERE ## (PUT YOUR IMAGE NAME) </span></span><br><span class="line">my_image = <span class="string">"cat_in_iran.jpg"</span>   <span class="comment"># change this to the name of your image file </span></span><br><span class="line"><span class="comment">## END CODE HERE ##</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># We preprocess the image to fit your algorithm.</span></span><br><span class="line">num_px = train_set_x_orig.shape[<span class="number">1</span>]</span><br><span class="line">fname = <span class="string">"images/"</span> + my_image</span><br><span class="line">image = np.array(ndimage.imread(fname, flatten=<span class="keyword">False</span>))</span><br><span class="line">my_image = scipy.misc.imresize(image, size=(num_px,num_px)).reshape((<span class="number">1</span>, num_px*num_px*<span class="number">3</span>)).T</span><br><span class="line">my_predicted_image = predict(d[<span class="string">"w"</span>], d[<span class="string">"b"</span>], my_image)</span><br><span class="line"></span><br><span class="line">plt.imshow(image)</span><br><span class="line">print(<span class="string">"y = "</span> + str(np.squeeze(my_predicted_image)) + <span class="string">", your algorithm predicts a \""</span> + classes[int(np.squeeze(my_predicted_image)),].decode(<span class="string">"utf-8"</span>) +  <span class="string">"\" picture."</span>)</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">神经网络</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/16/简单的神经网络-判断图片中是否有猫/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/10/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/12/">Next &raquo;</a>
@@ -689,19 +699,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Easy</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Tree</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -709,7 +711,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
+                <a href="javascript:void(0)" class="js-tag color5">Tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Medium</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -717,11 +727,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
+                <a href="javascript:void(0)" class="js-tag color5">Math</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Math</a>
+                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -733,23 +747,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Medium</a>
+                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Linked List</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Divide and Conquer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -761,7 +763,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color4">Divide and Conquer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -770,6 +776,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
