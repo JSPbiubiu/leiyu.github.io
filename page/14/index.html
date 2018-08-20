@@ -163,6 +163,177 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Leetcode学习笔记-168-Excel表列名称" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/13/Leetcode学习笔记-168-Excel表列名称/">Leetcode学习笔记-168-Excel表列名称</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/13/Leetcode学习笔记-168-Excel表列名称/" class="archive-article-date">
+  	<time datetime="2018-06-13T07:57:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-13</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>给定一个正整数，返回它在 Excel 表中相对应的列名称。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: 1</span><br><span class="line">输出: &quot;A&quot;</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: 28</span><br><span class="line">输出: &quot;AB&quot;</span><br><span class="line">示例 3:</span><br><span class="line"></span><br><span class="line">输入: 701</span><br><span class="line">输出: &quot;ZY&quot;</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br><strong>解体思路：</strong><br>这道题有个小坑，就是假如待转换的数是26时，正常结果应为Z，但是26对26取余数正好是0，这样结果是A，而且26 / 26 = 1，反而会再进行一次错误的循环，只有在循环开始令待转换的数减去1即可避免这个问题。<br><br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">convertToTitle</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">       StringBuilder res = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">       <span class="keyword">while</span> (n &gt; <span class="number">0</span>) &#123;</span><br><span class="line">           n--;</span><br><span class="line">           res.insert(<span class="number">0</span>, (<span class="keyword">char</span>)(<span class="string">'A'</span> + n % <span class="number">26</span>));</span><br><span class="line">           n /= <span class="number">26</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> res.toString();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convertToTitle</span><span class="params">(self, n)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type n: int</span></span><br><span class="line"><span class="string">    :rtype: str</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    res = <span class="string">""</span></span><br><span class="line">    <span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line">        n -= <span class="number">1</span></span><br><span class="line">        res = str(chr(ord(<span class="string">'A'</span>) + n % <span class="number">26</span>)) + res</span><br><span class="line">        n //= <span class="number">26</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/13/Leetcode学习笔记-168-Excel表列名称/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-535-TinyURL的加密与解密" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/12/Leetcode学习笔记-535-TinyURL的加密与解密/">Leetcode学习笔记-535-TinyURL的加密与解密</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/12/Leetcode学习笔记-535-TinyURL的加密与解密/" class="archive-article-date">
+  	<time datetime="2018-06-12T02:56:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-12</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>TinyURL是一种URL简化服务， 比如：当你输入一个URL <a href="https://leetcode.com/problems/design-tinyurl" target="_blank" rel="noopener">https://leetcode.com/problems/design-tinyurl</a> 时，它将返回一个简化的URL <a href="http://tinyurl.com/4e9iAk" target="_blank" rel="noopener">http://tinyurl.com/4e9iAk</a>.<br><br>要求：设计一个 TinyURL 的加密 encode 和解密 decode 的方法。你的加密和解密算法如何设计和运作是没有限制的，你只需要保证一个URL可以被加密成一个TinyURL，并且这个TinyURL可以用解密方法恢复成原本的URL。<br><br></font></p>
+<p><font size="5"><br><strong>解体思路：</strong><br>hash实际应用问题，利用map的键值映射关系来加密和解密。<br><br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Encodes a URL to a shortened URL.</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">encode</span><span class="params">(String longUrl)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    String shorturl = <span class="string">"http://tinyurl.com/4e9iAk"</span> + i;</span><br><span class="line">    i++;</span><br><span class="line">    map.put(shorturl, longUrl);</span><br><span class="line">    <span class="keyword">return</span> shorturl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Decodes a shortened URL to its original URL.</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">decode</span><span class="params">(String shortUrl)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> map.get(shortUrl);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">enAndDe, i = &#123;&#125;, <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode</span><span class="params">(self, longUrl)</span>:</span></span><br><span class="line">    <span class="string">"""Encodes a URL to a shortened URL.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :type longUrl: str</span></span><br><span class="line"><span class="string">    :rtype: str</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    shortURL = <span class="string">"http://tinyurl.com/4e9iAk"</span> + str(self.i)</span><br><span class="line">    self.enAndDe[shortURL] = longUrl</span><br><span class="line">    self.i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> shortURL</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decode</span><span class="params">(self, shortUrl)</span>:</span></span><br><span class="line">    <span class="string">"""Decodes a shortened URL to its original URL.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :type shortUrl: str</span></span><br><span class="line"><span class="string">    :rtype: str</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> self.enAndDe[shortUrl]</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash Table</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/12/Leetcode学习笔记-535-TinyURL的加密与解密/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Leetcode学习笔记-441-排列硬币" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -422,169 +593,9 @@
 
 
   
-    <article id="post-Leetcode学习笔记-263-丑数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/12/Leetcode学习笔记-263-丑数/">Leetcode学习笔记-263-丑数</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/12/Leetcode学习笔记-263-丑数/" class="archive-article-date">
-  	<time datetime="2018-06-12T02:02:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-12</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>编写一个程序判断给定的数是否为丑数。<br>丑数就是只包含质因数 2, 3, 5 的正整数。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: 6</span><br><span class="line">输出: true</span><br><span class="line">解释: 6 = 2 × 3</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: 8</span><br><span class="line">输出: true</span><br><span class="line">解释: 8 = 2 × 2 × 2</span><br><span class="line">示例 3:</span><br><span class="line"></span><br><span class="line">输入: 14</span><br><span class="line">输出: false </span><br><span class="line">解释: 14 不是丑数，因为它包含了另外一个质因数 7。</span><br><span class="line">说明：</span><br><span class="line"></span><br><span class="line">1 是丑数。</span><br><span class="line">输入不会超过 32 位有符号整数的范围: [−231,  231 − 1]。</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>直接去处该数所有关于2，3，5的因子，看最后结果是否是1<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isUgly</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(num &gt; <span class="number">0</span>)&#123;</span><br><span class="line">           <span class="keyword">int</span>[] factors = &#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>&#125;;</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> factor : factors) </span><br><span class="line">               <span class="keyword">while</span> (num % factor == <span class="number">0</span>)</span><br><span class="line">                   num /= factor;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> num == <span class="number">1</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isUgly</span><span class="params">(self, num)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type num: int</span></span><br><span class="line"><span class="string">    :rtype: bool</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> num &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">for</span> factor <span class="keyword">in</span> [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>]:</span><br><span class="line">            <span class="keyword">while</span> <span class="keyword">not</span> num % factor:</span><br><span class="line">                num //= factor</span><br><span class="line">    <span class="keyword">return</span> num == <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/12/Leetcode学习笔记-263-丑数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-最近被折腾死喽！" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/09/最近被折腾死喽！/">最近被折腾死喽！</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/09/最近被折腾死喽！/" class="archive-article-date">
-  	<time datetime="2018-06-09T04:10:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-09</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="终于要毕业了"><a href="#终于要毕业了" class="headerlink" title="终于要毕业了"></a><p align="center">终于要毕业了</p></h1><h2 id="nbsp-nbsp-nbsp-nbsp-前阵子从北京回来水了个三等，满意啦，毕竟没怎么在这方面下功夫。和老师，和她的孩子相处的很愉快，小孩子真有趣哈哈哈。-nbsp-nbsp-nbsp-nbsp-可是学校这边。。。答辩倒没怎么难为人，就是这个论文改的真的是心烦啊。改过去又改回来，还要打印这，打印那。以后一定要自己买一个家用打印机，出去跑太不方便了。不过终于在昨天结束啦，只需要安安静静等着拿到毕业证就好！-nbsp-nbsp-nbsp-nbsp-这几天准备疯玩一下，打打麻将，上上网，出去转转，就开始下一阶段的学习任务了。今早还和室友计划去一下长白山，也不知道能不能去上。对了，昨天还拿到了通知书，拿到了就立刻给我爹妈还有晨晨发，结果漏了一个人，可能当时有点开心，忘记啦！前方还有好长的路要走呢，继续前进吧！最后放一张通知书吧："><a href="#nbsp-nbsp-nbsp-nbsp-前阵子从北京回来水了个三等，满意啦，毕竟没怎么在这方面下功夫。和老师，和她的孩子相处的很愉快，小孩子真有趣哈哈哈。-nbsp-nbsp-nbsp-nbsp-可是学校这边。。。答辩倒没怎么难为人，就是这个论文改的真的是心烦啊。改过去又改回来，还要打印这，打印那。以后一定要自己买一个家用打印机，出去跑太不方便了。不过终于在昨天结束啦，只需要安安静静等着拿到毕业证就好！-nbsp-nbsp-nbsp-nbsp-这几天准备疯玩一下，打打麻将，上上网，出去转转，就开始下一阶段的学习任务了。今早还和室友计划去一下长白山，也不知道能不能去上。对了，昨天还拿到了通知书，拿到了就立刻给我爹妈还有晨晨发，结果漏了一个人，可能当时有点开心，忘记啦！前方还有好长的路要走呢，继续前进吧！最后放一张通知书吧：" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;前阵子从北京回来水了个三等，满意啦，毕竟没怎么在这方面下功夫。和老师，和她的孩子相处的很愉快，小孩子真有趣哈哈哈。&nbsp;&nbsp;&nbsp;&nbsp;可是学校这边。。。答辩倒没怎么难为人，就是这个论文改的真的是心烦啊。改过去又改回来，还要打印这，打印那。以后一定要自己买一个家用打印机，出去跑太不方便了。不过终于在昨天结束啦，只需要安安静静等着拿到毕业证就好！&nbsp;&nbsp;&nbsp;&nbsp;这几天准备疯玩一下，打打麻将，上上网，出去转转，就开始下一阶段的学习任务了。今早还和室友计划去一下长白山，也不知道能不能去上。对了，昨天还拿到了通知书，拿到了就立刻给我爹妈还有晨晨发，结果漏了一个人，可能当时有点开心，忘记啦！前方还有好长的路要走呢，继续前进吧！最后放一张通知书吧："></a>&nbsp;&nbsp;&nbsp;&nbsp;前阵子从北京回来水了个三等，满意啦，毕竟没怎么在这方面下功夫。和老师，和她的孩子相处的很愉快，小孩子真有趣哈哈哈。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;可是学校这边。。。答辩倒没怎么难为人，就是这个论文改的真的是心烦啊。改过去又改回来，还要打印这，打印那。以后一定要自己买一个家用打印机，出去跑太不方便了。不过终于在昨天结束啦，只需要安安静静等着拿到毕业证就好！<br><br>&nbsp;&nbsp;&nbsp;&nbsp;这几天准备疯玩一下，打打麻将，上上网，出去转转，就开始下一阶段的学习任务了。今早还和室友计划去一下长白山，也不知道能不能去上。对了，昨天还拿到了通知书，拿到了就立刻给我爹妈还有晨晨发，结果漏了一个人，可能当时有点开心，忘记啦！前方还有好长的路要走呢，继续前进吧！最后放一张通知书吧：</h2><p><img src="/img/post.JPG" alt="avatar"></p>
-<h3 id="宝石2018年6月9日午间记"><a href="#宝石2018年6月9日午间记" class="headerlink" title="宝石2018年6月9日午间记"></a><p align="right">宝石<br>2018年6月9日午间记</p></h3>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/09/最近被折腾死喽！/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/13/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/15/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/13/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/15/">Next &raquo;</a>
     </nav>
   
 
@@ -688,11 +699,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Array</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Array</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -701,14 +720,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BFS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -768,11 +779,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
