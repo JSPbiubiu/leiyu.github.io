@@ -163,6 +163,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Leetcode学习笔记-500-键盘行" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/15/Leetcode学习笔记-500-键盘行/">Leetcode学习笔记-500-键盘行</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/15/Leetcode学习笔记-500-键盘行/" class="archive-article-date">
+  	<time datetime="2018-06-15T03:13:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>给定一个单词列表，只返回可以使用在键盘同一行的字母打印出来的单词。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">示例1:</span><br><span class="line">输入: [&quot;Hello&quot;, &quot;Alaska&quot;, &quot;Dad&quot;, &quot;Peace&quot;]</span><br><span class="line">输出: [&quot;Alaska&quot;, &quot;Dad&quot;]</span><br><span class="line"></span><br><span class="line">注意:</span><br><span class="line">你可以重复使用键盘上同一字符。</span><br><span class="line">你可以假设输入的字符串将只包含字母。</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br><strong>解体思路：<br></strong><br>把三排英文字母存入三个set中，将每个单词都转换成小写并去重，判断是否是这三排其中一排的子集。<br><br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">public</span> String[] findWords(String[] words) &#123;</span><br><span class="line">      Set&lt;Character&gt; s1 = <span class="keyword">new</span> HashSet&lt;Character&gt;(</span><br><span class="line">		Arrays.asList(<span class="keyword">new</span> Character[] &#123; <span class="string">'q'</span>, <span class="string">'w'</span>, <span class="string">'e'</span>, <span class="string">'r'</span>, <span class="string">'t'</span>, <span class="string">'y'</span>, <span class="string">'u'</span>, <span class="string">'i'</span>, <span class="string">'o'</span>, <span class="string">'p'</span> &#125;));</span><br><span class="line">Set&lt;Character&gt; s2 = <span class="keyword">new</span> HashSet&lt;Character&gt;(</span><br><span class="line">		Arrays.asList(<span class="keyword">new</span> Character[] &#123; <span class="string">'a'</span>, <span class="string">'s'</span>, <span class="string">'d'</span>, <span class="string">'f'</span>, <span class="string">'g'</span>, <span class="string">'h'</span>, <span class="string">'j'</span>, <span class="string">'k'</span>, <span class="string">'l'</span> &#125;));</span><br><span class="line">Set&lt;Character&gt; s3 = <span class="keyword">new</span> HashSet&lt;Character&gt;(</span><br><span class="line">		Arrays.asList(<span class="keyword">new</span> Character[] &#123; <span class="string">'z'</span>, <span class="string">'x'</span>, <span class="string">'c'</span>, <span class="string">'v'</span>, <span class="string">'b'</span>, <span class="string">'n'</span>, <span class="string">'m'</span> &#125;));</span><br><span class="line">List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; words.length; i++) &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span>[] ar = words[i].toLowerCase().toCharArray();</span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">char</span> c : ar) &#123;</span><br><span class="line">		<span class="keyword">if</span> (s1.contains(c))</span><br><span class="line">			count++;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (count == ar.length) &#123;</span><br><span class="line">		res.add(words[i]);</span><br><span class="line">		<span class="keyword">continue</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">char</span> c : ar) &#123;</span><br><span class="line">		<span class="keyword">if</span> (s2.contains(c))</span><br><span class="line">			count++;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (count == ar.length) &#123;</span><br><span class="line">		res.add(words[i]);</span><br><span class="line">		<span class="keyword">continue</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">char</span> c : ar) &#123;</span><br><span class="line">		<span class="keyword">if</span> (s3.contains(c))</span><br><span class="line">			count++;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (count == ar.length) &#123;</span><br><span class="line">		res.add(words[i]);</span><br><span class="line">		<span class="keyword">continue</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> res.toArray(<span class="keyword">new</span> String[res.size()]);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findWords</span><span class="params">(self, words)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type words: List[str]</span></span><br><span class="line"><span class="string">    :rtype: List[str]</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    res = []</span><br><span class="line">    first, second, third = set(<span class="string">"qwertyuiop"</span>), set(<span class="string">"asdfghjkl"</span>), set(<span class="string">"zxcvbnm"</span>)</span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">        wordSet = set(str.lower(word))</span><br><span class="line">        <span class="keyword">if</span> wordSet.issubset(first) <span class="keyword">or</span> wordSet.issubset(second) <span class="keyword">or</span> wordSet.issubset(third):</span><br><span class="line">            res.append(word)</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash Table</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/15/Leetcode学习笔记-500-键盘行/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Leetcode学习笔记-94-二叉树的中序遍历" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -514,94 +598,6 @@
 
 
   
-    <article id="post-Leetcode学习笔记-367-有效的完全平方数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/12/Leetcode学习笔记-367-有效的完全平方数/">Leetcode学习笔记-367-有效的完全平方数</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/12/Leetcode学习笔记-367-有效的完全平方数/" class="archive-article-date">
-  	<time datetime="2018-06-12T02:18:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-12</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>给定一个正整数 num，编写一个函数，如果 num 是一个完全平方数，则返回 True，否则返回 False。<br>注意：不要使用任何内置的库函数，如  sqrt。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例 1：</span><br><span class="line"></span><br><span class="line">输入： 16</span><br><span class="line">输出： True</span><br><span class="line"> </span><br><span class="line">示例 2：</span><br><span class="line"></span><br><span class="line">输入： 14</span><br><span class="line">输出： False</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>二分法算此题。注意的是起始的end值只需要num / 2 + 1,而不需要 = num。所有变量需要用long类型<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isPerfectSquare</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">long</span> start = <span class="number">1</span>, end = num / <span class="number">2</span> + <span class="number">1</span>, res = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">while</span>(start &lt;= end)&#123;</span><br><span class="line">           <span class="keyword">long</span> mid = start + (end - start) / <span class="number">2</span>;</span><br><span class="line">           res = mid * mid;</span><br><span class="line">           <span class="keyword">if</span>(res == num) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">           <span class="keyword">if</span>(res &gt; num)  end = mid - <span class="number">1</span>;</span><br><span class="line">           <span class="keyword">if</span>(res &lt; num)  start = mid + <span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isPerfectSquare</span><span class="params">(self, num)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type num: int</span></span><br><span class="line"><span class="string">    :rtype: bool</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    start, end, res = <span class="number">1</span>, num // <span class="number">2</span> + <span class="number">1</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> start &lt;= end:</span><br><span class="line">        mid = start + (end - start) // <span class="number">2</span></span><br><span class="line">        res = mid ** <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> res == num:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">if</span> res &gt; num:</span><br><span class="line">            end = mid - <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> res &lt; num:</span><br><span class="line">            start = mid + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Binary Search</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/12/Leetcode学习笔记-367-有效的完全平方数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/14/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/16/">Next &raquo;</a>
@@ -708,15 +704,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Array</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -728,7 +716,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Array</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -744,11 +740,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
+                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
+                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -788,11 +784,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -801,6 +797,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Binary Search Tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">

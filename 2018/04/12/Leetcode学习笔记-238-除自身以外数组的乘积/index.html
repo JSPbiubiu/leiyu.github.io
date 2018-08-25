@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="宝石叔叔的博客">
 <meta property="og:description" content="题目：一个长度为 n 的整形数组nums，其中 n &amp;gt; 1，返回一个数组 output ，其中 output[i] 等于nums中除nums[i]以外所有元素的乘积。不用除法 且在O(n)内解决这个问题。例如，输入 [1,2,3,4]，返回 [24,12,8,6]。进阶：你可以在常数空间复杂度内解决这个问题吗？（注意：出于空间复杂度分析的目的，输出数组不被视为额外空间。）解体思路：Given">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-12T11:13:24.532Z">
+<meta property="og:updated_time" content="2018-08-25T07:20:00.733Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习笔记-238-除自身以外数组的乘积">
 <meta name="twitter:description" content="题目：一个长度为 n 的整形数组nums，其中 n &amp;gt; 1，返回一个数组 output ，其中 output[i] 等于nums中除nums[i]以外所有元素的乘积。不用除法 且在O(n)内解决这个问题。例如，输入 [1,2,3,4]，返回 [24,12,8,6]。进阶：你可以在常数空间复杂度内解决这个问题吗？（注意：出于空间复杂度分析的目的，输出数组不被视为额外空间。）解体思路：Given">
@@ -190,7 +190,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><font size="5"><br><strong>题目：</strong><br>一个长度为 n 的整形数组nums，其中 n &gt; 1，返回一个数组 output ，其中 output[i] 等于nums中除nums[i]以外所有元素的乘积。<br><br>不用除法 且在O(n)内解决这个问题。<br><br>例如，输入 [1,2,3,4]，返回 [24,12,8,6]。<br><br>进阶：<br>你可以在常数空间复杂度内解决这个问题吗？（注意：出于空间复杂度分析的目的，输出数组不被视为额外空间。）<br><br><strong>解体思路：<br></strong><br>Given numbers [2, 3, 4, 5], regarding the third number 4, the product of array except 4 is 2<em>3</em>5 which consists of two parts: left 2<em>3 and right 5. The product is left</em>right. We can get lefts and rights:<br><br>Numbers:     2    3    4    5<br>Lefts:       2   2x3 2x3x4<br>Rights:         3x4x5 4x5   5<br>Let’s fill the empty with 1:<br><br>Numbers:     2    3    4    5<br>Lefts:       1    2  2x3 2x3x4<br>Rights:    3x4x5 4x5   5    1<br>We can calculate lefts and rights in 2 loops. The time complexity is O(n).<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">public</span> <span class="keyword">int</span>[] productExceptSelf(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">      <span class="keyword">int</span> len = nums.length;</span><br><span class="line"><span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line"><span class="keyword">int</span> left = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (i &gt; <span class="number">0</span>)</span><br><span class="line">		left = left * nums[i - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">	res[i] = left;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> right = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = len - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (i &lt; nums.length - <span class="number">1</span>)</span><br><span class="line">		right = right * nums[i + <span class="number">1</span>];</span><br><span class="line">		</span><br><span class="line">	res[i] *= right;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> res;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="keyword">int</span>[] productExceptSelf(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">    <span class="keyword">int</span> len = nums.length;</span><br><span class="line">	<span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">	<span class="keyword">int</span> left = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (i &gt; <span class="number">0</span>)</span><br><span class="line">			left = left * nums[i - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">		res[i] = left;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> right = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = len - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (i &lt; nums.length - <span class="number">1</span>)</span><br><span class="line">			right = right * nums[i + <span class="number">1</span>];</span><br><span class="line">			</span><br><span class="line">		res[i] *= right;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">productExceptSelf</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :rtype: List[int]</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    output = []</span><br><span class="line">    left = <span class="number">1</span></span><br><span class="line">    len = len(nums)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len):</span><br><span class="line">        <span class="keyword">if</span> i &gt; <span class="number">0</span>:</span><br><span class="line">            left *= nums[i - <span class="number">1</span>]</span><br><span class="line">        output.append(left)</span><br><span class="line"></span><br><span class="line">    right = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len - <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">        <span class="keyword">if</span> i &lt; len - <span class="number">1</span>:</span><br><span class="line">            right *= nums[i + <span class="number">1</span>]</span><br><span class="line">        output[i] *= right</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> output</span><br></pre></td></tr></table></figure>
       
 
@@ -486,15 +486,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Array</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -506,7 +498,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Array</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,11 +522,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
+                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
+                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -566,11 +566,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -579,6 +579,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Binary Search Tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
