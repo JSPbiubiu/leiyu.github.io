@@ -257,6 +257,89 @@
 
 
   
+    <article id="post-Leetcode学习笔记-290-单词模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/26/Leetcode学习笔记-290-单词模式/">Leetcode学习笔记-290-单词模式</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/26/Leetcode学习笔记-290-单词模式/" class="archive-article-date">
+  	<time datetime="2018-08-26T12:04:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-26</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>给定一种 pattern(模式) 和一个字符串 str ，判断 str 是否遵循相同的模式。<br>这里的遵循指完全匹配，例如， pattern 里的每个字母和字符串 str 中的每个非空单词之间存在着双向连接的对应模式。<br></font><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">示例1:</span><br><span class="line"></span><br><span class="line">输入: pattern = &quot;abba&quot;, str = &quot;dog cat cat dog&quot;</span><br><span class="line">输出: true</span><br><span class="line"></span><br><span class="line">示例 2:</span><br><span class="line">输入:pattern = &quot;abba&quot;, str = &quot;dog cat cat fish&quot;</span><br><span class="line">输出: false</span><br><span class="line"></span><br><span class="line">示例 3:</span><br><span class="line">输入: pattern = &quot;aaaa&quot;, str = &quot;dog cat cat dog&quot;</span><br><span class="line">输出: false</span><br><span class="line"></span><br><span class="line">示例 4:</span><br><span class="line">输入: pattern = &quot;abba&quot;, str = &quot;dog dog dog dog&quot;</span><br><span class="line">输出: false</span><br><span class="line"></span><br><span class="line">说明:</span><br><span class="line">你可以假设 pattern 只包含小写字母， str 包含了由单个空格分隔的小写字母。</span><br></pre></td></tr></table></figure></p>
+<p><font size="5"><br><strong>解题思路：<br></strong><br>第一种方法(Java)：用两个set实现，其中一个放str中的每个单词和当前单词与对应的pattern连接后的字串，另一个集合放入当前的pattern字符，在遍历过程中，若出现了集合包含了当前单词或者模式字符而不包含拼接起来的字串，则就不是相同的模式。<br>第二种方法(Python)：利用一个map，模式字符作为键， 单词作为值。出现以下两种情况则不是相同模式：<br>1.键集合中存在当前模式字符而对应的值却不是当前的单词。、<br>2.键不存在当前模式字符而当前单词却存在于值集合中。<br></font></p>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">wordPattern</span><span class="params">(String pattern, String str)</span> </span>&#123;</span><br><span class="line">    String[] words = str.split(<span class="string">" "</span>);</span><br><span class="line">    <span class="keyword">if</span> (pattern.length() != words.length)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    Set&lt;String&gt; everyWord = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    Set&lt;Character&gt; patt = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; pattern.length(); i++) &#123;</span><br><span class="line">        String temp = words[i] + <span class="string">"-"</span> + pattern.charAt(i);</span><br><span class="line">        <span class="keyword">if</span> ((everyWord.contains(words[i]) || patt.contains(pattern.charAt(i))) &amp;&amp; !everyWord.contains(temp))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        everyWord.add(words[i]);</span><br><span class="line">        patt.add(pattern.charAt(i));</span><br><span class="line">        everyWord.add(temp);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wordPattern</span><span class="params">(self, pattern, str)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type pattern: str</span></span><br><span class="line"><span class="string">    :type str: str</span></span><br><span class="line"><span class="string">    :rtype: bool</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    maps = &#123;&#125;</span><br><span class="line">    words = str.split(<span class="string">" "</span>)</span><br><span class="line">    <span class="keyword">if</span> len(words) != len(pattern):</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(words)):</span><br><span class="line">        <span class="keyword">if</span> pattern[i] <span class="keyword">in</span> maps.keys():</span><br><span class="line">            <span class="keyword">if</span> words[i] != maps[pattern[i]]:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> words[i] <span class="keyword">in</span> maps.values():</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                maps[pattern[i]] = words[i]</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash Table</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/26/Leetcode学习笔记-290-单词模式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Leetcode学习笔记-501-二叉搜索树中的众数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
@@ -280,7 +363,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><font size="5"><br><strong>题目：</strong><br>给定一个有相同值的二叉搜索树（BST），找出 BST 中的所有众数（出现频率最高的元素）。<br>假定 BST 有如下定义：<br>结点左子树中所含结点的值小于等于当前结点的值<br>结点右子树中所含结点的值大于等于当前结点的值<br>左子树和右子树都是二叉搜索树<br></font><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">例如：</span><br><span class="line">给定 BST [1,null,2,2],</span><br><span class="line">   1</span><br><span class="line">    \</span><br><span class="line">     2</span><br><span class="line">    /</span><br><span class="line">   2</span><br><span class="line">返回[2].</span><br><span class="line">提示：如果众数超过1个，不需考虑输出顺序</span><br><span class="line">进阶：你可以不使用额外的空间吗？（假设由递归产生的隐式调用栈的开销不被计算在内）</span><br></pre></td></tr></table></figure></p>
-<p><font size="5"><br><strong>解题思路：<br></strong><br>第一种方法（Python）：利用一个map和一个max变量，在遍历过程中用map来记录每个元素出现次数，max记录其中出现次数最多的元素，这样找出map中所有的值为max的键即为所有结果。<br>第二种方法(Java,优化后): 在遍历的过程中动态记录上一个节点值，最大值和当前元素个数，若该节点值出现次数等于max，则将该节点值添加到结果集中，若次数大于max，则清空结果集（因为之前的都已经不是频率最高的了）并将该元素添加到结果集中，并给max重新赋值。<br></font></p>
+<p><font size="5"><br><strong>解题思路：<br></strong><br>第一种方法（Python）：利用一个map和一个max变量，在遍历过程中用map来记录每个元素出现次数，max记录其中出现次数最多的元素，这样找出map中所有的值为max的键即为所有结果。<br>第二种方法（Java,优化后）： 在遍历的过程中动态记录上一个节点值，最大值和当前元素个数，若该节点值出现次数等于max，则将该节点值添加到结果集中，若次数大于max，则清空结果集（因为之前的都已经不是频率最高的了）并将该元素添加到结果集中，并给max重新赋值。<br></font></p>
 <h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">Integer preVal;</span><br><span class="line"><span class="keyword">int</span> count = <span class="number">1</span>, max = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] findMode(TreeNode root) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;&#125;;</span><br><span class="line">    List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    dfs(list, root);</span><br><span class="line">    <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[list.size()];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; res.length; i++)</span><br><span class="line">        res[i] = list.get(i);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(List&lt;Integer&gt; list, TreeNode root)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    dfs(list, root.left);</span><br><span class="line">    <span class="keyword">if</span> (preVal != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (preVal == root.val)</span><br><span class="line">            count++;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            count = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (count == max)</span><br><span class="line">        list.add(root.val);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (count &gt; max) &#123;</span><br><span class="line">        list.clear();</span><br><span class="line">        max = count;</span><br><span class="line">        list.add(root.val);</span><br><span class="line">    &#125;</span><br><span class="line">    preVal = root.val;</span><br><span class="line">    dfs(list, root.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">maxCount = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findMode</span><span class="params">(self, root)</span>:</span></span><br><span class="line">    resMap, res = &#123;&#125;, []</span><br><span class="line">    self.dfs(root, resMap)</span><br><span class="line">    <span class="keyword">for</span> key, value <span class="keyword">in</span> resMap.items():</span><br><span class="line">        <span class="keyword">if</span> value == self.maxCount:</span><br><span class="line">            res.append(key)</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(self, root, resMap)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    self.dfs(root.left, resMap)</span><br><span class="line">    resMap[root.val] = resMap.get(root.val, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">    self.maxCount = max(self.maxCount, resMap[root.val])</span><br><span class="line">    self.dfs(root.right, resMap)</span><br></pre></td></tr></table></figure>
 
@@ -499,92 +582,6 @@
 
 
   
-    <article id="post-Leetcode学习笔记-645-错误的集合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/22/Leetcode学习笔记-645-错误的集合/">Leetcode学习笔记-645-错误的集合</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/22/Leetcode学习笔记-645-错误的集合/" class="archive-article-date">
-  	<time datetime="2018-08-22T11:01:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-22</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>集合 S 包含从1到 n 的整数。不幸的是，因为数据错误，导致集合里面某一个元素复制了成了集合里面的另外一个元素的值，导致集合丢失了一个整数并且有一个元素重复。<br>给定一个数组 nums 代表了集合 S 发生错误后的结果。你的任务是首先寻找到重复出现的整数，再找到丢失的整数，将它们以数组的形式返回。<br></font><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line">输入: nums = [1,2,2,4]</span><br><span class="line">输出: [2,3]</span><br><span class="line"></span><br><span class="line">注意:</span><br><span class="line">给定数组的长度范围是 [2, 10000]。</span><br><span class="line">给定的数组是无序的。</span><br></pre></td></tr></table></figure></p>
-<p><font size="5"><br><strong>解题思路：<br></strong><br>扫描一趟数组，利用set可以找出重复数并求出元素总和，这样缺失的数就是1-n自然数求和-数组元素总和+重复的数（因为多减了一个）。<br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] findErrorNums(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line"></span><br><span class="line">    Set&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    <span class="keyword">int</span> repeat = <span class="number">0</span>, lost = <span class="number">0</span>, sum = <span class="number">0</span>, len = nums.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">        sum += nums[i];</span><br><span class="line">        <span class="keyword">if</span> (!set.add(nums[i]))</span><br><span class="line">            repeat = nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    lost = (len * (len + <span class="number">1</span>)) / <span class="number">2</span> - sum + repeat;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;repeat, lost&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findErrorNums</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :rtype: List[int]</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    sum1 = sum([i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(nums) + <span class="number">1</span>)])</span><br><span class="line">    sum2 = sum(set(nums))</span><br><span class="line">    sum3 = sum(nums)</span><br><span class="line">    <span class="keyword">return</span> [sum3 - sum2, sum1 - sum2]</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash Table</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/22/Leetcode学习笔记-645-错误的集合/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -699,7 +696,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -707,11 +704,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -731,19 +728,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Bit Manipulation</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -795,11 +792,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
             
             <div class="clearfix"></div>
