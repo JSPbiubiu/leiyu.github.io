@@ -194,8 +194,7 @@
 <p><strong>为了方便处理，观察和数据，暂时合并成一个数据。ignore_index : boolean, default False.If True, do not use the index labels.意思是序号不是简单的合并，而是按顺序排下来。</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fullData = train.append(test, ignore_index = <span class="keyword">True</span>, sort=<span class="keyword">True</span>)</span><br><span class="line">fullData.head()</span><br></pre></td></tr></table></figure>
 <p><img src="/img/titanic/k1.png" alt="avatar"><br><strong>通过info方法可以获得各个数据的类型和缺失情况，通过describe方法可以获得各列的均值，最大值最小值等。</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fullData.info()</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">    &lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;</span><br><span class="line">    RangeIndex: 1309 entries, 0 to 1308</span><br><span class="line">    Data columns (total 12 columns):</span><br><span class="line">    Age            1046 non-null float64</span><br><span class="line">    Cabin          295 non-null object</span><br><span class="line">    Embarked       1307 non-null object</span><br><span class="line">    Fare           1308 non-null float64</span><br><span class="line">    Name           1309 non-null object</span><br><span class="line">    Parch          1309 non-null int64</span><br><span class="line">    PassengerId    1309 non-null int64</span><br><span class="line">    Pclass         1309 non-null int64</span><br><span class="line">    Sex            1309 non-null object</span><br><span class="line">    SibSp          1309 non-null int64</span><br><span class="line">    Survived       891 non-null float64</span><br><span class="line">    Ticket         1309 non-null object</span><br><span class="line">    dtypes: float64(3), int64(4), object(5)</span><br><span class="line">    memory usage: 122.8+ KB</span><br><span class="line">```    </span><br><span class="line">```python</span><br><span class="line">fullData.describe()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">fullData.info()</span><br><span class="line"></span><br><span class="line">    &lt;<span class="class"><span class="keyword">class</span> '<span class="title">pandas</span>.<span class="title">core</span>.<span class="title">frame</span>.<span class="title">DataFrame</span>'&gt;</span></span><br><span class="line"><span class="class">    <span class="title">RangeIndex</span>:</span> <span class="number">1309</span> entries, <span class="number">0</span> to <span class="number">1308</span></span><br><span class="line">    Data columns (total <span class="number">12</span> columns):</span><br><span class="line">    Age            <span class="number">1046</span> non-null float64</span><br><span class="line">    Cabin          <span class="number">295</span> non-null object</span><br><span class="line">    Embarked       <span class="number">1307</span> non-null object</span><br><span class="line">    Fare           <span class="number">1308</span> non-null float64</span><br><span class="line">    Name           <span class="number">1309</span> non-null object</span><br><span class="line">    Parch          <span class="number">1309</span> non-null int64</span><br><span class="line">    PassengerId    <span class="number">1309</span> non-null int64</span><br><span class="line">    Pclass         <span class="number">1309</span> non-null int64</span><br><span class="line">    Sex            <span class="number">1309</span> non-null object</span><br><span class="line">    SibSp          <span class="number">1309</span> non-null int64</span><br><span class="line">    Survived       <span class="number">891</span> non-null float64</span><br><span class="line">    Ticket         <span class="number">1309</span> non-null object</span><br><span class="line">    dtypes: float64(<span class="number">3</span>), int64(<span class="number">4</span>), object(<span class="number">5</span>)</span><br><span class="line">    memory usage: <span class="number">122.8</span>+ KB</span><br><span class="line"></span><br><span class="line">fullData.describe()</span><br></pre></td></tr></table></figure>
 <p><img src="/img/titanic/k2.png" alt="avatar"><br><strong>通过查看上述表格可以发现Age, Cabin, Embarked, Fare字段存在缺失情况并且Cabin缺失情况严重</strong></p>
 <p><strong><font size="5">2.数据清洗、预处理、挖掘特征。</font><br>
         
@@ -373,11 +372,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
         		</li>
       		
 		</ul>
@@ -692,7 +691,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Array</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -704,15 +711,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Array</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BFS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -752,6 +751,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Divide and Conquer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
@@ -760,23 +767,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Divide and Conquer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Set</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
