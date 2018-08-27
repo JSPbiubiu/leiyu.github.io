@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Kaggle：预测泰坦尼克号乘客存活率 | 宝石叔叔的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="emmm结果比较惨（毕竟第一次，想想别的模型，特征吧）： 下面说一下做数据科学竞赛的套路：    1.下载数据并简单查看。    2.数据清洗、预处理、挖掘特征。    3.构建模型    4.评估模型并提交查看结果排名。    5.不断优化并再次提交。  1import pandas as pd 1.查看数据 12train = pd.read_csv(&quot;C://Users//LeiYu//De">
+  <meta name="description" content="emmm结果比较惨（毕竟第一次，想想别的模型，特征吧）： 下面说一下做数据科学竞赛的套路：    1.下载数据并简单查看。    2.数据清洗、预处理、挖掘特征。    3.构建模型    4.评估模型并提交查看结果排名。    5.不断优化并再次提交。">
 <meta name="keywords" content="Kaggle">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kaggle：预测泰坦尼克号乘客存活率">
 <meta property="og:url" content="http://yoursite.com/2018/08/25/Titanic (1)/index.html">
 <meta property="og:site_name" content="宝石叔叔的博客">
-<meta property="og:description" content="emmm结果比较惨（毕竟第一次，想想别的模型，特征吧）： 下面说一下做数据科学竞赛的套路：    1.下载数据并简单查看。    2.数据清洗、预处理、挖掘特征。    3.构建模型    4.评估模型并提交查看结果排名。    5.不断优化并再次提交。  1import pandas as pd 1.查看数据 12train = pd.read_csv(&quot;C://Users//LeiYu//De">
+<meta property="og:description" content="emmm结果比较惨（毕竟第一次，想想别的模型，特征吧）： 下面说一下做数据科学竞赛的套路：    1.下载数据并简单查看。    2.数据清洗、预处理、挖掘特征。    3.构建模型    4.评估模型并提交查看结果排名。    5.不断优化并再次提交。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/img/titanic/kaggle.png">
 <meta property="og:image" content="http://yoursite.com/img/titanic/k1.png">
@@ -24,10 +24,10 @@
 <meta property="og:image" content="http://yoursite.com/img/titanic/k5.png">
 <meta property="og:image" content="http://yoursite.com/img/titanic/k7.png">
 <meta property="og:image" content="http://yoursite.com/img/titanic/k6.png">
-<meta property="og:updated_time" content="2018-08-26T04:09:11.460Z">
+<meta property="og:updated_time" content="2018-08-27T08:01:48.211Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kaggle：预测泰坦尼克号乘客存活率">
-<meta name="twitter:description" content="emmm结果比较惨（毕竟第一次，想想别的模型，特征吧）： 下面说一下做数据科学竞赛的套路：    1.下载数据并简单查看。    2.数据清洗、预处理、挖掘特征。    3.构建模型    4.评估模型并提交查看结果排名。    5.不断优化并再次提交。  1import pandas as pd 1.查看数据 12train = pd.read_csv(&quot;C://Users//LeiYu//De">
+<meta name="twitter:description" content="emmm结果比较惨（毕竟第一次，想想别的模型，特征吧）： 下面说一下做数据科学竞赛的套路：    1.下载数据并简单查看。    2.数据清洗、预处理、挖掘特征。    3.构建模型    4.评估模型并提交查看结果排名。    5.不断优化并再次提交。">
 <meta name="twitter:image" content="http://yoursite.com/img/titanic/kaggle.png">
   
     <link rel="alternative" href="/atom.xml" title="宝石叔叔的博客" type="application/atom+xml">
@@ -200,8 +200,7 @@
       
         <p><strong><font size="5">emmm结果比较惨（毕竟第一次，想想别的模型，特征吧）：</font></strong><br><img src="/img/titanic/kaggle.png" alt="avatar"></p>
 <p><strong><font size="5">下面说一下做数据科学竞赛的套路：</font><br>    1.下载数据并简单查看。<br>    2.数据清洗、预处理、挖掘特征。<br>    3.构建模型<br>    4.评估模型并提交查看结果排名。<br>    5.不断优化并再次提交。
-</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
+</strong><br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure></p>
 <p><strong><font size="5">1.查看数据</font></strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train = pd.read_csv(<span class="string">"C://Users//LeiYu//Desktop//train.csv"</span>)</span><br><span class="line">test = pd.read_csv(<span class="string">"C://Users//LeiYu//Desktop//test.csv"</span>)</span><br></pre></td></tr></table></figure>
 <p><strong>为了方便处理，观察和数据，暂时合并成一个数据。ignore_index : boolean, default False.If True, do not use the index labels.意思是序号不是简单的合并，而是按顺序排下来。</strong></p>
@@ -209,7 +208,8 @@
 <p><img src="/img/titanic/k1.png" alt="avatar"><br><strong>通过info方法可以获得各个数据的类型和缺失情况，通过describe方法可以获得各列的均值，最大值最小值等。</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">fullData.info()</span><br><span class="line"></span><br><span class="line">    &lt;<span class="class"><span class="keyword">class</span> '<span class="title">pandas</span>.<span class="title">core</span>.<span class="title">frame</span>.<span class="title">DataFrame</span>'&gt;</span></span><br><span class="line"><span class="class">    <span class="title">RangeIndex</span>:</span> <span class="number">1309</span> entries, <span class="number">0</span> to <span class="number">1308</span></span><br><span class="line">    Data columns (total <span class="number">12</span> columns):</span><br><span class="line">    Age            <span class="number">1046</span> non-null float64</span><br><span class="line">    Cabin          <span class="number">295</span> non-null object</span><br><span class="line">    Embarked       <span class="number">1307</span> non-null object</span><br><span class="line">    Fare           <span class="number">1308</span> non-null float64</span><br><span class="line">    Name           <span class="number">1309</span> non-null object</span><br><span class="line">    Parch          <span class="number">1309</span> non-null int64</span><br><span class="line">    PassengerId    <span class="number">1309</span> non-null int64</span><br><span class="line">    Pclass         <span class="number">1309</span> non-null int64</span><br><span class="line">    Sex            <span class="number">1309</span> non-null object</span><br><span class="line">    SibSp          <span class="number">1309</span> non-null int64</span><br><span class="line">    Survived       <span class="number">891</span> non-null float64</span><br><span class="line">    Ticket         <span class="number">1309</span> non-null object</span><br><span class="line">    dtypes: float64(<span class="number">3</span>), int64(<span class="number">4</span>), object(<span class="number">5</span>)</span><br><span class="line">    memory usage: <span class="number">122.8</span>+ KB</span><br><span class="line"></span><br><span class="line">fullData.describe()</span><br></pre></td></tr></table></figure>
 <p><img src="/img/titanic/k2.png" alt="avatar"><br><strong>通过查看上述表格可以发现Age, Cabin, Embarked, Fare字段存在缺失情况并且Cabin缺失情况严重</strong></p>
-<p><strong><font size="5">2.数据清洗、预处理、挖掘特征。</font><br><a id="more"></a><br>数据清洗的工作主要是填充缺失值(fillna用来填充缺失值)：<br>Age,Fare为数值类型，可以用均值填充；<br>而Cabin缺失过多，可以用U填充代表Unknow；<br>Embarked缺失两个数据，影响比较小，可以用众值填充。</strong></p>
+<p>**<font size="5">2.数据清洗、预处理、挖掘特征。</font></p>
+<p>数据清洗的工作主要是填充缺失值(fillna用来填充缺失值)：<br>Age,Fare为数值类型，可以用均值填充；<br>而Cabin缺失过多，可以用U填充代表Unknow；<br>Embarked缺失两个数据，影响比较小，可以用众值填充。**</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">fullData[<span class="string">'Age'</span>] = fullData[<span class="string">'Age'</span>].fillna(fullData[<span class="string">'Age'</span>].mean())</span><br><span class="line">fullData[<span class="string">'Fare'</span>] = fullData[<span class="string">'Fare'</span>].fillna(fullData[<span class="string">'Fare'</span>].mean())</span><br><span class="line">fullData[<span class="string">'Embarked'</span>] = fullData[<span class="string">'Embarked'</span>].fillna(<span class="string">'S'</span>)</span><br><span class="line">fullData[<span class="string">'Cabin'</span>] = fullData[<span class="string">'Cabin'</span>].fillna(<span class="string">'U'</span>)</span><br><span class="line"><span class="comment">#查看清洗后的数据</span></span><br><span class="line">fullData.info()</span><br><span class="line"></span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">pandas</span>.<span class="title">core</span>.<span class="title">frame</span>.<span class="title">DataFrame</span>'&gt;</span></span><br><span class="line"><span class="class"><span class="title">RangeIndex</span>:</span> <span class="number">1309</span> entries, <span class="number">0</span> to <span class="number">1308</span></span><br><span class="line">Data columns (total <span class="number">12</span> columns):</span><br><span class="line">Age            <span class="number">1309</span> non-null float64</span><br><span class="line">Cabin          <span class="number">1309</span> non-null object</span><br><span class="line">Embarked       <span class="number">1309</span> non-null object</span><br><span class="line">Fare           <span class="number">1309</span> non-null float64</span><br><span class="line">Name           <span class="number">1309</span> non-null object</span><br><span class="line">Parch          <span class="number">1309</span> non-null int64</span><br><span class="line">PassengerId    <span class="number">1309</span> non-null int64</span><br><span class="line">Pclass         <span class="number">1309</span> non-null int64</span><br><span class="line">Sex            <span class="number">1309</span> non-null object</span><br><span class="line">SibSp          <span class="number">1309</span> non-null int64</span><br><span class="line">Survived       <span class="number">891</span> non-null float64</span><br><span class="line">Ticket         <span class="number">1309</span> non-null object</span><br><span class="line">dtypes: float64(<span class="number">3</span>), int64(<span class="number">4</span>), object(<span class="number">5</span>)</span><br><span class="line">memory usage: <span class="number">122.8</span>+ KB</span><br></pre></td></tr></table></figure>
 <p><strong>数据洗完就开始挖特征:特征工程就是最大限度地从原始数据中提取特征以供机器学习和模型使用。因此特征提取的越准确，模型的精确率越高。</strong></p>
 <p><strong><font size="5">特征提取原则：</font><br>  数值类型，直接使用。<br>  时间序列：转换成单独的年、月、日<br>  分类数据：用数值代替类别，One_hot编码<br>①Sex：Sex是male和female这样我们可以转化为1， 0。(map是一种让函数作用于Series每一个元素的操作)<br>②Embarked登船口：登船口有多个，可以采用onehot编码进行降维度处理(onehot例子：比如星期一处理后为1000000,星期二是0100000)（get_dummies()可以进行onehot编码，其中的prefix是在原来值基础上加上prefix_,如星期一，prefix=Week ==》Week_星期一。）<br>③Pclass船舱等级：有多个种类，处理方法同上。<br>④Name姓名：通过查看Name字段值，可以发现每个人头衔不同(如Mr、Mrs、Master)，可以分离出该头衔作为特征之一，因为可能头衔越高受救助等级越高。所以我们拿到称谓之后进行onehot编码。<br>⑤Cabin客舱号：客舱号以A B C等字母开头来表示，可以取开头字母进行分类。<br>⑥SilSp直系亲属个数、Parch父母子女个数：这样我们可以算出此人家庭规模大小，并分为三类，单人家庭、小家庭、大家庭。</strong></p>
@@ -548,10 +548,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Array</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Easy</a>
               </li>
              
@@ -564,11 +560,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Array</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -584,23 +592,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Bit Manipulation</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -616,11 +616,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
+                <a href="javascript:void(0)" class="js-tag color4">Divide and Conquer</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Divide and Conquer</a>
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -628,11 +628,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -644,7 +644,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -653,6 +653,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
