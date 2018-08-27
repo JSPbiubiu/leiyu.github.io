@@ -163,7 +163,7 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Titanic (1)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-简单的将泰坦尼克中的数据可视化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -171,13 +171,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/25/Titanic (1)/">Kaggle：预测泰坦尼克号乘客存活率</a>
+      <a class="article-title" href="/2018/08/27/简单的将泰坦尼克中的数据可视化/">简单的将泰坦尼克中的数据可视化</a>
     </h1>
   
 
         
-        <a href="/2018/08/25/Titanic (1)/" class="archive-article-date">
-  	<time datetime="2018-08-24T21:44:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-25</time>
+        <a href="/2018/08/27/简单的将泰坦尼克中的数据可视化/" class="archive-article-date">
+  	<time datetime="2018-08-27T11:54:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-27</time>
 </a>
         
         
@@ -185,11 +185,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><font size="5">emmm结果比较惨（毕竟第一次，想想别的模型，特征吧）：</font></strong><br><img src="/img/titanic/kaggle.png" alt="avatar"></p>
-<p><strong><font size="5">下面说一下做数据科学竞赛的套路：</font><br>    1.下载数据并简单查看。<br>    2.数据清洗、预处理、挖掘特征。<br>    3.构建模型<br>    4.评估模型并提交查看结果排名。<br>    5.不断优化并再次提交。
-</strong><br>
+        <p><strong><font size="5">上次做的只是简单查看数据，看起来并不直观，这次利用pyecharts简单的可视化了其中的一些字段数据：</font></strong></p>
+<h1 id="生存死亡比"><a href="#生存死亡比" class="headerlink" title="生存死亡比"></a>生存死亡比</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pie = pyecharts.Pie(<span class="string">"生存-死亡情况"</span>)</span><br><span class="line">s = fullData[<span class="string">'Survived'</span>].value_counts()</span><br><span class="line">pie.add(<span class="string">""</span>, [<span class="string">"死亡"</span>, <span class="string">"存活"</span>], s, is_label_show=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/img/titanic2/k1.png" alt="avatar"></p>
+<h1 id="存活率"><a href="#存活率" class="headerlink" title="存活率"></a>存活率</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gauge = pyecharts.Gauge(<span class="string">"生存情况"</span>)</span><br><span class="line">gauge.add(<span class="string">"存活/总数"</span>, <span class="string">"存活率"</span>,<span class="number">38.38</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/img/titanic2/k2.png" alt="avatar"></p>
+<h1 id="各舱乘客总数及存货情况"><a href="#各舱乘客总数及存货情况" class="headerlink" title="各舱乘客总数及存货情况"></a>各舱乘客总数及存货情况</h1>
         
-          <a class="article-more-a" href="/2018/08/25/Titanic (1)/#more">more >></a>
+          <a class="article-more-a" href="/2018/08/27/简单的将泰坦尼克中的数据可视化/#more">more >></a>
         
       
 
@@ -210,6 +213,14 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kaggle</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">可视化</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">pyecharts</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -218,7 +229,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/25/Titanic (1)/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/08/27/简单的将泰坦尼克中的数据可视化/">展开全文 >></a>
         </p>
       
 
@@ -457,11 +468,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
         		</li>
       		
 		</ul>
@@ -501,7 +512,7 @@
 
 
   
-    <article id="post-简单的-工作台V2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Titanic (1)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -509,13 +520,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/23/简单的-工作台V2/">简单的&#39;工作台&#39;V2</a>
+      <a class="article-title" href="/2018/08/25/Titanic (1)/">Kaggle：预测泰坦尼克号乘客存活率</a>
     </h1>
   
 
         
-        <a href="/2018/08/23/简单的-工作台V2/" class="archive-article-date">
-  	<time datetime="2018-08-23T06:44:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-23</time>
+        <a href="/2018/08/25/Titanic (1)/" class="archive-article-date">
+  	<time datetime="2018-08-24T21:44:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-25</time>
 </a>
         
         
@@ -523,8 +534,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/img/workspace.png" alt="avatar"></p>
-
+        <p><strong><font size="5">emmm结果比较惨（毕竟第一次，想想别的模型，特征吧）：</font></strong><br><img src="/img/titanic/kaggle.png" alt="avatar"></p>
+<p><strong><font size="5">下面说一下做数据科学竞赛的套路：</font><br>    1.下载数据并简单查看。<br>    2.数据清洗、预处理、挖掘特征。<br>    3.构建模型<br>    4.评估模型并提交查看结果排名。<br>    5.不断优化并再次提交。
+</strong><br>
+        
+          <a class="article-more-a" href="/2018/08/25/Titanic (1)/#more">more >></a>
+        
       
 
       
@@ -537,7 +552,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kaggle</a>
         		</li>
       		
 		</ul>
@@ -547,7 +562,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/23/简单的-工作台V2/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/08/25/Titanic (1)/">展开全文 >></a>
         </p>
       
 
@@ -683,7 +698,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Array</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -695,23 +718,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Array</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BFS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -727,6 +734,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Dynamic Programming</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
               </li>
              
@@ -735,11 +754,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Two Pointers</a>
+                <a href="javascript:void(0)" class="js-tag color2">Linked List</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Linked List</a>
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -752,10 +771,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Divide and Conquer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -779,6 +794,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
               </li>
              
@@ -791,7 +810,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+                <a href="javascript:void(0)" class="js-tag color4">可视化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">pyecharts</a>
               </li>
              
               <li class="article-tag-list-item">
