@@ -20,7 +20,8 @@
 <meta property="og:image" content="http://yoursite.com/img/titanic2/k2.png">
 <meta property="og:image" content="http://yoursite.com/img/titanic2/k3.png">
 <meta property="og:image" content="http://yoursite.com/img/titanic2/k4.png">
-<meta property="og:updated_time" content="2018-08-28T01:54:17.398Z">
+<meta property="og:image" content="http://yoursite.com/img/titanic2/k5.png">
+<meta property="og:updated_time" content="2018-08-28T06:29:29.244Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单的将泰坦尼克中的数据可视化">
 <meta name="twitter:description" content="上次做的只是简单查看数据，看起来并不直观，这次利用pyecharts简单的可视化了其中的一些字段数据：">
@@ -203,6 +204,8 @@
 <p><img src="/img/titanic2/k3.png" alt="avatar"></p>
 <h1 id="不同等级的船舱中乘客年龄分布"><a href="#不同等级的船舱中乘客年龄分布" class="headerlink" title="不同等级的船舱中乘客年龄分布"></a>不同等级的船舱中乘客年龄分布</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 不同等级船舱中乘客年龄分布</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getAgeList</span><span class="params">(age)</span>:</span></span><br><span class="line">    age = age[age.notnull()]</span><br><span class="line">    ans = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">11</span>)]</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> age:</span><br><span class="line">        ans[int(a) // <span class="number">10</span>] += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">line = pyecharts.Line(<span class="string">"不同等级船舱中乘客年龄分布"</span>)</span><br><span class="line">ans1 = getAgeList(train.Age[train.Pclass == <span class="number">1</span>])</span><br><span class="line">ans2 = getAgeList(train.Age[train.Pclass == <span class="number">2</span>])</span><br><span class="line">ans3 = getAgeList(train.Age[train.Pclass == <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">line.add(<span class="string">"一等舱"</span>, [<span class="string">"0"</span>,<span class="string">"10"</span>,<span class="string">"20"</span>,<span class="string">"30"</span>,<span class="string">"40"</span>,<span class="string">"50"</span>,<span class="string">"60"</span>,<span class="string">"70"</span>,<span class="string">"80"</span>,<span class="string">"90"</span>,<span class="string">"100"</span>] ,ans1, is_smooth=<span class="keyword">True</span>)</span><br><span class="line">line.add(<span class="string">"二等舱"</span>, [<span class="string">"0"</span>,<span class="string">"10"</span>,<span class="string">"20"</span>,<span class="string">"30"</span>,<span class="string">"40"</span>,<span class="string">"50"</span>,<span class="string">"60"</span>,<span class="string">"70"</span>,<span class="string">"80"</span>,<span class="string">"90"</span>,<span class="string">"100"</span>] ,ans2, is_smooth=<span class="keyword">True</span>)</span><br><span class="line">line.add(<span class="string">"三等舱"</span>, [<span class="string">"0"</span>,<span class="string">"10"</span>,<span class="string">"20"</span>,<span class="string">"30"</span>,<span class="string">"40"</span>,<span class="string">"50"</span>,<span class="string">"60"</span>,<span class="string">"70"</span>,<span class="string">"80"</span>,<span class="string">"90"</span>,<span class="string">"100"</span>] ,ans3, is_smooth=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="/img/titanic2/k4.png" alt="avatar"></p>
+<h1 id="男女获救情况（果然女士优先。。。）"><a href="#男女获救情况（果然女士优先。。。）" class="headerlink" title="男女获救情况（果然女士优先。。。）"></a>男女获救情况（果然女士优先。。。）</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按性别获救情况</span></span><br><span class="line">train[<span class="string">'xxx'</span>] = <span class="number">0</span></span><br><span class="line">count1 = train.groupby(<span class="string">'Sex'</span>).xxx.count()</span><br><span class="line">count2 = train.Sex[train.Survived == <span class="number">1</span>].value_counts()</span><br><span class="line">bar = pyecharts.Bar(<span class="string">"男女获救情况"</span>)</span><br><span class="line">bar.width = <span class="number">450</span></span><br><span class="line">bar.hight = <span class="number">600</span></span><br><span class="line">bar.add(<span class="string">"存活人数"</span>, [<span class="string">'女'</span>, <span class="string">'男'</span>], count2, is_stack=<span class="keyword">True</span>)</span><br><span class="line">bar.add(<span class="string">"总人数"</span>, [<span class="string">'女'</span>, <span class="string">'男'</span>], count1, is_stack=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/img/titanic2/k5.png" alt="avatar"></p>
 
       
 
@@ -329,6 +332,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/08/28/Leetcode学习笔记-482-密钥格式化/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Leetcode学习笔记-482-密钥格式化
+        
+      </div>
+    </a>
   
   
     <a href="/2018/08/27/Leetcode学习笔记-892-三维形体的表面积/" id="article-nav-older" class="article-nav-link-wrap">
@@ -514,18 +526,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Array</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
@@ -534,19 +534,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Array</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Medium</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">String</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Math</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -554,7 +554,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
+                <a href="javascript:void(0)" class="js-tag color2">String</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -562,15 +562,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
+                <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Bit Manipulation</a>
+                <a href="javascript:void(0)" class="js-tag color5">Math</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Linked List</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Medium</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -582,11 +586,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
+                <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Bit Manipulation</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Divide and Conquer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -614,7 +626,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -622,11 +634,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
+                <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
