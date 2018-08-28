@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Leetcode学习笔记-674-最长连续递增序列 | 宝石叔叔的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目：给定一个未经排序的整数数组，找到最长且连续的的递增序列。12345示例 1:输入: [1,3,5,4,7]输出: 3解释: 最长连续递增序列是 [1,3,5], 长度为3。尽管 [1,3,5,7] 也是升序的子序列, 但它不是连续的，因为5和7在原数组里被4隔开。  解体思路：判断当前元素与上一个元素之间的关系，再求出最长的即可。最后加一次求最大值是因为有可能整个序列就是完全递增的。 Jav">
+  <meta name="description" content="题目：给定一个未经排序的整数数组，找到最长且连续的的递增序列。12345示例 1:输入: [1,3,5,4,7]输出: 3解释: 最长连续递增序列是 [1,3,5], 长度为3。尽管 [1,3,5,7] 也是升序的子序列, 但它不是连续的，因为5和7在原数组里被4隔开。">
 <meta name="keywords" content="Array,Easy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode学习笔记-674-最长连续递增序列">
 <meta property="og:url" content="http://yoursite.com/2018/04/23/Leetcode学习笔记-674-最长连续递增序列/index.html">
 <meta property="og:site_name" content="宝石叔叔的博客">
-<meta property="og:description" content="题目：给定一个未经排序的整数数组，找到最长且连续的的递增序列。12345示例 1:输入: [1,3,5,4,7]输出: 3解释: 最长连续递增序列是 [1,3,5], 长度为3。尽管 [1,3,5,7] 也是升序的子序列, 但它不是连续的，因为5和7在原数组里被4隔开。  解体思路：判断当前元素与上一个元素之间的关系，再求出最长的即可。最后加一次求最大值是因为有可能整个序列就是完全递增的。 Jav">
+<meta property="og:description" content="题目：给定一个未经排序的整数数组，找到最长且连续的的递增序列。12345示例 1:输入: [1,3,5,4,7]输出: 3解释: 最长连续递增序列是 [1,3,5], 长度为3。尽管 [1,3,5,7] 也是升序的子序列, 但它不是连续的，因为5和7在原数组里被4隔开。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-23T03:00:58.717Z">
+<meta property="og:updated_time" content="2018-08-28T02:24:20.497Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习笔记-674-最长连续递增序列">
-<meta name="twitter:description" content="题目：给定一个未经排序的整数数组，找到最长且连续的的递增序列。12345示例 1:输入: [1,3,5,4,7]输出: 3解释: 最长连续递增序列是 [1,3,5], 长度为3。尽管 [1,3,5,7] 也是升序的子序列, 但它不是连续的，因为5和7在原数组里被4隔开。  解体思路：判断当前元素与上一个元素之间的关系，再求出最长的即可。最后加一次求最大值是因为有可能整个序列就是完全递增的。 Jav">
+<meta name="twitter:description" content="题目：给定一个未经排序的整数数组，找到最长且连续的的递增序列。12345示例 1:输入: [1,3,5,4,7]输出: 3解释: 最长连续递增序列是 [1,3,5], 长度为3。尽管 [1,3,5,7] 也是升序的子序列, 但它不是连续的，因为5和7在原数组里被4隔开。">
   
     <link rel="alternative" href="/atom.xml" title="宝石叔叔的博客" type="application/atom+xml">
   
@@ -191,7 +191,7 @@
       
         <p><font size="5"><br><strong>题目：</strong><br>给定一个未经排序的整数数组，找到最长且连续的的递增序列。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line">输入: [1,3,5,4,7]</span><br><span class="line">输出: 3</span><br><span class="line">解释: 最长连续递增序列是 [1,3,5], 长度为3。</span><br><span class="line">尽管 [1,3,5,7] 也是升序的子序列, 但它不是连续的，因为5和7在原数组里被4隔开。</span><br></pre></td></tr></table></figure></font></p>
 <p></p>
-<p><font size="5"><br><strong>解体思路：<br></strong><br>判断当前元素与上一个元素之间的关系，再求出最长的即可。最后加一次求最大值是因为有可能整个序列就是完全递增的。<br><br></font></p>
+<p><font size="5"><br><a id="more"></a><br><strong>解题思路：<br></strong><br>判断当前元素与上一个元素之间的关系，再求出最长的即可。最后加一次求最大值是因为有可能整个序列就是完全递增的。<br><br></font></p>
 <h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findLengthOfLCIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> max = -<span class="number">1</span>, temp = <span class="number">1</span>, i;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; nums.length; ) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] &gt; nums[i - <span class="number">1</span>]) &#123;</span><br><span class="line">            i += <span class="number">1</span>;</span><br><span class="line">            temp += <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            i += <span class="number">1</span>;</span><br><span class="line">            max = Math.max(max, temp);</span><br><span class="line">            temp = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Math.max(max, temp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findLengthOfLCIS</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    maxlen, temp, i = <span class="number">-1</span>, <span class="number">1</span>, <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt; len(nums)):</span><br><span class="line">        <span class="keyword">if</span> nums[i] &gt; nums[i - <span class="number">1</span>]:</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            temp += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            maxlen = max(maxlen, temp)</span><br><span class="line">            temp = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span> <span class="keyword">if</span> len(nums) == <span class="number">0</span> <span class="keyword">else</span> max(maxlen, temp)</span><br></pre></td></tr></table></figure>
 
@@ -409,7 +409,23 @@
       	</div>
     </div>
   </div>
-
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("04/05/2018 12:49:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "小站已正常运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
 
 
 </footer>
@@ -493,15 +509,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,7 +525,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,15 +565,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Design</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,11 +585,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -585,11 +601,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -597,7 +617,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -606,10 +626,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pyecharts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
             
             <div class="clearfix"></div>

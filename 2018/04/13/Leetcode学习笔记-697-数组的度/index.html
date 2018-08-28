@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="宝石叔叔的博客">
 <meta property="og:description" content="题目：给定一个非空且只包含非负数的整数数组 nums, 数组的度的定义是指数组里任一元素出现频数的最大值。你的任务是找到与 nums 拥有相同大小的度的最短连续子数组，返回其长度。12345678910111213示例 1:输入: [1, 2, 2, 3, 1]输出: 2解释: 输入数组的度是2，因为元素1和2的出现频数最大，均为2.连续子数组里面拥有相同度的有如下所示:[1, 2, 2, 3,">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-13T09:16:46.650Z">
+<meta property="og:updated_time" content="2018-08-28T02:25:18.131Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习笔记-697-数组的度">
 <meta name="twitter:description" content="题目：给定一个非空且只包含非负数的整数数组 nums, 数组的度的定义是指数组里任一元素出现频数的最大值。你的任务是找到与 nums 拥有相同大小的度的最短连续子数组，返回其长度。12345678910111213示例 1:输入: [1, 2, 2, 3, 1]输出: 2解释: 输入数组的度是2，因为元素1和2的出现频数最大，均为2.连续子数组里面拥有相同度的有如下所示:[1, 2, 2, 3,">
@@ -189,10 +189,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <font size="5"><br><strong>题目：</strong><br>给定一个非空且只包含非负数的整数数组 nums, 数组的度的定义是指数组里任一元素出现频数的最大值。<br>你的任务是找到与 nums 拥有相同大小的度的最短连续子数组，返回其长度。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: [1, 2, 2, 3, 1]</span><br><span class="line">输出: 2</span><br><span class="line">解释: </span><br><span class="line">输入数组的度是2，因为元素1和2的出现频数最大，均为2.</span><br><span class="line">连续子数组里面拥有相同度的有如下所示:</span><br><span class="line">[1, 2, 2, 3, 1], [1, 2, 2, 3], [2, 2, 3, 1], [1, 2, 2], [2, 2, 3], [2, 2]</span><br><span class="line">最短连续子数组[2, 2]的长度为2，所以返回2.</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: [1,2,2,3,1,4,2]</span><br><span class="line">输出: 6</span><br></pre></td></tr></table></figure><br><br></font><br><font size="5"><br><strong>解体思路：<br></strong><br>遍历一遍数组，分别将每个出现的数的左，右下标以及出现的次数存入三个map中,然后拿到次数map中的最大值，然后在次数为最大值的这些元素中找到距离最短的长度即为答案<br><br>心得：Java中想拿到一个列表元素中最大值可以用util下的Collections.max函数。<br>Python中在对一个列表遍历正常为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">       print(i, nums[i])</span><br></pre></td></tr></table></figure><br><br></font><br><font size="5">但是显得略微笨重，Python自带一个迭代器，可以同时得到元素和下标,用法如下:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> index, element <span class="keyword">in</span> enumerate(nums):</span><br><span class="line">      print(index, element)</span><br></pre></td></tr></table></figure><br><br></font><br><font size="5">enumerate还可以再传入一个参数，代表起始下标的标准。</font>
+        <font size="5"><br><strong>题目：</strong><br>给定一个非空且只包含非负数的整数数组 nums, 数组的度的定义是指数组里任一元素出现频数的最大值。<br>你的任务是找到与 nums 拥有相同大小的度的最短连续子数组，返回其长度。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: [1, 2, 2, 3, 1]</span><br><span class="line">输出: 2</span><br><span class="line">解释: </span><br><span class="line">输入数组的度是2，因为元素1和2的出现频数最大，均为2.</span><br><span class="line">连续子数组里面拥有相同度的有如下所示:</span><br><span class="line">[1, 2, 2, 3, 1], [1, 2, 2, 3], [2, 2, 3, 1], [1, 2, 2], [2, 2, 3], [2, 2]</span><br><span class="line">最短连续子数组[2, 2]的长度为2，所以返回2.</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: [1,2,2,3,1,4,2]</span><br><span class="line">输出: 6</span><br></pre></td></tr></table></figure><br><br></font><br><font size="5"><br><a id="more"></a><br><strong>解题思路：<br></strong><br>遍历一遍数组，分别将每个出现的数的左，右下标以及出现的次数存入三个map中,然后拿到次数map中的最大值，然后在次数为最大值的这些元素中找到距离最短的长度即为答案<br><br>心得：Java中想拿到一个列表元素中最大值可以用util下的Collections.max函数。<br>Python中在对一个列表遍历正常为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">       print(i, nums[i])</span><br></pre></td></tr></table></figure><br><br></font><br><font size="5">但是显得略微笨重，Python自带一个迭代器，可以同时得到元素和下标,用法如下:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> index, element <span class="keyword">in</span> enumerate(nums):</span><br><span class="line">      print(index, element)</span><br></pre></td></tr></table></figure><br><br></font><br><font size="5">enumerate还可以再传入一个参数，代表起始下标的标准。</font>
 
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><a id="more"></a>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findShortestSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    Map&lt;Integer, Integer&gt; leftIndex = <span class="keyword">new</span> HashMap&lt;&gt;(),</span><br><span class="line">                          rightIndex = <span class="keyword">new</span> HashMap&lt;&gt;(),</span><br><span class="line">                          count = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (leftIndex.get(nums[i]) == <span class="keyword">null</span>)</span><br><span class="line">            leftIndex.put(nums[i], i);</span><br><span class="line">        rightIndex.put(nums[i], i);</span><br><span class="line">        count.put(nums[i], count.getOrDefault(nums[i], <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> maxLen = Collections.max(count.values());</span><br><span class="line">    <span class="keyword">int</span> ans = nums.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> element : count.keySet()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (count.get(element) == maxLen) &#123;</span><br><span class="line">            ans = Math.min(ans, rightIndex.get(element) - leftIndex.get(element) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findShortestSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    Map&lt;Integer, Integer&gt; leftIndex = <span class="keyword">new</span> HashMap&lt;&gt;(),</span><br><span class="line">                          rightIndex = <span class="keyword">new</span> HashMap&lt;&gt;(),</span><br><span class="line">                          count = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (leftIndex.get(nums[i]) == <span class="keyword">null</span>)</span><br><span class="line">            leftIndex.put(nums[i], i);</span><br><span class="line">        rightIndex.put(nums[i], i);</span><br><span class="line">        count.put(nums[i], count.getOrDefault(nums[i], <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> maxLen = Collections.max(count.values());</span><br><span class="line">    <span class="keyword">int</span> ans = nums.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> element : count.keySet()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (count.get(element) == maxLen) &#123;</span><br><span class="line">            ans = Math.min(ans, rightIndex.get(element) - leftIndex.get(element) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findShortestSubArray</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    leftIndex, rightIndex, count = &#123;&#125;, &#123;&#125;, &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> index, element <span class="keyword">in</span> enumerate(nums):</span><br><span class="line">        <span class="keyword">if</span> element <span class="keyword">not</span> <span class="keyword">in</span> leftIndex:</span><br><span class="line">            leftIndex[element] = index</span><br><span class="line">        rightIndex[element] = index</span><br><span class="line">        count[element] = count.get(element, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    maxLen = max(count.values())</span><br><span class="line">    ans = len(nums)</span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> count:</span><br><span class="line">        <span class="keyword">if</span> maxLen == count.get(key):</span><br><span class="line">            ans = min(ans, rightIndex[key] - leftIndex[key] + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
       
 
@@ -408,7 +407,23 @@
       	</div>
     </div>
   </div>
-
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("04/05/2018 12:49:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "小站已正常运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
 
 
 </footer>
@@ -492,15 +507,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -508,7 +523,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,15 +563,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Design</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -568,11 +583,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -584,11 +599,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -596,7 +615,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -605,10 +624,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pyecharts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
             
             <div class="clearfix"></div>

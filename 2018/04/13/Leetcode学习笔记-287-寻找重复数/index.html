@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Leetcode学习笔记-287-寻找重复数 | 宝石叔叔的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目：一个长度为 n + 1 的整形数组，其中的数字都在 1 到 n 之间，包括 1 和 n ，可知至少有一个重复的数字存在。假设只有一个数字重复，找出这个重复的数字。注意：不能更改数组内容（假设数组是只读的）。只能使用恒定的额外空间，即要求空间复杂度是 O(1) 。时间复杂度小于 O(n2)数组中只有一个数字重复，但它可能不止一次重复出现。解体思路：思路是采用了二分法+抽屉原理。首先解释一下为什">
+  <meta name="description" content="题目：一个长度为 n + 1 的整形数组，其中的数字都在 1 到 n 之间，包括 1 和 n ，可知至少有一个重复的数字存在。假设只有一个数字重复，找出这个重复的数字。注意：不能更改数组内容（假设数组是只读的）。只能使用恒定的额外空间，即要求空间复杂度是 O(1) 。时间复杂度小于 O(n2)数组中只有一个数字重复，但它可能不止一次重复出现。">
 <meta name="keywords" content="Array,Medium,Two Pointers,Binary Search">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode学习笔记-287-寻找重复数">
 <meta property="og:url" content="http://yoursite.com/2018/04/13/Leetcode学习笔记-287-寻找重复数/index.html">
 <meta property="og:site_name" content="宝石叔叔的博客">
-<meta property="og:description" content="题目：一个长度为 n + 1 的整形数组，其中的数字都在 1 到 n 之间，包括 1 和 n ，可知至少有一个重复的数字存在。假设只有一个数字重复，找出这个重复的数字。注意：不能更改数组内容（假设数组是只读的）。只能使用恒定的额外空间，即要求空间复杂度是 O(1) 。时间复杂度小于 O(n2)数组中只有一个数字重复，但它可能不止一次重复出现。解体思路：思路是采用了二分法+抽屉原理。首先解释一下为什">
+<meta property="og:description" content="题目：一个长度为 n + 1 的整形数组，其中的数字都在 1 到 n 之间，包括 1 和 n ，可知至少有一个重复的数字存在。假设只有一个数字重复，找出这个重复的数字。注意：不能更改数组内容（假设数组是只读的）。只能使用恒定的额外空间，即要求空间复杂度是 O(1) 。时间复杂度小于 O(n2)数组中只有一个数字重复，但它可能不止一次重复出现。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-13T10:39:19.356Z">
+<meta property="og:updated_time" content="2018-08-28T02:15:32.216Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习笔记-287-寻找重复数">
-<meta name="twitter:description" content="题目：一个长度为 n + 1 的整形数组，其中的数字都在 1 到 n 之间，包括 1 和 n ，可知至少有一个重复的数字存在。假设只有一个数字重复，找出这个重复的数字。注意：不能更改数组内容（假设数组是只读的）。只能使用恒定的额外空间，即要求空间复杂度是 O(1) 。时间复杂度小于 O(n2)数组中只有一个数字重复，但它可能不止一次重复出现。解体思路：思路是采用了二分法+抽屉原理。首先解释一下为什">
+<meta name="twitter:description" content="题目：一个长度为 n + 1 的整形数组，其中的数字都在 1 到 n 之间，包括 1 和 n ，可知至少有一个重复的数字存在。假设只有一个数字重复，找出这个重复的数字。注意：不能更改数组内容（假设数组是只读的）。只能使用恒定的额外空间，即要求空间复杂度是 O(1) 。时间复杂度小于 O(n2)数组中只有一个数字重复，但它可能不止一次重复出现。">
   
     <link rel="alternative" href="/atom.xml" title="宝石叔叔的博客" type="application/atom+xml">
   
@@ -189,10 +189,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><font size="5"><br><strong>题目：</strong><br>一个长度为 n + 1 的整形数组，其中的数字都在 1 到 n 之间，包括 1 和 n ，可知至少有一个重复的数字存在。假设只有一个数字重复，找出这个重复的数字。<br><br>注意：<br><br>不能更改数组内容（假设数组是只读的）。<br>只能使用恒定的额外空间，即要求空间复杂度是 O(1) 。<br>时间复杂度小于 O(n2)<br>数组中只有一个数字重复，但它可能不止一次重复出现。<br><br><strong>解体思路：<br></strong><br>思路是采用了二分法+抽屉原理。首先解释一下为什么用二分法，因为O(n2)时间复杂度不能A，所以往下应该是n*logn，很容易联想到二分法，因为其复杂度为logn。<br><br>抽屉原理是说假设你有11个苹果，要放进10个抽屉，那么至少有一个抽屉里是有两个苹果的。<br><br>对应到这题，1~n的n+1个数字，有1个数字会至少重复两次。<br><br>比如取数组为｛1，2，2，3，4，5｝，一共6个数，范围是1~5，其中位数应该是（5+1）/2 = 3，那么，如果小于等于3的数的个数如果超过了3，那么重复的数字一定出现在[1，3]之间，否则出现在[4，5]之间。以该数组为例，中位数为3，小于等于3的数一共有4个，大于3的数有两个，所以重复的数字在[1,3]之间。<br><br></font></p>
+        <p><font size="5"><br><strong>题目：</strong><br>一个长度为 n + 1 的整形数组，其中的数字都在 1 到 n 之间，包括 1 和 n ，可知至少有一个重复的数字存在。假设只有一个数字重复，找出这个重复的数字。<br><br>注意：<br><br>不能更改数组内容（假设数组是只读的）。<br>只能使用恒定的额外空间，即要求空间复杂度是 O(1) 。<br>时间复杂度小于 O(n2)<br>数组中只有一个数字重复，但它可能不止一次重复出现。<br><a id="more"></a><br><strong>解题思路：<br></strong><br>思路是采用了二分法+抽屉原理。首先解释一下为什么用二分法，因为O(n2)时间复杂度不能A，所以往下应该是n*logn，很容易联想到二分法，因为其复杂度为logn。<br><br>抽屉原理是说假设你有11个苹果，要放进10个抽屉，那么至少有一个抽屉里是有两个苹果的。<br><br>对应到这题，1~n的n+1个数字，有1个数字会至少重复两次。<br><br>比如取数组为｛1，2，2，3，4，5｝，一共6个数，范围是1~5，其中位数应该是（5+1）/2 = 3，那么，如果小于等于3的数的个数如果超过了3，那么重复的数字一定出现在[1，3]之间，否则出现在[4，5]之间。以该数组为例，中位数为3，小于等于3的数一共有4个，大于3的数有两个，所以重复的数字在[1,3]之间。<br><br></font></p>
 <h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">1</span>, end = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (start &lt; end) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> mid = start + (end - start) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i : nums)</span><br><span class="line">            <span class="keyword">if</span> (i &lt;= mid)</span><br><span class="line">                count++;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (count &gt; mid)</span><br><span class="line">            end = mid;</span><br><span class="line">        <span class="keyword">if</span> (count &lt;= mid)</span><br><span class="line">            start = mid + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> end;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><a id="more"></a>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findDuplicate</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    start, end = <span class="number">1</span>, len(nums) - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> start &lt; end:</span><br><span class="line">        mid = start + (end - start) // <span class="number">2</span></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> elem <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> elem &lt;= mid:</span><br><span class="line">                count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> count &gt; mid:</span><br><span class="line">            end = mid</span><br><span class="line">        <span class="keyword">if</span> count &lt;= mid:</span><br><span class="line">            start = mid + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> end</span><br></pre></td></tr></table></figure>
+<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findDuplicate</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    start, end = <span class="number">1</span>, len(nums) - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> start &lt; end:</span><br><span class="line">        mid = start + (end - start) // <span class="number">2</span></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> elem <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> elem &lt;= mid:</span><br><span class="line">                count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> count &gt; mid:</span><br><span class="line">            end = mid</span><br><span class="line">        <span class="keyword">if</span> count &lt;= mid:</span><br><span class="line">            start = mid + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> end</span><br></pre></td></tr></table></figure>
 
       
 
@@ -416,7 +415,23 @@
       	</div>
     </div>
   </div>
-
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("04/05/2018 12:49:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "小站已正常运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
 
 
 </footer>
@@ -500,15 +515,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -516,7 +531,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,15 +571,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Design</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -576,11 +591,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -592,11 +607,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -604,7 +623,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -613,10 +632,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pyecharts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
             
             <div class="clearfix"></div>

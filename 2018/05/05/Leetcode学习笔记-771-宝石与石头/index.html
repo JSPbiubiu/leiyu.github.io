@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="宝石叔叔的博客">
 <meta property="og:description" content="题目：给定字符串J 代表石头中宝石的类型，和字符串 S代表你拥有的石头。 S 中每个字符代表了一种你拥有的石头的类型，你想知道你拥有的石头中有多少是宝石。J 中的字母不重复，J 和 S中的所有字符都是字母。字母区分大小写，因此”a”和”A”是不同类型的石头。123456789101112示例 1:输入: J = &amp;quot;aA&amp;quot;, S = &amp;quot;aAAbbbb&amp;quot;输出:">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-05T10:04:09.551Z">
+<meta property="og:updated_time" content="2018-08-28T02:27:19.783Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习笔记-771-宝石与石头">
 <meta name="twitter:description" content="题目：给定字符串J 代表石头中宝石的类型，和字符串 S代表你拥有的石头。 S 中每个字符代表了一种你拥有的石头的类型，你想知道你拥有的石头中有多少是宝石。J 中的字母不重复，J 和 S中的所有字符都是字母。字母区分大小写，因此”a”和”A”是不同类型的石头。123456789101112示例 1:输入: J = &amp;quot;aA&amp;quot;, S = &amp;quot;aAAbbbb&amp;quot;输出:">
@@ -191,7 +191,7 @@
       
         <p><font size="5"><br><strong>题目：</strong><br>给定字符串J 代表石头中宝石的类型，和字符串 S代表你拥有的石头。 S 中每个字符代表了一种你拥有的石头的类型，你想知道你拥有的石头中有多少是宝石。<br>J 中的字母不重复，J 和 S中的所有字符都是字母。字母区分大小写，因此”a”和”A”是不同类型的石头。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: J = &quot;aA&quot;, S = &quot;aAAbbbb&quot;</span><br><span class="line">输出: 3</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: J = &quot;z&quot;, S = &quot;ZZ&quot;</span><br><span class="line">输出: 0</span><br><span class="line">注意:</span><br><span class="line"></span><br><span class="line">S 和 J 最多含有50个字母。</span><br><span class="line"> J 中的字符不重复。</span><br></pre></td></tr></table></figure></font></p>
 <p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>没啥说的，看J的字符在S里的个数就行<br><br></font></p>
+<p><font size="5"><br><a id="more"></a><br><strong>解题思路：<br></strong><br>没啥说的，看J的字符在S里的个数就行<br><br></font></p>
 <h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numJewelsInStones</span><span class="params">(String J, String S)</span> </span>&#123;</span><br><span class="line">       HashSet set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; J.length(); ++i) set.add(J.charAt(i));</span><br><span class="line">       <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; S.length(); ++i)</span><br><span class="line">           <span class="keyword">if</span> (set.contains(S.charAt(i)))</span><br><span class="line">               res++;</span><br><span class="line">       <span class="keyword">return</span> res;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">numJewelsInStones</span><span class="params">(self, J, S)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type J: str</span></span><br><span class="line"><span class="string">    :type S: str</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    res = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> ch <span class="keyword">in</span> S:</span><br><span class="line">        <span class="keyword">if</span> ch <span class="keyword">in</span> J:</span><br><span class="line">            res += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 
@@ -409,7 +409,23 @@
       	</div>
     </div>
   </div>
-
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("04/05/2018 12:49:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "小站已正常运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
 
 
 </footer>
@@ -493,15 +509,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,7 +525,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,15 +565,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Design</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,11 +585,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -585,11 +601,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -597,7 +617,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -606,10 +626,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pyecharts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
             
             <div class="clearfix"></div>

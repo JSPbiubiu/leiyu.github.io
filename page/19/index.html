@@ -163,7 +163,7 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Leetcode学习笔记-537-复数乘法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-简单的-工作台" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -171,13 +171,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/17/Leetcode学习笔记-537-复数乘法/">Leetcode学习笔记-537-复数乘法</a>
+      <a class="article-title" href="/2018/04/08/简单的-工作台/">简单的&#39;工作台&#39;</a>
     </h1>
   
 
         
-        <a href="/2018/05/17/Leetcode学习笔记-537-复数乘法/" class="archive-article-date">
-  	<time datetime="2018-05-17T02:52:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-17</time>
+        <a href="/2018/04/08/简单的-工作台/" class="archive-article-date">
+  	<time datetime="2018-04-08T06:26:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-08</time>
 </a>
         
         
@@ -185,11 +185,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><font size="5"><br><strong>题目：</strong><br>给定两个表示复数的字符串。<br>返回表示它们乘积的字符串。注意，根据定义 i^2 = -1 。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: &quot;1+1i&quot;, &quot;1+1i&quot;</span><br><span class="line">输出: &quot;0+2i&quot;</span><br><span class="line">解释: (1 + i) * (1 + i) = 1 + i2 + 2 * i = 2i ，你需要将它转换为 0+2i 的形式。</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: &quot;1+-1i&quot;, &quot;1+-1i&quot;</span><br><span class="line">输出: &quot;0+-2i&quot;</span><br><span class="line">解释: (1 - i) * (1 - i) = 1 + i2 - 2 * i = -2i ，你需要将它转换为 0+-2i 的形式。 </span><br><span class="line">注意:</span><br><span class="line"></span><br><span class="line">输入字符串不包含额外的空格。</span><br><span class="line">输入字符串将以 a+bi 的形式给出，其中整数 a 和 b 的范围均在 [-100, 100] 之间。输出也应当符合这种形式。</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>注意（a + b） <em> (c + d) = a </em> c + b <em> d + a </em> d + b * c        i^2 = -1;<br>利用字符串切割  注意“+” 在正则表达式有特殊含义，所以切割时要加转义字”\+”<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">complexNumberMultiply</span><span class="params">(String a, String b)</span> </span>&#123;</span><br><span class="line">       </span><br><span class="line">       String[] a1 = a.split(<span class="string">"\\+"</span>);</span><br><span class="line">	String[] a2 = b.split(<span class="string">"\\+"</span>);</span><br><span class="line">	<span class="keyword">int</span> x1 = Integer.parseInt(a1[<span class="number">0</span>]);</span><br><span class="line">	<span class="keyword">int</span> y1 = Integer.parseInt(a1[<span class="number">1</span>].replace(<span class="string">"i"</span>, <span class="string">""</span>));</span><br><span class="line">	<span class="keyword">int</span> x2 = Integer.parseInt(a2[<span class="number">0</span>]);</span><br><span class="line">	<span class="keyword">int</span> y2 = Integer.parseInt(a2[<span class="number">1</span>].replace(<span class="string">"i"</span>, <span class="string">""</span>));</span><br><span class="line">	<span class="keyword">int</span> x1x2y1y2 = (x1 * x2) + (-<span class="number">1</span> * y1 * y2);</span><br><span class="line">	<span class="keyword">int</span> x1y2x2y1 = (x1 * y2) + (x2 * y1);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> x1x2y1y2 + <span class="string">"+"</span> + x1y2x2y1 + <span class="string">"i"</span>;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">complexNumberMultiply</span><span class="params">(self, a, b)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type a: str</span></span><br><span class="line"><span class="string">    :type b: str</span></span><br><span class="line"><span class="string">    :rtype: str</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    stra, strb = a.split(<span class="string">'+'</span>), b.split(<span class="string">'+'</span>)</span><br><span class="line">    x1, y1, x2, y2 = int(stra[<span class="number">0</span>]), int(stra[<span class="number">1</span>][<span class="number">0</span>:len(stra[<span class="number">1</span>]) - <span class="number">1</span>]), int(strb[<span class="number">0</span>]), int(strb[<span class="number">1</span>][<span class="number">0</span>:len(strb[<span class="number">1</span>]) - <span class="number">1</span>])</span><br><span class="line">    real = x1 * x2 + y1 * y2 * <span class="number">-1</span></span><br><span class="line">    image = x1 * y2 + x2 * y1</span><br><span class="line">    <span class="keyword">return</span> str(real) + <span class="string">'+'</span> + str(image) + <span class="string">'i'</span></span><br></pre></td></tr></table></figure>
+        <p><img src="/img/des.JPG" alt="avatar"></p>
 
       
 
@@ -203,179 +199,93 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/08/简单的-工作台/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-27-移除元素" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/07/Leetcode学习笔记-27-移除元素/">Leetcode学习笔记-27-移除元素</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/07/Leetcode学习笔记-27-移除元素/" class="archive-article-date">
+  	<time datetime="2018-04-07T11:05:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-07</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <font size="5"><br><strong>题目：</strong><br>给出一个包含 0, 1, 2, …, n 中 n 个数的序列，找出 0 .. n 中没有出现在序列中的那个数。<br><br>
+        
+          <a class="article-more-a" href="/2018/04/07/Leetcode学习笔记-27-移除元素/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/17/Leetcode学习笔记-537-复数乘法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Leetcode学习笔记-404-左叶子之和" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/17/Leetcode学习笔记-404-左叶子之和/">Leetcode学习笔记-404-左叶子之和</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/17/Leetcode学习笔记-404-左叶子之和/" class="archive-article-date">
-  	<time datetime="2018-05-17T02:38:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-17</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>计算给定二叉树的所有左叶子之和。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例：</span><br><span class="line"></span><br><span class="line">    3</span><br><span class="line">   / \</span><br><span class="line">  9  20</span><br><span class="line">    /  \</span><br><span class="line">   15   7</span><br><span class="line"></span><br><span class="line">在这个二叉树中，有两个左叶子，分别是 9 和 15，所以返回 24</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>判断 若当前结点为空，则返回0<br>若当前结点的左子树不为空，并且为叶子结点，则sum += 左叶子结点的值<br>否则，递归左子树。<br>同理在递归右子树，算出右子树中左叶子节点的和。<br>最后左子树中左叶子节点的和 加上 右子数中左叶子节点的和即为结果。<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sumOfLeftLeaves</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">       </span><br><span class="line">	<span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">           <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">if</span> (root.left != <span class="keyword">null</span> &amp;&amp; root.left.left == <span class="keyword">null</span> &amp;&amp; root.left.right == <span class="keyword">null</span>)</span><br><span class="line">           sum += root.left.val;</span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">           sum += sumOfLeftLeaves(root.left);</span><br><span class="line">       </span><br><span class="line">       sum += sumOfLeftLeaves(root.right);</span><br><span class="line"></span><br><span class="line">       <span class="keyword">return</span> sum;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sumOfLeftLeaves</span><span class="params">(self, root)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type root: TreeNode</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    leftsum = <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> root.left <span class="keyword">and</span> <span class="keyword">not</span> root.left.left <span class="keyword">and</span> <span class="keyword">not</span> root.left.right:</span><br><span class="line">        leftsum += root.left.val</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        leftsum += self.sumOfLeftLeaves(root.left)</span><br><span class="line">    leftsum += self.sumOfLeftLeaves(root.right)</span><br><span class="line">    <span class="keyword">return</span> leftsum</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Tree</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/17/Leetcode学习笔记-404-左叶子之和/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Leetcode学习笔记-342-4的幂" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/16/Leetcode学习笔记-342-4的幂/">Leetcode学习笔记-342-4的幂</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/16/Leetcode学习笔记-342-4的幂/" class="archive-article-date">
-  	<time datetime="2018-05-16T09:18:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>给定一个整数 (32位有符整数型)，请写出一个函数来检验它是否是4的幂。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">示例:</span><br><span class="line">当 num = 16 时 ，返回 true 。 当 num = 5时，返回 false。</span><br><span class="line"></span><br><span class="line">问题进阶：你能不使用循环/递归来解决这个问题吗？</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>利用log的特性，可以将幂次拿到log前面。或者。。。。。switch case !!!!!!(没毛病吧？)<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPowerOfFour</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> Math.log(num) / Math.log(<span class="number">4</span>) % <span class="number">1</span> == <span class="number">0</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isPowerOfFour</span><span class="params">(self, num)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type num: int</span></span><br><span class="line"><span class="string">    :rtype: bool</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> num <span class="keyword">in</span> [<span class="number">1</span>, <span class="number">4</span>, <span class="number">16</span>, <span class="number">64</span>, <span class="number">256</span>, <span class="number">1024</span>, <span class="number">4096</span>, <span class="number">16384</span>, <span class="number">65536</span>, <span class="number">262144</span>, <span class="number">1048576</span>,</span><br><span class="line">                   <span class="number">4194304</span>, <span class="number">16777216</span>, <span class="number">67108864</span>, <span class="number">268435456</span>, <span class="number">1073741824</span>]</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -389,7 +299,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/16/Leetcode学习笔记-342-4的幂/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/07/Leetcode学习笔记-27-移除元素/">展开全文 >></a>
         </p>
       
 
@@ -419,7 +329,7 @@
 
 
   
-    <article id="post-Leetcode学习笔记-653-两数之和IV-输入BST" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Leetcode学习笔记-283-移动零" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -427,13 +337,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/15/Leetcode学习笔记-653-两数之和IV-输入BST/">Leetcode学习笔记-653-两数之和IV-输入BST</a>
+      <a class="article-title" href="/2018/04/07/Leetcode学习笔记-283-移动零/">Leetcode学习笔记-283-移动零</a>
     </h1>
   
 
         
-        <a href="/2018/05/15/Leetcode学习笔记-653-两数之和IV-输入BST/" class="archive-article-date">
-  	<time datetime="2018-05-15T03:24:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-15</time>
+        <a href="/2018/04/07/Leetcode学习笔记-283-移动零/" class="archive-article-date">
+  	<time datetime="2018-04-07T10:53:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-07</time>
 </a>
         
         
@@ -441,12 +351,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><font size="5"><br><strong>题目：</strong><br>给定一个二叉搜索树和一个目标结果，如果 BST 中存在两个元素且它们的和等于给定的目标结果，则返回 true。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">案例 1:</span><br><span class="line"></span><br><span class="line">输入: </span><br><span class="line">    5</span><br><span class="line">   / \</span><br><span class="line">  3   6</span><br><span class="line"> / \   \</span><br><span class="line">2   4   7</span><br><span class="line"></span><br><span class="line">Target = 9</span><br><span class="line">输出: True</span><br><span class="line"></span><br><span class="line">案例 2:</span><br><span class="line">输入: </span><br><span class="line">    5</span><br><span class="line">   / \</span><br><span class="line">  3   6</span><br><span class="line"> / \   \</span><br><span class="line">2   4   7</span><br><span class="line"></span><br><span class="line">Target = 28</span><br><span class="line">输出: False</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>关键点在于若集合中包含当前节点值，则返回true，若没有，则放入K-当前节点的值。<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Integer&gt; set = <span class="keyword">new</span> HashSet();</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">findTarget</span><span class="params">(TreeNode root, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       <span class="keyword">if</span> (set.contains(root.val))</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">       set.add(k - root.val);</span><br><span class="line">       <span class="keyword">return</span> findTarget(root.left, k) || findTarget(root.right, k);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findTarget</span><span class="params">(self, root, k)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type root: TreeNode</span></span><br><span class="line"><span class="string">    :type k: int</span></span><br><span class="line"><span class="string">    :rtype: bool</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">    s, queue = set(), [root]</span><br><span class="line">    <span class="keyword">for</span> node <span class="keyword">in</span> queue:</span><br><span class="line">        <span class="keyword">if</span> node.val <span class="keyword">in</span> s:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        s.add(k - node.val)</span><br><span class="line">        <span class="keyword">if</span> node.left:</span><br><span class="line">            queue.append(node.left)</span><br><span class="line">        <span class="keyword">if</span> node.right:</span><br><span class="line">            queue.append(node.right)</span><br><span class="line">    <span class="keyword">return</span> Falses</span><br></pre></td></tr></table></figure>
-
+        <font size="5"><br><strong>题目：</strong><br>给定一个数组 nums, 编写一个函数将所有 0 移动到它的末尾，同时保持非零元素的相对顺序。<br><br>例如， 定义 nums = [0, 1, 0, 3, 12]，调用函数之后， nums 应为 [1, 3, 12, 0, 0]。<br>
+        
+          <a class="article-more-a" href="/2018/04/07/Leetcode学习笔记-283-移动零/#more">more >></a>
+        
       
 
       
@@ -459,11 +367,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Tree</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
         		</li>
       		
 		</ul>
@@ -473,7 +385,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/15/Leetcode学习笔记-653-两数之和IV-输入BST/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/07/Leetcode学习笔记-283-移动零/">展开全文 >></a>
         </p>
       
 
@@ -503,7 +415,7 @@
 
 
   
-    <article id="post-Leetcode学习笔记-202-快乐数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Leetcode学习笔记-566-重塑矩阵" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -511,13 +423,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/15/Leetcode学习笔记-202-快乐数/">Leetcode学习笔记-202-快乐数</a>
+      <a class="article-title" href="/2018/04/07/Leetcode学习笔记-566-重塑矩阵/">Leetcode学习笔记-566-重塑矩阵</a>
     </h1>
   
 
         
-        <a href="/2018/05/15/Leetcode学习笔记-202-快乐数/" class="archive-article-date">
-  	<time datetime="2018-05-15T03:01:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-15</time>
+        <a href="/2018/04/07/Leetcode学习笔记-566-重塑矩阵/" class="archive-article-date">
+  	<time datetime="2018-04-07T10:25:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-07</time>
 </a>
         
         
@@ -525,12 +437,505 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><font size="5"><br><strong>题目：</strong><br>编写一个算法来判断一个数是不是“快乐数”。<br>一个“快乐数”定义为：对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和，然后重复这个过程直到这个数变为 1，也可能是无限循环但始终变不到 1。如果可以变为 1，那么这个数就是快乐数。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例: </span><br><span class="line"></span><br><span class="line">输入: 19</span><br><span class="line">输出: true</span><br><span class="line">解释: </span><br><span class="line">12 + 92 = 82</span><br><span class="line">82 + 22 = 68</span><br><span class="line">62 + 82 = 100</span><br><span class="line">12 + 02 + 02 = 1</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>用一个集合来判重，每次算出一个数就添加到集合中，如果集合中存在了，则该数不是快乐数，否则最后为1即为快乐数。<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isHappy</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">       Set&lt;Integer&gt; set = <span class="keyword">new</span> HashSet();</span><br><span class="line">       <span class="keyword">while</span> (n != <span class="number">1</span>) &#123;</span><br><span class="line">           <span class="keyword">if</span> (!set.add(n))</span><br><span class="line">               <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">           <span class="keyword">int</span> temp = <span class="number">0</span>;</span><br><span class="line">           <span class="keyword">while</span> (n != <span class="number">0</span>) &#123;</span><br><span class="line">               temp += Math.pow(n % <span class="number">10</span>, <span class="number">2</span>);</span><br><span class="line">               n /= <span class="number">10</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           n = temp;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isHappy</span><span class="params">(self, n)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type n: int</span></span><br><span class="line"><span class="string">    :rtype: bool</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    helper = set()</span><br><span class="line">    <span class="keyword">while</span> n != <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">if</span> n <span class="keyword">in</span> helper:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        helper.add(n)</span><br><span class="line">        temp = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> n:</span><br><span class="line">            temp += pow(n % <span class="number">10</span>, <span class="number">2</span>)</span><br><span class="line">            n //= <span class="number">10</span></span><br><span class="line">        n = temp</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+        <p><font size="5"><br><strong>题目：</strong><br>在MATLAB中，有一个非常有用的函数 reshape，它可以将一个矩阵重塑为另一个大小不同的新矩阵，但保留其原始数据。<br>给出一个由二维数组表示的矩阵，以及两个正整数r和c，分别表示想要的重构的矩阵的行数和列数。<br>重构后的矩阵需要将原始矩阵的所有元素以相同的行遍历顺序填充。<br>如果具有给定参数的reshape操作是可行且合理的，则输出新的重塑矩阵；否则，输出原始矩阵。<br><br>
+        
+          <a class="article-more-a" href="/2018/04/07/Leetcode学习笔记-566-重塑矩阵/#more">more >></a>
+        
+      
 
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/07/Leetcode学习笔记-566-重塑矩阵/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-485-最大连续1的个数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/07/Leetcode学习笔记-485-最大连续1的个数/">Leetcode学习笔记-485-最大连续1的个数</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/07/Leetcode学习笔记-485-最大连续1的个数/" class="archive-article-date">
+  	<time datetime="2018-04-07T10:18:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-07</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <font size="5"><br><strong>题目：</strong><br>给定一个二进制数组， 计算其中最大连续1的个数。<br>
+        
+          <a class="article-more-a" href="/2018/04/07/Leetcode学习笔记-485-最大连续1的个数/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/07/Leetcode学习笔记-485-最大连续1的个数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-561-数组拆分I" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/07/Leetcode学习笔记-561-数组拆分I/">Leetcode学习笔记-561-数组拆分I</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/07/Leetcode学习笔记-561-数组拆分I/" class="archive-article-date">
+  	<time datetime="2018-04-07T02:57:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-07</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <font size="5"><br><strong>题目：</strong><br>给定长度为 2n 的数组, 你的任务是将这些数分成 n 对, 例如 (a1, b1), (a2, b2), …, (an, bn) ，使得从1 到 n 的 min(ai, bi) 总和最大。<br>
+        
+          <a class="article-more-a" href="/2018/04/07/Leetcode学习笔记-561-数组拆分I/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/07/Leetcode学习笔记-561-数组拆分I/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-26-从排序数组中删除重复项" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/07/Leetcode学习笔记-26-从排序数组中删除重复项/">Leetcode学习笔记-26-从排序数组中删除重复项</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/07/Leetcode学习笔记-26-从排序数组中删除重复项/" class="archive-article-date">
+  	<time datetime="2018-04-07T02:35:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-07</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <font size="5"><br><strong>题目：</strong><br>给定一个有序数组，你需要原地删除其中的重复内容，使每个元素只出现一次,并返回新的长度。<br><br>不要另外定义一个数组，您必须通过用 O(1) 额外内存原地修改输入的数组来做到这一点。<br><br>
+        
+          <a class="article-more-a" href="/2018/04/07/Leetcode学习笔记-26-从排序数组中删除重复项/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/07/Leetcode学习笔记-26-从排序数组中删除重复项/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-安装requests和Beautifulsoup及简单小例子" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/07/安装requests和Beautifulsoup及简单小例子/">安装requests和Beautifulsoup及简单小例子</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/07/安装requests和Beautifulsoup及简单小例子/" class="archive-article-date">
+  	<time datetime="2018-04-07T01:22:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-07</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <font size="4"><br>首先要配置好Python的环境变量，建立两个Path变量的路径，一个是安装路径，一个是script路径（为了可以使用pip命令)<br><br>接下来要在管理员身份下运行cmd或者Windows power shell中分别输入以下命令:<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install requests</span><br><span class="line">pip install beautifulsoup4</span><br></pre></td></tr></table></figure><br><br>若此时安装过程出现pip版本不对，则输入以下命令：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure><br><br>即可。最后分别将上面的两个扩展包安装完成。<br></font>
+
+<p>接下来可以写一个简单的爬虫小例子:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests  <span class="comment"># 导入网页请求库(简单模拟用户发送请求）</span></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup  <span class="comment"># 导入网页解析库</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 传入URL</span></span><br><span class="line"></span><br><span class="line">r = requests.get(<span class="string">'https://www.csdn.net/'</span>)  <span class="comment"># 模拟用户请求，请求成功，服务器会相应！</span></span><br><span class="line"><span class="comment"># print(r.text)  此处可以测试服务器是否正确响应</span></span><br><span class="line"><span class="comment"># 解析URL</span></span><br><span class="line"></span><br><span class="line">soup = BeautifulSoup(r.text, <span class="string">'html.parser'</span>)  <span class="comment"># 简单理解成把服务器传过来的html规范化</span></span><br><span class="line">contentList = soup.find_all(<span class="string">'div'</span>, attrs=&#123;<span class="string">'class'</span>: <span class="string">'title'</span>&#125;)  <span class="comment"># 根据你所设置的过滤条件来过滤其中的信息</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 迭代List中的所有信息：</span></span><br><span class="line">print(len(contentList))  <span class="comment"># 看看有多少条</span></span><br><span class="line"><span class="keyword">for</span> content <span class="keyword">in</span> contentList:</span><br><span class="line">    print(content.h2.a.text)  <span class="comment"># 从浏览器检查元素可知标签是&lt;h2&gt;&lt;a&gt;....&lt;/a&gt;&lt;/h2&gt;中的</span></span><br></pre></td></tr></table></figure></p>
+<p>运行结果：<br>
+        
+          <a class="article-more-a" href="/2018/04/07/安装requests和Beautifulsoup及简单小例子/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">python爬虫</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/07/安装requests和Beautifulsoup及简单小例子/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-LeetCode学习笔记-766-托普利茨矩阵" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/06/LeetCode学习笔记-766-托普利茨矩阵/">LeetCode学习笔记-766-托普利茨矩阵</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/06/LeetCode学习笔记-766-托普利茨矩阵/" class="archive-article-date">
+  	<time datetime="2018-04-06T10:40:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-06</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <font size="5"><br><strong>题目：</strong><br>如果一个矩阵的每一方向由左上到右下的对角线上具有相同元素，那么这个矩阵是托普利茨矩阵。<br>给定一个 M x N 的矩阵，当且仅当它是托普利茨矩阵时返回 True。<br>
+        
+          <a class="article-more-a" href="/2018/04/06/LeetCode学习笔记-766-托普利茨矩阵/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/06/LeetCode学习笔记-766-托普利茨矩阵/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-7-颠倒整数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/06/Leetcode学习笔记-7-颠倒整数/">Leetcode学习笔记-7-颠倒整数</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/06/Leetcode学习笔记-7-颠倒整数/" class="archive-article-date">
+  	<time datetime="2018-04-06T09:27:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-06</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <font size="5"><br><strong>题目：</strong><br>给定一个范围为 32 位 int 的整数，将其颠倒。<br><br><strong>解体思路：<br></strong><br>这个题没什么好说的，但是有几点学到的内容：<br><br>1.python的取余运算略有不同：例如 -123 % 10 = 7<br><br>2.python的三目运算符例子:<br><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag = <span class="number">1</span> <span class="keyword">if</span> x &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure><br><br></font>
+        
+          <a class="article-more-a" href="/2018/04/06/Leetcode学习笔记-7-颠倒整数/#more">more >></a>
+        
       
 
       
@@ -549,10 +954,6 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Set</a>
-        		</li>
       		
 		</ul>
 	</div>
@@ -561,7 +962,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/15/Leetcode学习笔记-202-快乐数/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/06/Leetcode学习笔记-7-颠倒整数/">展开全文 >></a>
         </p>
       
 
@@ -593,7 +994,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/18/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/20/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/18/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/20/">Next &raquo;</a>
     </nav>
   
 
@@ -617,7 +1018,23 @@
       	</div>
     </div>
   </div>
-
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("04/05/2018 12:49:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "小站已正常运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
 
 
 </footer>
@@ -701,15 +1118,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -717,7 +1134,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -757,15 +1174,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Design</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -777,11 +1194,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -793,11 +1210,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -805,7 +1226,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -814,10 +1235,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pyecharts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
             
             <div class="clearfix"></div>

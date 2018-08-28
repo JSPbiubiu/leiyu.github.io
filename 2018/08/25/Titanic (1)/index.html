@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Kaggle：预测泰坦尼克号乘客存活率 | 宝石叔叔的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="emmm结果比较惨（毕竟第一次，想想别的模型，特征吧）： 下面说一下做数据科学竞赛的套路：    1.下载数据并简单查看。    2.数据清洗、预处理、挖掘特征。    3.构建模型    4.评估模型并提交查看结果排名。    5.不断优化并再次提交。">
+  <meta name="description" content="emmm结果比较惨（毕竟第一次，想想别的模型，特征吧）：">
 <meta name="keywords" content="Kaggle">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kaggle：预测泰坦尼克号乘客存活率">
 <meta property="og:url" content="http://yoursite.com/2018/08/25/Titanic (1)/index.html">
 <meta property="og:site_name" content="宝石叔叔的博客">
-<meta property="og:description" content="emmm结果比较惨（毕竟第一次，想想别的模型，特征吧）： 下面说一下做数据科学竞赛的套路：    1.下载数据并简单查看。    2.数据清洗、预处理、挖掘特征。    3.构建模型    4.评估模型并提交查看结果排名。    5.不断优化并再次提交。">
+<meta property="og:description" content="emmm结果比较惨（毕竟第一次，想想别的模型，特征吧）：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/img/titanic/kaggle.png">
 <meta property="og:image" content="http://yoursite.com/img/titanic/k1.png">
@@ -24,10 +24,10 @@
 <meta property="og:image" content="http://yoursite.com/img/titanic/k5.png">
 <meta property="og:image" content="http://yoursite.com/img/titanic/k7.png">
 <meta property="og:image" content="http://yoursite.com/img/titanic/k6.png">
-<meta property="og:updated_time" content="2018-08-27T12:04:19.122Z">
+<meta property="og:updated_time" content="2018-08-28T02:03:23.368Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kaggle：预测泰坦尼克号乘客存活率">
-<meta name="twitter:description" content="emmm结果比较惨（毕竟第一次，想想别的模型，特征吧）： 下面说一下做数据科学竞赛的套路：    1.下载数据并简单查看。    2.数据清洗、预处理、挖掘特征。    3.构建模型    4.评估模型并提交查看结果排名。    5.不断优化并再次提交。">
+<meta name="twitter:description" content="emmm结果比较惨（毕竟第一次，想想别的模型，特征吧）：">
 <meta name="twitter:image" content="http://yoursite.com/img/titanic/kaggle.png">
   
     <link rel="alternative" href="/atom.xml" title="宝石叔叔的博客" type="application/atom+xml">
@@ -198,9 +198,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><font size="5">emmm结果比较惨（毕竟第一次，想想别的模型，特征吧）：</font></strong><br><img src="/img/titanic/kaggle.png" alt="avatar"></p>
-<p><strong><font size="5">下面说一下做数据科学竞赛的套路：</font><br>    1.下载数据并简单查看。<br>    2.数据清洗、预处理、挖掘特征。<br>    3.构建模型<br>    4.评估模型并提交查看结果排名。<br>    5.不断优化并再次提交。
-</strong><br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure></p>
+        <p><strong><font size="5">emmm结果比较惨（毕竟第一次，想想别的模型，特征吧）：</font></strong><br><img src="/img/titanic/kaggle.png" alt="avatar"><br><a id="more"></a><br><strong><font size="5">下面说一下做数据科学竞赛的套路：</font><br>    1.下载数据并简单查看。<br>    2.数据清洗、预处理、挖掘特征。<br>    3.构建模型<br>    4.评估模型并提交查看结果排名。<br>    5.不断优化并再次提交。
+</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
 <p><strong><font size="5">1.查看数据</font></strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train = pd.read_csv(<span class="string">"C://Users//LeiYu//Desktop//train.csv"</span>)</span><br><span class="line">test = pd.read_csv(<span class="string">"C://Users//LeiYu//Desktop//test.csv"</span>)</span><br></pre></td></tr></table></figure>
 <p><strong>为了方便处理，观察和数据，暂时合并成一个数据。ignore_index : boolean, default False.If True, do not use the index labels.意思是序号不是简单的合并，而是按顺序排下来。</strong></p>
@@ -463,7 +463,23 @@ Name: Cabin, dtype: object
       	</div>
     </div>
   </div>
-
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("04/05/2018 12:49:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "小站已正常运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
 
 
 </footer>
@@ -547,15 +563,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -563,7 +579,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -603,15 +619,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Design</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -623,11 +639,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -639,11 +655,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -651,7 +671,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -660,10 +680,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pyecharts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
             
             <div class="clearfix"></div>

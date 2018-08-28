@@ -163,7 +163,7 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Leetcode学习笔记-429-N叉树的层序遍历" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Leetcode学习笔记-28-实现strStr" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -171,13 +171,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/04/Leetcode学习笔记-429-N叉树的层序遍历/">Leetcode学习笔记-429-N叉树的层序遍历</a>
+      <a class="article-title" href="/2018/04/30/Leetcode学习笔记-28-实现strStr/">Leetcode学习笔记-28-实现strStr()</a>
     </h1>
   
 
         
-        <a href="/2018/08/04/Leetcode学习笔记-429-N叉树的层序遍历/" class="archive-article-date">
-  	<time datetime="2018-08-04T12:40:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-04</time>
+        <a href="/2018/04/30/Leetcode学习笔记-28-实现strStr/" class="archive-article-date">
+  	<time datetime="2018-04-30T02:38:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-30</time>
 </a>
         
         
@@ -185,11 +185,271 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><font size="5"><br><strong>题目：</strong><br>给定一个N叉树，返回其节点值的层序遍历。 (即从左到右，逐层遍历)。<br>说明:<br>树的深度不会超过 1000。<br>树的节点总数不会超过 5000。<br></font></p>
-<p><font size="5"><br><strong>解题思路：<br></strong><br>N叉树的层次遍历（跟二叉树的很像的。。。）<br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; levelOrder(Node root) &#123;</span><br><span class="line"></span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    Queue&lt;Node&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    queue.offer(root);</span><br><span class="line">    <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line"></span><br><span class="line">        List&lt;Integer&gt; eachLayer = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> layerSize = queue.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; layerSize; ++i) &#123;</span><br><span class="line">            Node temp = queue.poll();</span><br><span class="line">            eachLayer.add(temp.val);</span><br><span class="line">            <span class="keyword">for</span> (Node node : temp.children)</span><br><span class="line">                queue.offer(node);</span><br><span class="line">        &#125;</span><br><span class="line">        res.add(eachLayer);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">levelOrder</span><span class="params">(self, root)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type root: Node</span></span><br><span class="line"><span class="string">    :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    res, queue = [], []</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">    queue.append(root)</span><br><span class="line">    <span class="keyword">while</span> len(queue) &gt; <span class="number">0</span>:</span><br><span class="line">        layerCount, layerVal = len(queue), []</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> range(layerCount):</span><br><span class="line">            temp = queue.pop(<span class="number">0</span>)</span><br><span class="line">            layerVal.append(temp.val)</span><br><span class="line">            <span class="keyword">for</span> node <span class="keyword">in</span> temp.children:</span><br><span class="line">                queue.append(node)</span><br><span class="line">        res.append(layerVal)</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+        <p><font size="5"><br><strong>题目：</strong><br>实现 strStr() 函数。<br>给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: haystack = &quot;hello&quot;, needle = &quot;ll&quot;</span><br><span class="line">输出: 2</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: haystack = &quot;aaaaa&quot;, needle = &quot;bba&quot;</span><br><span class="line">输出: -1</span><br><span class="line">说明:</span><br><span class="line"></span><br><span class="line">当 needle 是空字符串时，我们应当返回什么值呢？这是一个在面试中很好的问题。</span><br><span class="line"></span><br><span class="line">对于本题而言，当 needle 是空字符串时我们应当返回 0 。这与C语言的 strstr() 以及 Java的 indexOf() 定义相符。</span><br></pre></td></tr></table></figure></font></p>
+<p><br>
+        
+          <a class="article-more-a" href="/2018/04/30/Leetcode学习笔记-28-实现strStr/#more">more >></a>
+        
+      
 
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/30/Leetcode学习笔记-28-实现strStr/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-541-反转字符串II" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/30/Leetcode学习笔记-541-反转字符串II/">Leetcode学习笔记-541-反转字符串II</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/30/Leetcode学习笔记-541-反转字符串II/" class="archive-article-date">
+  	<time datetime="2018-04-30T02:03:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-30</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>给定一个字符串和一个整数 k，你需要对从字符串开头算起的每个 2k 个字符的前k个字符进行反转。如果剩余少于 k 个字符，则将剩余的所有全部反转。如果有小于 2k 但大于或等于 k 个字符，则反转前 k 个字符，并将剩余的字符保持原样。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">示例:</span><br><span class="line"></span><br><span class="line">输入: s = &quot;abcdefg&quot;, k = 2</span><br><span class="line">输出: &quot;bacdfeg&quot;</span><br><span class="line">要求:</span><br><span class="line"></span><br><span class="line">该字符串只包含小写的英文字母。</span><br><span class="line">给定字符串的长度和 k 在[1, 10000]范围内。</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br>
+        
+          <a class="article-more-a" href="/2018/04/30/Leetcode学习笔记-541-反转字符串II/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/30/Leetcode学习笔记-541-反转字符串II/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-67-二进制求和" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/29/Leetcode学习笔记-67-二进制求和/">Leetcode学习笔记-67-二进制求和</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/29/Leetcode学习笔记-67-二进制求和/" class="archive-article-date">
+  	<time datetime="2018-04-29T08:54:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-29</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>定两个二进制字符串，返回他们的和（用二进制表示）。<br>输入为非空字符串且只包含数字 1 和 0。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: a = &quot;11&quot;, b = &quot;1&quot;</span><br><span class="line">输出: &quot;100&quot;</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: a = &quot;1010&quot;, b = &quot;1011&quot;</span><br><span class="line">输出: &quot;10101&quot;</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br>
+        
+          <a class="article-more-a" href="/2018/04/29/Leetcode学习笔记-67-二进制求和/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/29/Leetcode学习笔记-67-二进制求和/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-606-根据二叉树创建字符串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/29/Leetcode学习笔记-606-根据二叉树创建字符串/">Leetcode学习笔记-606-根据二叉树创建字符串</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/29/Leetcode学习笔记-606-根据二叉树创建字符串/" class="archive-article-date">
+  	<time datetime="2018-04-29T08:00:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-29</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>你需要采用前序遍历的方式，将一个二叉树转换成一个由括号和整数组成的字符串。<br>空节点则用一对空括号 “()” 表示。而且你需要省略所有不影响字符串与原始二叉树之间的一对一映射关系的空括号对。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: 二叉树: [1,2,3,4]</span><br><span class="line">       1</span><br><span class="line">     /   \</span><br><span class="line">    2     3</span><br><span class="line">   /    </span><br><span class="line">  4     </span><br><span class="line"></span><br><span class="line">输出: &quot;1(2(4))(3)&quot;</span><br><span class="line"></span><br><span class="line">解释: 原本将是“1(2(4)())(3())”，</span><br><span class="line">在你省略所有不必要的空括号对之后，</span><br><span class="line">它将是“1(2(4))(3)”。</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: 二叉树: [1,2,3,null,4]</span><br><span class="line">       1</span><br><span class="line">     /   \</span><br><span class="line">    2     3</span><br><span class="line">     \  </span><br><span class="line">      4 </span><br><span class="line"></span><br><span class="line">输出: &quot;1(2()(4))(3)&quot;</span><br><span class="line"></span><br><span class="line">解释: 和第一个示例相似，</span><br><span class="line">除了我们不能省略第一个对括号来中断输入和输出之间的一对一映射关系。</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br>
+        
+          <a class="article-more-a" href="/2018/04/29/Leetcode学习笔记-606-根据二叉树创建字符串/#more">more >></a>
+        
       
 
       
@@ -210,7 +470,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">BFS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
         		</li>
       		
 		</ul>
@@ -220,7 +480,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/04/Leetcode学习笔记-429-N叉树的层序遍历/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/29/Leetcode学习笔记-606-根据二叉树创建字符串/">展开全文 >></a>
         </p>
       
 
@@ -250,7 +510,7 @@
 
 
   
-    <article id="post-Leetcode学习笔记-102-二叉树的层次遍历" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Leetcode学习笔记-383-赎金信" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -258,13 +518,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/04/Leetcode学习笔记-102-二叉树的层次遍历/">Leetcode学习笔记-102-二叉树的层次遍历</a>
+      <a class="article-title" href="/2018/04/29/Leetcode学习笔记-383-赎金信/">Leetcode学习笔记-383-赎金信</a>
     </h1>
   
 
         
-        <a href="/2018/08/04/Leetcode学习笔记-102-二叉树的层次遍历/" class="archive-article-date">
-  	<time datetime="2018-08-03T23:53:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-04</time>
+        <a href="/2018/04/29/Leetcode学习笔记-383-赎金信/" class="archive-article-date">
+  	<time datetime="2018-04-29T05:20:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-29</time>
 </a>
         
         
@@ -272,99 +532,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><font size="5"><br><strong>题目：</strong><br>给定一个二叉树，返回其按层次遍历的节点值。 （即逐层地，从左到右访问所有节点）。<br></font></p>
-<p><font size="5"><br><strong>解题思路：<br></strong><br>二叉查找树的层次遍历，利用levelNum来记录每一层的个数。<br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123;</span><br><span class="line">    </span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>)  <span class="keyword">return</span> res;</span><br><span class="line">    LinkedList&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    </span><br><span class="line">    queue.offer(root);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(!queue.isEmpty())&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> levelNum = queue.size();</span><br><span class="line">        List&lt;Integer&gt; temp = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; levelNum; i++)&#123;</span><br><span class="line">            </span><br><span class="line">            TreeNode node = queue.poll();</span><br><span class="line">            temp.add(node.val);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(node.left != <span class="keyword">null</span>)</span><br><span class="line">                queue.offer(node.left);</span><br><span class="line">            <span class="keyword">if</span>(node.right != <span class="keyword">null</span>)</span><br><span class="line">                queue.offer(node.right);</span><br><span class="line">        &#125;</span><br><span class="line">        res.add(temp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">levelOrder</span><span class="params">(self, root)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type root: TreeNode</span></span><br><span class="line"><span class="string">    :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    res, queue = [], []</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">    queue.append(root)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> len(queue) &gt; <span class="number">0</span>:</span><br><span class="line">        layerVal, layCount = [], len(queue)</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> range(layCount):</span><br><span class="line">            node = queue.pop(<span class="number">0</span>)</span><br><span class="line">            layerVal.append(node.val)</span><br><span class="line">            <span class="keyword">if</span> node.left:</span><br><span class="line">                queue.append(node.left)</span><br><span class="line">            <span class="keyword">if</span> node.right:</span><br><span class="line">                queue.append(node.right)</span><br><span class="line">        res.append(layerVal)</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Tree</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">BFS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/04/Leetcode学习笔记-102-二叉树的层次遍历/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Leetcode学习笔记-360-消除游戏" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/03/Leetcode学习笔记-360-消除游戏/">Leetcode学习笔记-360-消除游戏</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/03/Leetcode学习笔记-360-消除游戏/" class="archive-article-date">
-  	<time datetime="2018-08-03T08:23:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-03</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>给定一个从1 到 n 排序的整数列表。<br>首先，从左到右，从第一个数字开始，每隔一个数字进行删除，直到列表的末尾。<br>第二步，在剩下的数字中，从右到左，从倒数第一个数字开始，每隔一个数字进行删除，直到列表开头。<br>我们不断重复这两步，从左到右和从右到左交替进行，直到只剩下一个数字。<br>返回长度为 n 的列表中，最后剩下的数字。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">示例：</span><br><span class="line"></span><br><span class="line">输入:</span><br><span class="line">n = 9,</span><br><span class="line">1 2 3 4 5 6 7 8 9</span><br><span class="line">2 4 6 8</span><br><span class="line">2 6</span><br><span class="line">6</span><br><span class="line"></span><br><span class="line">输出:</span><br><span class="line">6</span><br></pre></td></tr></table></figure></font></p>
+        <p><font size="5"><br><strong>题目：</strong><br>给定一个赎金信 (ransom) 字符串和一个杂志(magazine)字符串，判断第一个字符串ransom能不能由第二个字符串magazines里面的字符构成。如果可以构成，返回 true ；否则返回 false。<br>(题目说明：为了不暴露赎金信字迹，要从杂志上搜索各个需要的字母，组成单词来表达意思。)<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">注意：</span><br><span class="line"></span><br><span class="line">你可以假设两个字符串均只含有小写字母。</span><br><span class="line"></span><br><span class="line">canConstruct(&quot;a&quot;, &quot;b&quot;) -&gt; false</span><br><span class="line">canConstruct(&quot;aa&quot;, &quot;ab&quot;) -&gt; false</span><br><span class="line">canConstruct(&quot;aa&quot;, &quot;aab&quot;) -&gt; true</span><br></pre></td></tr></table></figure></font></p>
 <p></p>
-<p><font size="5"><br><strong>解题思路：<br></strong><br>首先可以找到一个规律，只要从左到右消除的时候，第一个数肯定消除掉，若是从右到左的时候，剩下的数的个数是奇数个的时候，第一个数也肯定被消除掉。比如1 2 3 4 5 6 7 8 9 10第二趟是2 4 6 8 10第三趟是4 8<br>而且每经理一次消除，每两个数之间相差的值就会翻倍，总共的数就会减半（若奇数个就取 / 2的商），这样最后剩下的第一个数就是答案。<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">lastRemaining</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">boolean</span> leftToRight = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">int</span> step = <span class="number">1</span>, head = <span class="number">1</span>, remaining = n;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (remaining != <span class="number">1</span>) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (leftToRight || remaining % <span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">            head += step;</span><br><span class="line">        remaining /= <span class="number">2</span>;</span><br><span class="line">        step *= <span class="number">2</span>;</span><br><span class="line">        leftToRight = !leftToRight;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lastRemaining</span><span class="params">(self, n)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type n: int</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    leftToRight, remaining, step, head = <span class="keyword">True</span>, n, <span class="number">1</span>, <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> remaining != <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">if</span> leftToRight <span class="keyword">or</span> remaining % <span class="number">2</span>:</span><br><span class="line">            head += step</span><br><span class="line">        step *= <span class="number">2</span></span><br><span class="line">        remaining //= <span class="number">2</span></span><br><span class="line">        leftToRight = <span class="keyword">not</span> leftToRight</span><br><span class="line">    <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>
-
+<p><font size="5"><br>
+        
+          <a class="article-more-a" href="/2018/04/29/Leetcode学习笔记-383-赎金信/#more">more >></a>
+        
       
 
       
@@ -377,7 +550,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
         		</li>
       		
 		</ul>
@@ -387,7 +564,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/03/Leetcode学习笔记-360-消除游戏/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/29/Leetcode学习笔记-383-赎金信/">展开全文 >></a>
         </p>
       
 
@@ -417,7 +594,7 @@
 
 
   
-    <article id="post-Leetcode学习笔记-860-柠檬水找零" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Leetcode学习笔记-345-反转字符串中的元音字母" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -425,13 +602,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/03/Leetcode学习笔记-860-柠檬水找零/">Leetcode学习笔记-860-柠檬水找零</a>
+      <a class="article-title" href="/2018/04/29/Leetcode学习笔记-345-反转字符串中的元音字母/">Leetcode学习笔记-345-反转字符串中的元音字母</a>
     </h1>
   
 
         
-        <a href="/2018/08/03/Leetcode学习笔记-860-柠檬水找零/" class="archive-article-date">
-  	<time datetime="2018-08-03T05:42:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-03</time>
+        <a href="/2018/04/29/Leetcode学习笔记-345-反转字符串中的元音字母/" class="archive-article-date">
+  	<time datetime="2018-04-29T03:19:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-29</time>
 </a>
         
         
@@ -439,12 +616,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><font size="5"><br><strong>题目：</strong><br>在柠檬水摊上，每一杯柠檬水的售价为 5 美元。<br>顾客排队购买你的产品，（按账单 bills 支付的顺序）一次购买一杯。<br>每位顾客只买一杯柠檬水，然后向你付 5 美元、10 美元或 20 美元。你必须给每个顾客正确找零，也就是说净交易是每位顾客向你支付 5 美元。<br>注意，一开始你手头没有任何零钱。<br>如果你能给每位顾客正确找零，返回 true ，否则返回 false 。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">示例 1：</span><br><span class="line"></span><br><span class="line">输入：[5,5,5,10,20]</span><br><span class="line">输出：true</span><br><span class="line">解释：</span><br><span class="line">前 3 位顾客那里，我们按顺序收取 3 张 5 美元的钞票。</span><br><span class="line">第 4 位顾客那里，我们收取一张 10 美元的钞票，并返还 5 美元。</span><br><span class="line">第 5 位顾客那里，我们找还一张 10 美元的钞票和一张 5 美元的钞票。</span><br><span class="line">由于所有客户都得到了正确的找零，所以我们输出 true。</span><br><span class="line">示例 2：</span><br><span class="line"></span><br><span class="line">输入：[5,5,10]</span><br><span class="line">输出：true</span><br><span class="line">示例 3：</span><br><span class="line"></span><br><span class="line">输入：[10,10]</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure></font></p>
+        <p><font size="5"><br><strong>题目：</strong><br>编写一个函数，以字符串作为输入，反转该字符串中的元音字母。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">编写一个函数，以字符串作为输入，反转该字符串中的元音字母。</span><br><span class="line"></span><br><span class="line">示例 1：</span><br><span class="line">给定 s = &quot;hello&quot;, 返回 &quot;holle&quot;.</span><br><span class="line"></span><br><span class="line">示例 2：</span><br><span class="line">给定 s = &quot;leetcode&quot;, 返回 &quot;leotcede&quot;.</span><br><span class="line"></span><br><span class="line">注意:</span><br><span class="line">元音字母不包括 &quot;y&quot;.</span><br></pre></td></tr></table></figure></font></p>
 <p></p>
-<p><font size="5"><br><strong>解题思路：<br></strong><br>模拟：分别模拟出三种情况，注意一下当对方付20元的时候，要优先使用10 + 5的组合而不是5 + 5 + 5。<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">lemonadeChange</span><span class="params">(<span class="keyword">int</span>[] bills)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> five = <span class="number">0</span>, ten = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> bill : bills) &#123;</span><br><span class="line">        <span class="keyword">if</span> (bill == <span class="number">5</span>)</span><br><span class="line">            five++;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (bill == <span class="number">10</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (five &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                five--;</span><br><span class="line">                ten++;</span><br><span class="line">            &#125; <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (ten &gt; <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">if</span> (five &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    ten--;</span><br><span class="line">                    five--;</span><br><span class="line">                &#125; <span class="keyword">else</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (five &gt; <span class="number">3</span>)</span><br><span class="line">                    five -= <span class="number">3</span>;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lemonadeChange</span><span class="params">(self, bills)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type bills: List[int]</span></span><br><span class="line"><span class="string">    :rtype: bool</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    five, ten = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> bill <span class="keyword">in</span> bills:</span><br><span class="line">        <span class="keyword">if</span> bill == <span class="number">5</span>:</span><br><span class="line">            five += <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> bill == <span class="number">10</span>:</span><br><span class="line">            <span class="keyword">if</span> five &gt; <span class="number">0</span>:</span><br><span class="line">                five -= <span class="number">1</span></span><br><span class="line">                ten += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> ten &gt; <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">if</span> five &gt; <span class="number">0</span>:</span><br><span class="line">                    ten -= <span class="number">1</span></span><br><span class="line">                    five -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> five &gt; <span class="number">3</span>:</span><br><span class="line">                    five -= <span class="number">3</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
-
+<p><font size="5"><br>
+        
+          <a class="article-more-a" href="/2018/04/29/Leetcode学习笔记-345-反转字符串中的元音字母/#more">more >></a>
+        
       
 
       
@@ -461,7 +638,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Greedy</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
         		</li>
       		
 		</ul>
@@ -471,7 +652,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/03/Leetcode学习笔记-860-柠檬水找零/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/29/Leetcode学习笔记-345-反转字符串中的元音字母/">展开全文 >></a>
         </p>
       
 
@@ -501,7 +682,7 @@
 
 
   
-    <article id="post-Leetcode学习笔记-705-设计哈希集合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Leetcode学习笔记-551-学生出勤记录I" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -509,13 +690,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/03/Leetcode学习笔记-705-设计哈希集合/">Leetcode学习笔记-705-设计哈希集合</a>
+      <a class="article-title" href="/2018/04/27/Leetcode学习笔记-551-学生出勤记录I/">Leetcode学习笔记-551-学生出勤记录I</a>
     </h1>
   
 
         
-        <a href="/2018/08/03/Leetcode学习笔记-705-设计哈希集合/" class="archive-article-date">
-  	<time datetime="2018-08-03T01:45:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-03</time>
+        <a href="/2018/04/27/Leetcode学习笔记-551-学生出勤记录I/" class="archive-article-date">
+  	<time datetime="2018-04-27T09:08:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-27</time>
 </a>
         
         
@@ -523,10 +704,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><font size="5"><br><strong>题目：</strong><br>不使用任何内建的哈希表库设计一个哈希集合<br>具体地说，你的设计应该包含以下的功能<br>add(value)：向哈希集合中插入一个值。<br>contains(value) ：返回哈希集合中是否存在这个值。<br>remove(value)：将给定值从哈希集合中删除。如果哈希集合中没有这个值，什么也不做。<br><br>注意：<br>所有的值都在 [1, 1000000]的范围内。<br>操作的总数目在[1, 10000]范围内。<br>不要使用内建的哈希集合库。<br></font></p>
-<p><font size="5"><br><strong>解题思路：<br></strong><br>实现哈希集合中的操作可以简单的使用数组，值为数组下标，数组元素为布尔类型，存入时置为true，移除时置为假。<br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHashSet</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">boolean</span> set[];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyHashSet</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        set = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">1000001</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        set[key] = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        set[key] = <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> set[key];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHashSet</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.set = [<span class="keyword">False</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1000001</span>)]</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(self, key)</span>:</span></span><br><span class="line">        self.set[key] = <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">remove</span><span class="params">(self, key)</span>:</span></span><br><span class="line">        self.set[key] = <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">contains</span><span class="params">(self, key)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.set[key]</span><br></pre></td></tr></table></figure>
+        <p><font size="5"><br><strong>题目：</strong><br>给定一个字符串来代表一个学生的出勤纪录，这个纪录仅包含以下三个字符：<br>‘A’ : Absent，缺勤<br>‘L’ : Late，迟到<br>‘P’ : Present，到场<br>如果一个学生的出勤纪录中不超过一个’A’(缺勤)并且不超过两个连续的’L’(迟到),那么这个学生会被奖赏。<br>你需要根据这个学生的出勤纪录判断他是否会被奖赏。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: &quot;PPALLP&quot;</span><br><span class="line">输出: True</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: &quot;PPALLL&quot;</span><br><span class="line">输出: False</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br>
+        
+          <a class="article-more-a" href="/2018/04/27/Leetcode学习笔记-551-学生出勤记录I/#more">more >></a>
+        
       
 
       
@@ -543,11 +726,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash Table</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Design</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
         		</li>
       		
 		</ul>
@@ -557,7 +736,259 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/03/Leetcode学习笔记-705-设计哈希集合/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/27/Leetcode学习笔记-551-学生出勤记录I/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-696-计数二进制子串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/27/Leetcode学习笔记-696-计数二进制子串/">Leetcode学习笔记-696-计数二进制子串</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/27/Leetcode学习笔记-696-计数二进制子串/" class="archive-article-date">
+  	<time datetime="2018-04-27T08:55:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-27</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>给定一个字符串 s，计算具有相同数量0和1的非空(连续)子字符串的数量，并且这些子字符串中的所有0和所有1都是组合在一起的。<br>重复出现的子串要计算它们出现的次数。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">示例 1 :</span><br><span class="line"></span><br><span class="line">输入: &quot;00110011&quot;</span><br><span class="line">输出: 6</span><br><span class="line">解释: 有6个子串具有相同数量的连续1和0：“0011”，“01”，“1100”，“10”，“0011” 和 “01”。</span><br><span class="line"></span><br><span class="line">请注意，一些重复出现的子串要计算它们出现的次数。</span><br><span class="line"></span><br><span class="line">另外，“00110011”不是有效的子串，因为所有的0（和1）没有组合在一起。</span><br><span class="line">示例 2 :</span><br><span class="line"></span><br><span class="line">输入: &quot;10101&quot;</span><br><span class="line">输出: 4</span><br><span class="line">解释: 有4个子串：“10”，“01”，“10”，“01”，它们具有相同数量的连续1和0。</span><br><span class="line">注意：</span><br><span class="line"></span><br><span class="line">s.length 在1到50,000之间。</span><br><span class="line">s 只包含“0”或“1”字符。</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br>
+        
+          <a class="article-more-a" href="/2018/04/27/Leetcode学习笔记-696-计数二进制子串/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/27/Leetcode学习笔记-696-计数二进制子串/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-521-最长特殊序列I" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/27/Leetcode学习笔记-521-最长特殊序列I/">Leetcode学习笔记-521-最长特殊序列I</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/27/Leetcode学习笔记-521-最长特殊序列I/" class="archive-article-date">
+  	<time datetime="2018-04-27T03:03:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-27</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>给定两个字符串，你需要从这两个字符串中找出最长的特殊序列。最长特殊序列定义如下：该序列为某字符串独有的最长子序列（即不能是其他字符串的子序列）。<br>子序列可以通过删去字符串中的某些字符实现，但不能改变剩余字符的相对顺序。空序列为所有字符串的子序列，任何字符串为其自身的子序列。<br>输入为两个字符串，输出最长特殊序列的长度。如果不存在，则返回 -1。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例 :</span><br><span class="line"></span><br><span class="line">输入: &quot;aba&quot;, &quot;cdc&quot;</span><br><span class="line">输出: 3</span><br><span class="line">解析: 最长特殊序列可为 &quot;aba&quot; (或 &quot;cdc&quot;)</span><br><span class="line">说明:</span><br><span class="line"></span><br><span class="line">两个字符串长度均小于100。</span><br><span class="line">字符串中的字符仅含有 &apos;a&apos;~&apos;z&apos;。</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br>
+        
+          <a class="article-more-a" href="/2018/04/27/Leetcode学习笔记-521-最长特殊序列I/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/27/Leetcode学习笔记-521-最长特殊序列I/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-788-检测大写字母" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/27/Leetcode学习笔记-788-检测大写字母/">Leetcode学习笔记-788-检测大写字母</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/27/Leetcode学习笔记-788-检测大写字母/" class="archive-article-date">
+  	<time datetime="2018-04-27T02:01:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-27</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>我们称一个数 X 为好数, 如果它的每位数字逐个地被旋转 180 度后，我们仍可以得到一个有效的，且和 X 不同的数。要求每位数字都要被旋转。<br><br>如果一个数的每位数字被旋转以后仍然还是一个数字， 则这个数是有效的。0, 1, 和 8 被旋转后仍然是它们自己；2 和 5 可以互相旋转成对方；6 和 9 同理，除了这些以外其他的数字旋转以后都不再是有效的数字。<br><br>现在我们有一个正整数 N, 计算从 1 到 N 中有多少个数 X 是好数？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例:</span><br><span class="line">输入: 10</span><br><span class="line">输出: 4</span><br><span class="line">解释: </span><br><span class="line">在[1, 10]中有四个好数： 2, 5, 6, 9。</span><br><span class="line">注意 1 和 10 不是好数, 因为他们在旋转之后不变。</span><br><span class="line">注意:</span><br><span class="line"></span><br><span class="line">N 的取值范围是 [1, 10000]。</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br>
+        
+          <a class="article-more-a" href="/2018/04/27/Leetcode学习笔记-788-检测大写字母/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/27/Leetcode学习笔记-788-检测大写字母/">展开全文 >></a>
         </p>
       
 
@@ -589,7 +1020,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/12/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/14/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/12/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/14/">Next &raquo;</a>
     </nav>
   
 
@@ -613,7 +1044,23 @@
       	</div>
     </div>
   </div>
-
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("04/05/2018 12:49:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "小站已正常运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
 
 
 </footer>
@@ -697,15 +1144,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -713,7 +1160,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -753,15 +1200,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Design</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -773,11 +1220,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -789,11 +1236,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -801,7 +1252,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -810,10 +1261,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pyecharts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
             
             <div class="clearfix"></div>

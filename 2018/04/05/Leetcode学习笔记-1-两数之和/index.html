@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Leetcode学习笔记:1.两数之和 | 宝石叔叔的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目：给定一个整数数列，找出其中和为特定值的那两个数。你可以假设每个输入都只会有一种答案，同样的元素不能被重用。解体思路：第一种方法： 暴力枚举 不多说第二种方法：遍历数组，将target - 当前元素存入map作为键，当前下标作为值，继续进行遍历，若map中的键有当前元素，则当前的下标为结束下标，map中存的值为起始下标   Java：12345678910111213141516171819">
-<meta name="keywords" content="Array,Easy,Hash">
+  <meta name="description" content="题目：给定一个整数数列，找出其中和为特定值的那两个数。你可以假设每个输入都只会有一种答案，同样的元素不能被重用。">
+<meta name="keywords" content="Array,Hash,Easy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode学习笔记:1.两数之和">
 <meta property="og:url" content="http://yoursite.com/2018/04/05/Leetcode学习笔记-1-两数之和/index.html">
 <meta property="og:site_name" content="宝石叔叔的博客">
-<meta property="og:description" content="题目：给定一个整数数列，找出其中和为特定值的那两个数。你可以假设每个输入都只会有一种答案，同样的元素不能被重用。解体思路：第一种方法： 暴力枚举 不多说第二种方法：遍历数组，将target - 当前元素存入map作为键，当前下标作为值，继续进行遍历，若map中的键有当前元素，则当前的下标为结束下标，map中存的值为起始下标   Java：12345678910111213141516171819">
+<meta property="og:description" content="题目：给定一个整数数列，找出其中和为特定值的那两个数。你可以假设每个输入都只会有一种答案，同样的元素不能被重用。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-09T02:41:37.202Z">
+<meta property="og:updated_time" content="2018-08-28T02:04:31.537Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习笔记:1.两数之和">
-<meta name="twitter:description" content="题目：给定一个整数数列，找出其中和为特定值的那两个数。你可以假设每个输入都只会有一种答案，同样的元素不能被重用。解体思路：第一种方法： 暴力枚举 不多说第二种方法：遍历数组，将target - 当前元素存入map作为键，当前下标作为值，继续进行遍历，若map中的键有当前元素，则当前的下标为结束下标，map中存的值为起始下标   Java：12345678910111213141516171819">
+<meta name="twitter:description" content="题目：给定一个整数数列，找出其中和为特定值的那两个数。你可以假设每个输入都只会有一种答案，同样的元素不能被重用。">
   
     <link rel="alternative" href="/atom.xml" title="宝石叔叔的博客" type="application/atom+xml">
   
@@ -189,7 +189,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <font size="5"><br><strong>题目：</strong><br>给定一个整数数列，找出其中和为特定值的那两个数。<br><br>你可以假设每个输入都只会有一种答案，同样的元素不能被重用。<br><br><br><strong>解体思路：<br></strong><br>第一种方法： 暴力枚举 不多说<br><br>第二种方法：遍历数组，将target - 当前元素存入map作为键，当前下标作为值，继续进行遍历，若map中的键有当前元素，则当前的下标为结束下标，map中存的值为起始下标</font>
+        <font size="5"><br><strong>题目：</strong><br>给定一个整数数列，找出其中和为特定值的那两个数。<br>你可以假设每个输入都只会有一种答案，同样的元素不能被重用。<br><br><a id="more"></a><br><strong>解体思路：<br></strong><br>第一种方法： 暴力枚举 不多说<br><br>第二种方法：遍历数组，将target - 当前元素存入map作为键，当前下标作为值，继续进行遍历，若map中的键有当前元素，则当前的下标为结束下标，map中存的值为起始下标</font>
 
 
 <h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">      <span class="keyword">int</span>[] array = &#123;<span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line">Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> TreeMap&lt;Integer, Integer&gt;();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(map.containsKey(target - nums[i])) &#123;</span><br><span class="line">		</span><br><span class="line">		array[<span class="number">1</span>] = i;</span><br><span class="line">		array[<span class="number">0</span>] = map.get(target - nums[i]);</span><br><span class="line">		<span class="keyword">return</span> array;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		map.put(nums[i], i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> array;</span><br><span class="line">  </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
@@ -241,11 +241,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hash</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hash</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
         		</li>
       		
 		</ul>
@@ -407,7 +407,23 @@
       	</div>
     </div>
   </div>
-
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("04/05/2018 12:49:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "小站已正常运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
 
 
 </footer>
@@ -491,15 +507,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -507,7 +523,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -547,15 +563,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Design</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,11 +583,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -583,11 +599,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -595,7 +615,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -604,10 +624,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pyecharts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
             
             <div class="clearfix"></div>

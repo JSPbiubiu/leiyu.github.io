@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="宝石叔叔的博客">
 <meta property="og:description" content="题目：给定两个整数 L 和 R ，找到闭区间 [L, R] 范围内，计算置位位数为质数的整数个数。（注意，计算置位代表二进制表示中1的个数。例如 21 的二进制表示 10101 有 3 个计算置位。还有，1 不是质数。）123456789101112131415161718192021222324示例 1:输入: L = 6, R = 10输出: 4解释:6 -&amp;gt; 110 (2 个计算置位，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-14T02:54:22.657Z">
+<meta property="og:updated_time" content="2018-08-28T02:27:08.038Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习笔记-762-二进制表示中质数个计算置位">
 <meta name="twitter:description" content="题目：给定两个整数 L 和 R ，找到闭区间 [L, R] 范围内，计算置位位数为质数的整数个数。（注意，计算置位代表二进制表示中1的个数。例如 21 的二进制表示 10101 有 3 个计算置位。还有，1 不是质数。）123456789101112131415161718192021222324示例 1:输入: L = 6, R = 10输出: 4解释:6 -&amp;gt; 110 (2 个计算置位，">
@@ -191,7 +191,7 @@
       
         <p><font size="5"><br><strong>题目：</strong><br>给定两个整数 L 和 R ，找到闭区间 [L, R] 范围内，计算置位位数为质数的整数个数。<br>（注意，计算置位代表二进制表示中1的个数。例如 21 的二进制表示 10101 有 3 个计算置位。还有，1 不是质数。）<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: L = 6, R = 10</span><br><span class="line">输出: 4</span><br><span class="line">解释:</span><br><span class="line">6 -&gt; 110 (2 个计算置位，2 是质数)</span><br><span class="line">7 -&gt; 111 (3 个计算置位，3 是质数)</span><br><span class="line">9 -&gt; 1001 (2 个计算置位，2 是质数)</span><br><span class="line">10-&gt; 1010 (2 个计算置位，2 是质数)</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: L = 10, R = 15</span><br><span class="line">输出: 5</span><br><span class="line">解释:</span><br><span class="line">10 -&gt; 1010 (2 个计算置位, 2 是质数)</span><br><span class="line">11 -&gt; 1011 (3 个计算置位, 3 是质数)</span><br><span class="line">12 -&gt; 1100 (2 个计算置位, 2 是质数)</span><br><span class="line">13 -&gt; 1101 (3 个计算置位, 3 是质数)</span><br><span class="line">14 -&gt; 1110 (3 个计算置位, 3 是质数)</span><br><span class="line">15 -&gt; 1111 (4 个计算置位, 4 不是质数)</span><br><span class="line">注意:</span><br><span class="line"></span><br><span class="line">L, R 是 L &lt;= R 且在 [1, 10^6] 中的整数。</span><br><span class="line">R - L 的最大值为 10000。</span><br></pre></td></tr></table></figure></font></p>
 <p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>算每个数字的二进制种1的个数，在判断是否是质数，最后统计出个数即可。<br><br>还有一种方法就是因为10的六次方二进制位最多20位，也就是1的质数个数可能只有2，3，5，7，11，13，17，19。这样就不需要判断是否是质数，之间判断是否在这些数中即可。<br></font></p>
+<p><font size="5"><br><a id="more"></a><br><strong>解题思路：<br></strong><br>算每个数字的二进制种1的个数，在判断是否是质数，最后统计出个数即可。<br><br>还有一种方法就是因为10的六次方二进制位最多20位，也就是1的质数个数可能只有2，3，5，7，11，13，17，19。这样就不需要判断是否是质数，之间判断是否在这些数中即可。<br></font></p>
 <h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countPrimeSetBits</span><span class="params">(<span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = L; i &lt;= R; i++) &#123;</span><br><span class="line">           <span class="keyword">int</span> count = <span class="number">0</span>, temp = i;</span><br><span class="line">           <span class="keyword">while</span> (temp != <span class="number">0</span>) &#123;</span><br><span class="line">               <span class="keyword">if</span> (temp % <span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">                   count++;</span><br><span class="line">               temp /= <span class="number">2</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> (isPrimer(count))</span><br><span class="line">               res++;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> res;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isPrimer</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (x &lt; <span class="number">2</span>)</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= Math.sqrt(x); ++i)</span><br><span class="line">           <span class="keyword">if</span> (x % i == <span class="number">0</span>)</span><br><span class="line">               <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countPrimeSetBits</span><span class="params">(self, L, R)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type L: int</span></span><br><span class="line"><span class="string">    :type R: int</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    res = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(L, R + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> bin(i).count(<span class="string">'1'</span>) <span class="keyword">in</span> [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">13</span>,<span class="number">17</span>,<span class="number">19</span>]:</span><br><span class="line">            res += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 
@@ -409,7 +409,23 @@
       	</div>
     </div>
   </div>
-
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("04/05/2018 12:49:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "小站已正常运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
 
 
 </footer>
@@ -493,15 +509,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,7 +525,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,15 +565,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Design</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,11 +585,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -585,11 +601,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -597,7 +617,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -606,10 +626,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pyecharts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
             
             <div class="clearfix"></div>

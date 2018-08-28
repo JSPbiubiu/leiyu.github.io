@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="宝石叔叔的博客">
 <meta property="og:description" content="题目：在二维数组grid中，grid[i][j]代表位于某处的建筑物的高度。 我们被允许增加任何数量（不同建筑物的数量可能不同）的建筑物的高度。 高度 0 也被认为是建筑物。最后，从新数组的所有四个方向（即顶部，底部，左侧和右侧）观看的“天际线”必须与原始数组的天际线相同。 城市的天际线是从远处观看时，由所有建筑物形成的矩形的外部轮廓。 请看下面的例子。建筑物高度可以增加的最大总和是多少？1234">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-09T11:44:45.554Z">
+<meta property="og:updated_time" content="2018-08-28T02:28:27.289Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习笔记-807-保持城市天际线">
 <meta name="twitter:description" content="题目：在二维数组grid中，grid[i][j]代表位于某处的建筑物的高度。 我们被允许增加任何数量（不同建筑物的数量可能不同）的建筑物的高度。 高度 0 也被认为是建筑物。最后，从新数组的所有四个方向（即顶部，底部，左侧和右侧）观看的“天际线”必须与原始数组的天际线相同。 城市的天际线是从远处观看时，由所有建筑物形成的矩形的外部轮廓。 请看下面的例子。建筑物高度可以增加的最大总和是多少？1234">
@@ -190,7 +190,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><font size="5"><br><strong>题目：</strong><br>在二维数组grid中，grid[i][j]代表位于某处的建筑物的高度。 我们被允许增加任何数量（不同建筑物的数量可能不同）的建筑物的高度。 高度 0 也被认为是建筑物。<br>最后，从新数组的所有四个方向（即顶部，底部，左侧和右侧）观看的“天际线”必须与原始数组的天际线相同。 城市的天际线是从远处观看时，由所有建筑物形成的矩形的外部轮廓。 请看下面的例子。<br>建筑物高度可以增加的最大总和是多少？<br></font><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">例子：</span><br><span class="line">输入： grid = [[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]</span><br><span class="line">输出： 35</span><br><span class="line">解释： </span><br><span class="line">The grid is:</span><br><span class="line">[ [3, 0, 8, 4], </span><br><span class="line">  [2, 4, 5, 7],</span><br><span class="line">  [9, 2, 6, 3],</span><br><span class="line">  [0, 3, 1, 0] ]</span><br><span class="line"></span><br><span class="line">从数组竖直方向（即顶部，底部）看“天际线”是：[9, 4, 8, 7]</span><br><span class="line">从水平水平方向（即左侧，右侧）看“天际线”是：[8, 7, 9, 3]</span><br><span class="line">在不影响天际线的情况下对建筑物进行增高后，新数组如下：</span><br><span class="line">gridNew = [ [8, 4, 8, 7],</span><br><span class="line">            [7, 4, 7, 7],</span><br><span class="line">            [9, 4, 8, 7],</span><br><span class="line">            [3, 3, 3, 3] ]</span><br><span class="line">说明:</span><br><span class="line">1 &lt; grid.length = grid[0].length &lt;= 50。</span><br><span class="line"> grid[i][j] 的高度范围是： [0, 100]。</span><br><span class="line">一座建筑物占据一个grid[i][j]：换言之，它们是 1 x 1 x grid[i][j] 的长方体。</span><br></pre></td></tr></table></figure></p>
-<p><font size="5"><br><strong>解题思路：<br></strong><br>求出每一行，每一列的最大值，二维数组中每个值的更新规则是该元素所在行和列的最大值中取最小值，然后所有增加的值求和即可。<br></font></p>
+<p><font size="5"><br><a id="more"></a><br><strong>解题思路：<br></strong><br>求出每一行，每一列的最大值，二维数组中每个值的更新规则是该元素所在行和列的最大值中取最小值，然后所有增加的值求和即可。<br></font></p>
 <h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxIncreaseKeepingSkyline</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">int</span>[] rowMax = <span class="keyword">new</span> <span class="keyword">int</span>[grid.length];</span><br><span class="line">       <span class="keyword">int</span>[] colMax = <span class="keyword">new</span> <span class="keyword">int</span>[grid[<span class="number">0</span>].length];</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; grid.length; i++)</span><br><span class="line">           rowMax[i] = getRowMax(grid, i);</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; grid[<span class="number">0</span>].length; i++)</span><br><span class="line">           colMax[i] = getColMax(grid, i);</span><br><span class="line"></span><br><span class="line">       <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; grid.length; i++)</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; grid[<span class="number">0</span>].length; j++)</span><br><span class="line">               res += Math.min(rowMax[i], colMax[j]) - grid[i][j];</span><br><span class="line">       <span class="keyword">return</span> res;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getRowMax</span><span class="params">(<span class="keyword">int</span>[][] grid, <span class="keyword">int</span> pos)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">int</span> max = -<span class="number">1</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; grid[pos].length; i++)</span><br><span class="line">           max = Math.max(max, grid[pos][i]);</span><br><span class="line">       <span class="keyword">return</span> max;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getColMax</span><span class="params">(<span class="keyword">int</span>[][] grid, <span class="keyword">int</span> pos)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">int</span> max = -<span class="number">1</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; grid.length; i++)</span><br><span class="line">           max = Math.max(max, grid[i][pos]);</span><br><span class="line">       <span class="keyword">return</span> max;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxIncreaseKeepingSkyline</span><span class="params">(self, grid)</span>:</span></span><br><span class="line">       rowMax, colMax = [], []</span><br><span class="line">       <span class="keyword">for</span> i <span class="keyword">in</span> range(len(grid)):</span><br><span class="line">           rowMax.append(self.getRowMax(grid, i))</span><br><span class="line">       <span class="keyword">for</span> i <span class="keyword">in</span> range(len(grid[<span class="number">0</span>])):</span><br><span class="line">           colMax.append(self.getColMax(grid, i))</span><br><span class="line">       res = <span class="number">0</span></span><br><span class="line">       <span class="keyword">for</span> i <span class="keyword">in</span> range(len(grid)):</span><br><span class="line">           <span class="keyword">for</span> j <span class="keyword">in</span> range(len(grid[<span class="number">0</span>])):</span><br><span class="line">               res += min(rowMax[i], colMax[j]) - grid[i][j]</span><br><span class="line">       <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">getRowMax</span><span class="params">(self, grid, pos)</span>:</span></span><br><span class="line">       m = <span class="number">-1</span></span><br><span class="line">       <span class="keyword">for</span> i <span class="keyword">in</span> range(len(grid[pos])):</span><br><span class="line">           m = max(m, grid[pos][i])</span><br><span class="line">       <span class="keyword">return</span> m</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">getColMax</span><span class="params">(self, grid, pos)</span>:</span></span><br><span class="line">       m = <span class="number">-1</span></span><br><span class="line">       <span class="keyword">for</span> i <span class="keyword">in</span> range(len(grid)):</span><br><span class="line">           m = max(m, grid[i][pos])</span><br><span class="line">       <span class="keyword">return</span> m</span><br></pre></td></tr></table></figure>
 
@@ -404,7 +404,23 @@
       	</div>
     </div>
   </div>
-
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("04/05/2018 12:49:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "小站已正常运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
 
 
 </footer>
@@ -488,15 +504,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,7 +520,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -544,15 +560,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Design</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -564,11 +580,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -580,11 +596,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -592,7 +612,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -601,10 +621,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pyecharts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
             
             <div class="clearfix"></div>

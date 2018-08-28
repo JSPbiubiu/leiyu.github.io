@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="宝石叔叔的博客">
 <meta property="og:description" content="题目：A sentence S is given, composed of words separated by spaces. Each word consists of lowercase and uppercase letters only.We would like to convert the sentence to “Goat Latin” (a made-up language si">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-04T10:15:00.388Z">
+<meta property="og:updated_time" content="2018-08-28T02:28:50.848Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习笔记-824-Goat Latin">
 <meta name="twitter:description" content="题目：A sentence S is given, composed of words separated by spaces. Each word consists of lowercase and uppercase letters only.We would like to convert the sentence to “Goat Latin” (a made-up language si">
@@ -191,7 +191,7 @@
       
         <p><font size="5"><br><strong>题目：</strong><br>A sentence S is given, composed of words separated by spaces. Each word consists of lowercase and uppercase letters only.<br><br>We would like to convert the sentence to “Goat Latin” (a made-up language similar to Pig Latin.)<br><br>The rules of Goat Latin are as follows:<br><br>If a word begins with a vowel (a, e, i, o, or u), append “ma” to the end of the word.<br>For example, the word ‘apple’ becomes ‘applema’.<br><br>If a word begins with a consonant (i.e. not a vowel), remove the first letter and append it to the end, then add “ma”.<br>For example, the word “goat” becomes “oatgma”.<br><br>Add one letter ‘a’ to the end of each word per its word index in the sentence, starting with 1.<br>For example, the first word gets “a” added to the end, the second word gets “aa” added to the end and so on.<br>Return the final sentence representing the conversion from S to Goat Latin. <br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">Input: &quot;I speak Goat Latin&quot;</span><br><span class="line">Output: &quot;Imaa peaksmaaa oatGmaaaa atinLmaaaaa&quot;</span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: &quot;The quick brown fox jumped over the lazy dog&quot;</span><br><span class="line">Output: &quot;heTmaa uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa azylmaaaaaaaaa ogdmaaaaaaaaaa&quot;</span><br></pre></td></tr></table></figure></font></p>
 <p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>先将字符串按空格切成字符串数组，然后设置个a串，<br>每次循环都加个a，<br>遍历当前字符串数组，把每个单词按规则模拟一下，稍微注意一下空格格式就好了！<br><br></font></p>
+<p><font size="5"><br><a id="more"></a><br><strong>解题思路：<br></strong><br>先将字符串按空格切成字符串数组，然后设置个a串，<br>每次循环都加个a，<br>遍历当前字符串数组，把每个单词按规则模拟一下，稍微注意一下空格格式就好了！<br><br></font></p>
 <h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toGoatLatin</span><span class="params">(String S)</span> </span>&#123;</span><br><span class="line">       ArrayList&lt;Character&gt; vo = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       <span class="keyword">char</span>[] vowel = &#123;<span class="string">'a'</span>, <span class="string">'e'</span>, <span class="string">'i'</span>, <span class="string">'o'</span>, <span class="string">'u'</span>, <span class="string">'A'</span>, <span class="string">'E'</span>, <span class="string">'I'</span>, <span class="string">'O'</span>, <span class="string">'U'</span>&#125;;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">char</span> ch : vowel)</span><br><span class="line">           vo.add(ch);</span><br><span class="line">       String ma = <span class="string">"ma"</span>;</span><br><span class="line">       String[] words = S.split(<span class="string">" "</span>);</span><br><span class="line">       StringBuilder a = <span class="keyword">new</span> StringBuilder(), res = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span> (String word : words) &#123;</span><br><span class="line">           a.append(<span class="string">'a'</span>);</span><br><span class="line">           <span class="keyword">if</span> (vo.contains(word.charAt(<span class="number">0</span>))) &#123;</span><br><span class="line">               res.append(word).append(ma).append(a).append(<span class="string">" "</span>);</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               res.append(word.substring(<span class="number">1</span>)).append(word.charAt(<span class="number">0</span>)).append(ma).append(a).append(<span class="string">" "</span>);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> res.toString().trim();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">toGoatLatin</span><span class="params">(self, S)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type S: str</span></span><br><span class="line"><span class="string">    :rtype: str</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    vowel = [<span class="string">'a'</span>, <span class="string">'e'</span>, <span class="string">'i'</span>, <span class="string">'o'</span>, <span class="string">'u'</span>, <span class="string">'A'</span>, <span class="string">'E'</span>, <span class="string">'I'</span>, <span class="string">'O'</span>, <span class="string">'U'</span>]</span><br><span class="line">    words, a, res = S.split(), <span class="string">""</span>, <span class="string">""</span></span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">        a += <span class="string">"a"</span></span><br><span class="line">        <span class="keyword">if</span> word[<span class="number">0</span>] <span class="keyword">in</span> vowel:</span><br><span class="line">            res += word + <span class="string">"ma"</span> + a + <span class="string">" "</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            res += word[<span class="number">1</span>:] + word[<span class="number">0</span>] + <span class="string">"ma"</span> + a + <span class="string">" "</span></span><br><span class="line">    <span class="keyword">return</span> res.rstrip(<span class="string">" "</span>)</span><br></pre></td></tr></table></figure>
 
@@ -409,7 +409,23 @@
       	</div>
     </div>
   </div>
-
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("04/05/2018 12:49:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "小站已正常运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
 
 
 </footer>
@@ -493,15 +509,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,7 +525,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,15 +565,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Design</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,11 +585,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -585,11 +601,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -597,7 +617,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -606,10 +626,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pyecharts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
             
             <div class="clearfix"></div>

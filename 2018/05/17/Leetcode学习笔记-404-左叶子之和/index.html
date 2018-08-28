@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Leetcode学习笔记-404-左叶子之和 | 宝石叔叔的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目：计算给定二叉树的所有左叶子之和。123456789示例：    3   / \  9  20    /  \   15   7在这个二叉树中，有两个左叶子，分别是 9 和 15，所以返回 24  解体思路：判断 若当前结点为空，则返回0若当前结点的左子树不为空，并且为叶子结点，则sum += 左叶子结点的值否则，递归左子树。同理在递归右子树，算出右子树中左叶子节点的和。最后左子树中左叶子节点">
+  <meta name="description" content="题目：计算给定二叉树的所有左叶子之和。123456789示例：    3   / \  9  20    /  \   15   7在这个二叉树中，有两个左叶子，分别是 9 和 15，所以返回 24">
 <meta name="keywords" content="Easy,Tree">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode学习笔记-404-左叶子之和">
 <meta property="og:url" content="http://yoursite.com/2018/05/17/Leetcode学习笔记-404-左叶子之和/index.html">
 <meta property="og:site_name" content="宝石叔叔的博客">
-<meta property="og:description" content="题目：计算给定二叉树的所有左叶子之和。123456789示例：    3   / \  9  20    /  \   15   7在这个二叉树中，有两个左叶子，分别是 9 和 15，所以返回 24  解体思路：判断 若当前结点为空，则返回0若当前结点的左子树不为空，并且为叶子结点，则sum += 左叶子结点的值否则，递归左子树。同理在递归右子树，算出右子树中左叶子节点的和。最后左子树中左叶子节点">
+<meta property="og:description" content="题目：计算给定二叉树的所有左叶子之和。123456789示例：    3   / \  9  20    /  \   15   7在这个二叉树中，有两个左叶子，分别是 9 和 15，所以返回 24">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-17T02:49:42.205Z">
+<meta property="og:updated_time" content="2018-08-28T02:17:54.863Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习笔记-404-左叶子之和">
-<meta name="twitter:description" content="题目：计算给定二叉树的所有左叶子之和。123456789示例：    3   / \  9  20    /  \   15   7在这个二叉树中，有两个左叶子，分别是 9 和 15，所以返回 24  解体思路：判断 若当前结点为空，则返回0若当前结点的左子树不为空，并且为叶子结点，则sum += 左叶子结点的值否则，递归左子树。同理在递归右子树，算出右子树中左叶子节点的和。最后左子树中左叶子节点">
+<meta name="twitter:description" content="题目：计算给定二叉树的所有左叶子之和。123456789示例：    3   / \  9  20    /  \   15   7在这个二叉树中，有两个左叶子，分别是 9 和 15，所以返回 24">
   
     <link rel="alternative" href="/atom.xml" title="宝石叔叔的博客" type="application/atom+xml">
   
@@ -191,7 +191,7 @@
       
         <p><font size="5"><br><strong>题目：</strong><br>计算给定二叉树的所有左叶子之和。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例：</span><br><span class="line"></span><br><span class="line">    3</span><br><span class="line">   / \</span><br><span class="line">  9  20</span><br><span class="line">    /  \</span><br><span class="line">   15   7</span><br><span class="line"></span><br><span class="line">在这个二叉树中，有两个左叶子，分别是 9 和 15，所以返回 24</span><br></pre></td></tr></table></figure></font></p>
 <p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>判断 若当前结点为空，则返回0<br>若当前结点的左子树不为空，并且为叶子结点，则sum += 左叶子结点的值<br>否则，递归左子树。<br>同理在递归右子树，算出右子树中左叶子节点的和。<br>最后左子树中左叶子节点的和 加上 右子数中左叶子节点的和即为结果。<br><br></font></p>
+<p><font size="5"><br><a id="more"></a><br><strong>解题思路：<br></strong><br>判断 若当前结点为空，则返回0<br>若当前结点的左子树不为空，并且为叶子结点，则sum += 左叶子结点的值<br>否则，递归左子树。<br>同理在递归右子树，算出右子树中左叶子节点的和。<br>最后左子树中左叶子节点的和 加上 右子数中左叶子节点的和即为结果。<br><br></font></p>
 <h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sumOfLeftLeaves</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">       </span><br><span class="line">	<span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">           <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">if</span> (root.left != <span class="keyword">null</span> &amp;&amp; root.left.left == <span class="keyword">null</span> &amp;&amp; root.left.right == <span class="keyword">null</span>)</span><br><span class="line">           sum += root.left.val;</span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">           sum += sumOfLeftLeaves(root.left);</span><br><span class="line">       </span><br><span class="line">       sum += sumOfLeftLeaves(root.right);</span><br><span class="line"></span><br><span class="line">       <span class="keyword">return</span> sum;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sumOfLeftLeaves</span><span class="params">(self, root)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type root: TreeNode</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    leftsum = <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> root.left <span class="keyword">and</span> <span class="keyword">not</span> root.left.left <span class="keyword">and</span> <span class="keyword">not</span> root.left.right:</span><br><span class="line">        leftsum += root.left.val</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        leftsum += self.sumOfLeftLeaves(root.left)</span><br><span class="line">    leftsum += self.sumOfLeftLeaves(root.right)</span><br><span class="line">    <span class="keyword">return</span> leftsum</span><br></pre></td></tr></table></figure>
 
@@ -409,7 +409,23 @@
       	</div>
     </div>
   </div>
-
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("04/05/2018 12:49:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "小站已正常运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
 
 
 </footer>
@@ -493,15 +509,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,7 +525,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,15 +565,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Design</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,11 +585,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -585,11 +601,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -597,7 +617,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -606,10 +626,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pyecharts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
             
             <div class="clearfix"></div>

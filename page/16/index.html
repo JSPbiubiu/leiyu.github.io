@@ -163,7 +163,7 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Leetcode学习笔记-94-二叉树的中序遍历" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Leetcode学习笔记-141-环形链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -171,13 +171,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/15/Leetcode学习笔记-94-二叉树的中序遍历/">Leetcode学习笔记-94-二叉树的中序遍历</a>
+      <a class="article-title" href="/2018/04/19/Leetcode学习笔记-141-环形链表/">Leetcode学习笔记-141-环形链表</a>
     </h1>
   
 
         
-        <a href="/2018/06/15/Leetcode学习笔记-94-二叉树的中序遍历/" class="archive-article-date">
-  	<time datetime="2018-06-15T02:45:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
+        <a href="/2018/04/19/Leetcode学习笔记-141-环形链表/" class="archive-article-date">
+  	<time datetime="2018-04-19T09:23:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
 </a>
         
         
@@ -185,104 +185,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><font size="5"><br><strong>题目：</strong><br>给定一个二叉树，返回它的中序 遍历。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">示例:</span><br><span class="line"></span><br><span class="line">输入: [1,null,2,3]</span><br><span class="line">   1</span><br><span class="line">    \</span><br><span class="line">     2</span><br><span class="line">    /</span><br><span class="line">   3</span><br><span class="line"></span><br><span class="line">输出: [1,3,2]</span><br><span class="line">进阶: 递归算法很简单，你可以通过迭代算法完成吗？</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<p><font size="5"><br><strong>解体思路：<br></strong><br>二叉树非递归中序遍历，利用栈。<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">inorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    List&lt;Integer&gt; res = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</span><br><span class="line">    inOrder(res, root);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inOrder</span><span class="params">(List&lt;Integer&gt; res, TreeNode root)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    Stack&lt;TreeNode&gt; helper = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    <span class="keyword">while</span> (!helper.isEmpty() || root != <span class="keyword">null</span>) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (root != <span class="keyword">null</span>) &#123;</span><br><span class="line">            helper.push(root);</span><br><span class="line">            root = root.left;</span><br><span class="line">        &#125;</span><br><span class="line">        root = helper.pop();</span><br><span class="line">        res.add(root.val);</span><br><span class="line">        root = root.right;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">inorderTraversal</span><span class="params">(self, root)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type root: TreeNode</span></span><br><span class="line"><span class="string">    :rtype: List[int]</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    res = []</span><br><span class="line">    self.helper(res, root)</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, res, root)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type root: TreeNode</span></span><br><span class="line"><span class="string">    :type res: List[int]</span></span><br><span class="line"><span class="string">    :rtype: void</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    stack = []</span><br><span class="line">    <span class="keyword">while</span> len(stack) != <span class="number">0</span> <span class="keyword">or</span> root:</span><br><span class="line">        <span class="keyword">while</span> root:</span><br><span class="line">            stack.append(root)</span><br><span class="line">            root = root.left</span><br><span class="line">        root = stack.pop()</span><br><span class="line">        res.append(root.val)</span><br><span class="line">        root = root.right</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Tree</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash Table</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Stack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/15/Leetcode学习笔记-94-二叉树的中序遍历/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
+        <p><font size="5"><br><strong>题目：</strong><br>给定一个链表，判断链表中否有环。<br><br>补充：<br>你是否可以不用额外空间解决此题？<br>
         
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
+          <a class="article-more-a" href="/2018/04/19/Leetcode学习笔记-141-环形链表/#more">more >></a>
         
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Leetcode学习笔记-168-Excel表列名称" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/13/Leetcode学习笔记-168-Excel表列名称/">Leetcode学习笔记-168-Excel表列名称</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/13/Leetcode学习笔记-168-Excel表列名称/" class="archive-article-date">
-  	<time datetime="2018-06-13T07:57:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-13</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>给定一个正整数，返回它在 Excel 表中相对应的列名称。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: 1</span><br><span class="line">输出: &quot;A&quot;</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: 28</span><br><span class="line">输出: &quot;AB&quot;</span><br><span class="line">示例 3:</span><br><span class="line"></span><br><span class="line">输入: 701</span><br><span class="line">输出: &quot;ZY&quot;</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>这道题有个小坑，就是假如待转换的数是26时，正常结果应为Z，但是26对26取余数正好是0，这样结果是A，而且26 / 26 = 1，反而会再进行一次错误的循环，只有在循环开始令待转换的数减去1即可避免这个问题。<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">convertToTitle</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">       StringBuilder res = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">       <span class="keyword">while</span> (n &gt; <span class="number">0</span>) &#123;</span><br><span class="line">           n--;</span><br><span class="line">           res.insert(<span class="number">0</span>, (<span class="keyword">char</span>)(<span class="string">'A'</span> + n % <span class="number">26</span>));</span><br><span class="line">           n /= <span class="number">26</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> res.toString();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convertToTitle</span><span class="params">(self, n)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type n: int</span></span><br><span class="line"><span class="string">    :rtype: str</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    res = <span class="string">""</span></span><br><span class="line">    <span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line">        n -= <span class="number">1</span></span><br><span class="line">        res = str(chr(ord(<span class="string">'A'</span>) + n % <span class="number">26</span>)) + res</span><br><span class="line">        n //= <span class="number">26</span></span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
       
 
       
@@ -299,7 +205,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Linked List</a>
         		</li>
       		
 		</ul>
@@ -309,7 +219,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/13/Leetcode学习笔记-168-Excel表列名称/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/19/Leetcode学习笔记-141-环形链表/">展开全文 >></a>
         </p>
       
 
@@ -339,7 +249,7 @@
 
 
   
-    <article id="post-Leetcode学习笔记-535-TinyURL的加密与解密" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Leetcode学习笔记-344-反转字符串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -347,13 +257,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/12/Leetcode学习笔记-535-TinyURL的加密与解密/">Leetcode学习笔记-535-TinyURL的加密与解密</a>
+      <a class="article-title" href="/2018/04/18/Leetcode学习笔记-344-反转字符串/">Leetcode学习笔记-344-反转字符串</a>
     </h1>
   
 
         
-        <a href="/2018/06/12/Leetcode学习笔记-535-TinyURL的加密与解密/" class="archive-article-date">
-  	<time datetime="2018-06-12T02:56:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-12</time>
+        <a href="/2018/04/18/Leetcode学习笔记-344-反转字符串/" class="archive-article-date">
+  	<time datetime="2018-04-18T10:52:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-18</time>
 </a>
         
         
@@ -361,99 +271,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><font size="5"><br><strong>题目：</strong><br>TinyURL是一种URL简化服务， 比如：当你输入一个URL <a href="https://leetcode.com/problems/design-tinyurl" target="_blank" rel="noopener">https://leetcode.com/problems/design-tinyurl</a> 时，它将返回一个简化的URL <a href="http://tinyurl.com/4e9iAk" target="_blank" rel="noopener">http://tinyurl.com/4e9iAk</a>.<br><br>要求：设计一个 TinyURL 的加密 encode 和解密 decode 的方法。你的加密和解密算法如何设计和运作是没有限制的，你只需要保证一个URL可以被加密成一个TinyURL，并且这个TinyURL可以用解密方法恢复成原本的URL。<br><br></font></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>hash实际应用问题，利用map的键值映射关系来加密和解密。<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Encodes a URL to a shortened URL.</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">encode</span><span class="params">(String longUrl)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    String shorturl = <span class="string">"http://tinyurl.com/4e9iAk"</span> + i;</span><br><span class="line">    i++;</span><br><span class="line">    map.put(shorturl, longUrl);</span><br><span class="line">    <span class="keyword">return</span> shorturl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Decodes a shortened URL to its original URL.</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">decode</span><span class="params">(String shortUrl)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> map.get(shortUrl);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">enAndDe, i = &#123;&#125;, <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode</span><span class="params">(self, longUrl)</span>:</span></span><br><span class="line">    <span class="string">"""Encodes a URL to a shortened URL.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :type longUrl: str</span></span><br><span class="line"><span class="string">    :rtype: str</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    shortURL = <span class="string">"http://tinyurl.com/4e9iAk"</span> + str(self.i)</span><br><span class="line">    self.enAndDe[shortURL] = longUrl</span><br><span class="line">    self.i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> shortURL</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decode</span><span class="params">(self, shortUrl)</span>:</span></span><br><span class="line">    <span class="string">"""Decodes a shortened URL to its original URL.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :type shortUrl: str</span></span><br><span class="line"><span class="string">    :rtype: str</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> self.enAndDe[shortUrl]</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash Table</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/12/Leetcode学习笔记-535-TinyURL的加密与解密/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
+        <p><font size="5"><br><strong>题目：</strong><br>请编写一个函数，其功能是将输入的字符串反转过来。<br>
         
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
+          <a class="article-more-a" href="/2018/04/18/Leetcode学习笔记-344-反转字符串/#more">more >></a>
         
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Leetcode学习笔记-441-排列硬币" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/12/Leetcode学习笔记-441-排列硬币/">Leetcode学习笔记-441-排列硬币</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/12/Leetcode学习笔记-441-排列硬币/" class="archive-article-date">
-  	<time datetime="2018-06-12T02:29:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-12</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>你总共有 n 枚硬币，你需要将它们摆成一个阶梯形状，第 k 行就必须正好有 k 枚硬币。<br>给定一个数字 n，找出可形成完整阶梯行的总行数。<br>n 是一个非负整数，并且在32位有符号整型的范围内。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">n = 5</span><br><span class="line">硬币可排列成以下几行:</span><br><span class="line">¤</span><br><span class="line">¤ ¤</span><br><span class="line">¤ ¤</span><br><span class="line">因为第三行不完整，所以返回2.</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">n = 8</span><br><span class="line">硬币可排列成以下几行:</span><br><span class="line">¤</span><br><span class="line">¤ ¤</span><br><span class="line">¤ ¤ ¤</span><br><span class="line">¤ ¤</span><br><span class="line"></span><br><span class="line">因为第四行不完整，所以返回3.</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>利用自然数求和公式：sum = n * (n + 1) / 2<br>利用二分查找，找到求和后距离n最近的数，如果结果大于n 则返回mid - 1;<br>否则返回mid<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">arrangeCoins</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">long</span> start = <span class="number">0</span>, end = n, res = <span class="number">0</span>, mid = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">while</span>(start &lt;= end)&#123;</span><br><span class="line">           mid = start + (end - start) / <span class="number">2</span>;</span><br><span class="line">           res = (mid * (mid + <span class="number">1</span>)) / <span class="number">2</span>;</span><br><span class="line">           <span class="keyword">if</span>(res == n) <span class="keyword">return</span> (<span class="keyword">int</span>)mid;</span><br><span class="line">           <span class="keyword">if</span>(res &gt; n)  end = mid - <span class="number">1</span>;</span><br><span class="line">           <span class="keyword">if</span>(res &lt; n) start = mid + <span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> (<span class="keyword">int</span>)((mid * (mid + <span class="number">1</span>)) / <span class="number">2</span> &gt; n ? mid - <span class="number">1</span> : mid);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">arrangeCoins</span><span class="params">(self, n)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type n: int</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>: <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    start, end, mid, res = <span class="number">0</span>, n, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> start &lt;= end:</span><br><span class="line">        mid = start + (end - start) // <span class="number">2</span></span><br><span class="line">        res = (mid * (mid + <span class="number">1</span>)) // <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> res == n:</span><br><span class="line">            <span class="keyword">return</span> mid</span><br><span class="line">        <span class="keyword">if</span> res &gt; n:</span><br><span class="line">            end = mid - <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> res &lt; n:</span><br><span class="line">            start = mid + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> mid - <span class="number">1</span> <span class="keyword">if</span> (mid * (mid + <span class="number">1</span>)) // <span class="number">2</span> &gt; n <span class="keyword">else</span> mid</span><br></pre></td></tr></table></figure>
-
       
 
       
@@ -470,7 +291,527 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/18/Leetcode学习笔记-344-反转字符串/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-58-最后一个单词的长度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/18/Leetcode学习笔记-58-最后一个单词的长度/">Leetcode学习笔记-58-最后一个单词的长度</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/18/Leetcode学习笔记-58-最后一个单词的长度/" class="archive-article-date">
+  	<time datetime="2018-04-18T10:38:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-18</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>给定一个仅包含大小写字母和空格 ‘ ‘ 的字符串，返回其最后一个单词的长度。如果不存在最后一个单词，请返回 0 。<br><br>说明：一个单词是指由字母组成，但不包含任何空格的字符串。<br><br>
+        
+          <a class="article-more-a" href="/2018/04/18/Leetcode学习笔记-58-最后一个单词的长度/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/18/Leetcode学习笔记-58-最后一个单词的长度/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="w-Leetcode学习笔记-746-使用最小花费爬楼梯" class="article article-type-w  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/17/Leetcode学习笔记-746-使用最小花费爬楼梯/">Leetcode学习笔记-746-使用最小花费爬楼梯</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/17/Leetcode学习笔记-746-使用最小花费爬楼梯/" class="archive-article-date">
+  	<time datetime="2018-04-17T08:04:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-17</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>数组的每个索引做为一个阶梯，第 i个阶梯对应着一个非负数的体力花费值 cost：i(索引从0开始)。<br>每当你爬上一个阶梯你都要花费对应的体力花费值，然后你可以选择继续爬一个阶梯或者爬两个阶梯。<br>您需要找到达到楼层顶部的最低花费。在开始时，你可以选择从索引为 0 或 1 的元素作为初始阶梯。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: cost = [10, 15, 20]</span><br><span class="line">输出: 15</span><br><span class="line">解释: 最低花费是从cost[1]开始，然后走两步即可到阶梯顶，一共花费15。</span><br><span class="line"> 示例 2:</span><br><span class="line"></span><br><span class="line">输入: cost = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]</span><br><span class="line">输出: 6</span><br><span class="line">解释: 最低花费方式是从cost[0]开始，逐个经过那些1，跳过cost[3]，一共花费6。</span><br><span class="line">注意：</span><br><span class="line"></span><br><span class="line">1.cost 的长度将会在 [2, 1000]。</span><br><span class="line">2.每一个 cost[i] 将会是一个Integer类型，范围为 [0, 999]。</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br>
+        
+          <a class="article-more-a" href="/2018/04/17/Leetcode学习笔记-746-使用最小花费爬楼梯/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Dynamic Programming</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/17/Leetcode学习笔记-746-使用最小花费爬楼梯/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="w-Leetcode学习笔记-717-1比特与2比特字符" class="article article-type-w  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/17/Leetcode学习笔记-717-1比特与2比特字符/">Leetcode学习笔记-717-1比特与2比特字符</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/17/Leetcode学习笔记-717-1比特与2比特字符/" class="archive-article-date">
+  	<time datetime="2018-04-17T07:23:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-17</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>有两种特殊字符。第一种字符可以用一比特0来表示。第二种字符可以用两比特(10 或 11)来表示。现给一个由若干比特组成的字符串。问最后一个字符是否必定为一个一比特字符。给定的字符串总是由0结束。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line">输入: </span><br><span class="line">bits = [1, 0, 0]</span><br><span class="line">输出: True</span><br><span class="line">解释: </span><br><span class="line">唯一的编码方式是一个两比特字符和一个一比特字符。所以最后一个字符是一比特字符。</span><br><span class="line"></span><br><span class="line">示例 2:</span><br><span class="line">输入: </span><br><span class="line">bits = [1, 1, 1, 0]</span><br><span class="line">输出: False</span><br><span class="line">解释: </span><br><span class="line">唯一的编码方式是两比特字符和两比特字符。所以最后一个字符不是一比特字符。</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br>
+        
+          <a class="article-more-a" href="/2018/04/17/Leetcode学习笔记-717-1比特与2比特字符/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/17/Leetcode学习笔记-717-1比特与2比特字符/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-80-从排序阵列中删除重复II" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/Leetcode学习笔记-80-从排序阵列中删除重复II/">Leetcode学习笔记-80-从排序阵列中删除重复II</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/Leetcode学习笔记-80-从排序阵列中删除重复II/" class="archive-article-date">
+  	<time datetime="2018-04-13T12:37:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>“26-删除重复项目” 的进阶：如果重复最多被允许两次，又该怎么办呢？<br><br>例如：给定排序数列 nums = [1,1,1,2,2,3]<br><br>你的函数应该返回长度为 5，nums 的前五个元素是 1, 1, 2, 2 和 3。<br><br>
+        
+          <a class="article-more-a" href="/2018/04/13/Leetcode学习笔记-80-从排序阵列中删除重复II/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/Leetcode学习笔记-80-从排序阵列中删除重复II/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-75-分类颜色" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/Leetcode学习笔记-75-分类颜色/">Leetcode学习笔记-75-分类颜色</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/Leetcode学习笔记-75-分类颜色/" class="archive-article-date">
+  	<time datetime="2018-04-13T12:22:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>给定一个包含红色、白色和蓝色，且含有 n 个元素的数组，对它们进行排序，使得相同颜色的元素相邻，颜色顺序为红色、白色、蓝色。<br>此题中，我们使用整数 0, 1 和 2 分别表示红色，白色和蓝色。<br><br>注意:不能使用代码库中的排序函数来解决这道题。<br><br>进阶：<br><br>一个相当直观的解决方案是使用计数排序的 two-pass 算法。<br>首先，迭代计算出0，1 和 2 元素的个数，然后重写当前数组。<br>你能想出一个仅使用恒定空间的 one-pass 算法吗？<br><br>
+        
+          <a class="article-more-a" href="/2018/04/13/Leetcode学习笔记-75-分类颜色/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Sort</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/13/Leetcode学习笔记-75-分类颜色/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-287-寻找重复数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/13/Leetcode学习笔记-287-寻找重复数/">Leetcode学习笔记-287-寻找重复数</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/13/Leetcode学习笔记-287-寻找重复数/" class="archive-article-date">
+  	<time datetime="2018-04-13T10:11:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>一个长度为 n + 1 的整形数组，其中的数字都在 1 到 n 之间，包括 1 和 n ，可知至少有一个重复的数字存在。假设只有一个数字重复，找出这个重复的数字。<br><br>注意：<br><br>不能更改数组内容（假设数组是只读的）。<br>只能使用恒定的额外空间，即要求空间复杂度是 O(1) 。<br>时间复杂度小于 O(n2)<br>数组中只有一个数字重复，但它可能不止一次重复出现。<br>
+        
+          <a class="article-more-a" href="/2018/04/13/Leetcode学习笔记-287-寻找重复数/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -484,7 +825,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/12/Leetcode学习笔记-441-排列硬币/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/Leetcode学习笔记-287-寻找重复数/">展开全文 >></a>
         </p>
       
 
@@ -514,7 +855,7 @@
 
 
   
-    <article id="post-Leetcode学习笔记-367-有效的完全平方数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Leetcode学习笔记-697-数组的度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -522,13 +863,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/12/Leetcode学习笔记-367-有效的完全平方数/">Leetcode学习笔记-367-有效的完全平方数</a>
+      <a class="article-title" href="/2018/04/13/Leetcode学习笔记-697-数组的度/">Leetcode学习笔记-697-数组的度</a>
     </h1>
   
 
         
-        <a href="/2018/06/12/Leetcode学习笔记-367-有效的完全平方数/" class="archive-article-date">
-  	<time datetime="2018-06-12T02:18:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-12</time>
+        <a href="/2018/04/13/Leetcode学习笔记-697-数组的度/" class="archive-article-date">
+  	<time datetime="2018-04-13T08:55:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
 </a>
         
         
@@ -536,12 +877,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><font size="5"><br><strong>题目：</strong><br>给定一个正整数 num，编写一个函数，如果 num 是一个完全平方数，则返回 True，否则返回 False。<br>注意：不要使用任何内置的库函数，如  sqrt。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例 1：</span><br><span class="line"></span><br><span class="line">输入： 16</span><br><span class="line">输出： True</span><br><span class="line"> </span><br><span class="line">示例 2：</span><br><span class="line"></span><br><span class="line">输入： 14</span><br><span class="line">输出： False</span><br></pre></td></tr></table></figure></font></p>
-<p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>二分法算此题。注意的是起始的end值只需要num / 2 + 1,而不需要 = num。所有变量需要用long类型<br><br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isPerfectSquare</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">long</span> start = <span class="number">1</span>, end = num / <span class="number">2</span> + <span class="number">1</span>, res = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">while</span>(start &lt;= end)&#123;</span><br><span class="line">           <span class="keyword">long</span> mid = start + (end - start) / <span class="number">2</span>;</span><br><span class="line">           res = mid * mid;</span><br><span class="line">           <span class="keyword">if</span>(res == num) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">           <span class="keyword">if</span>(res &gt; num)  end = mid - <span class="number">1</span>;</span><br><span class="line">           <span class="keyword">if</span>(res &lt; num)  start = mid + <span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isPerfectSquare</span><span class="params">(self, num)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type num: int</span></span><br><span class="line"><span class="string">    :rtype: bool</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    start, end, res = <span class="number">1</span>, num // <span class="number">2</span> + <span class="number">1</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> start &lt;= end:</span><br><span class="line">        mid = start + (end - start) // <span class="number">2</span></span><br><span class="line">        res = mid ** <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> res == num:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">if</span> res &gt; num:</span><br><span class="line">            end = mid - <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> res &lt; num:</span><br><span class="line">            start = mid + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
-
+        <font size="5"><br><strong>题目：</strong><br>给定一个非空且只包含非负数的整数数组 nums, 数组的度的定义是指数组里任一元素出现频数的最大值。<br>你的任务是找到与 nums 拥有相同大小的度的最短连续子数组，返回其长度。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: [1, 2, 2, 3, 1]</span><br><span class="line">输出: 2</span><br><span class="line">解释: </span><br><span class="line">输入数组的度是2，因为元素1和2的出现频数最大，均为2.</span><br><span class="line">连续子数组里面拥有相同度的有如下所示:</span><br><span class="line">[1, 2, 2, 3, 1], [1, 2, 2, 3], [2, 2, 3, 1], [1, 2, 2], [2, 2, 3], [2, 2]</span><br><span class="line">最短连续子数组[2, 2]的长度为2，所以返回2.</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: [1,2,2,3,1,4,2]</span><br><span class="line">输出: 6</span><br></pre></td></tr></table></figure><br><br></font><br><font size="5"><br>
+        
+          <a class="article-more-a" href="/2018/04/13/Leetcode学习笔记-697-数组的度/#more">more >></a>
+        
       
 
       
@@ -554,15 +893,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Binary Search</a>
         		</li>
       		
 		</ul>
@@ -572,7 +907,89 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/12/Leetcode学习笔记-367-有效的完全平方数/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/13/Leetcode学习笔记-697-数组的度/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-442-数组中重复的数据" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/12/Leetcode学习笔记-442-数组中重复的数据/">Leetcode学习笔记-442-数组中重复的数据</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/12/Leetcode学习笔记-442-数组中重复的数据/" class="archive-article-date">
+  	<time datetime="2018-04-12T11:17:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-12</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>给定一个整数数组 a，其中1 ≤ a[i] ≤ n （n为数组长度）, 其中有些元素出现两次而其他元素出现一次。找到所有出现两次的元素。<br>你可以不用到任何额外空间并在O(n)时间复杂度内解决这个问题吗？<br>
+        
+          <a class="article-more-a" href="/2018/04/12/Leetcode学习笔记-442-数组中重复的数据/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/12/Leetcode学习笔记-442-数组中重复的数据/">展开全文 >></a>
         </p>
       
 
@@ -604,7 +1021,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/15/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/17/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/15/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/17/">Next &raquo;</a>
     </nav>
   
 
@@ -628,7 +1045,23 @@
       	</div>
     </div>
   </div>
-
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("04/05/2018 12:49:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "小站已正常运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
 
 
 </footer>
@@ -712,15 +1145,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -728,7 +1161,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -768,15 +1201,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Design</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -788,11 +1221,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -804,11 +1237,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -816,7 +1253,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -825,10 +1262,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pyecharts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
             
             <div class="clearfix"></div>

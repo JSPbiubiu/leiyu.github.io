@@ -163,7 +163,7 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Leetcode学习笔记-152-乘积最大子序列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Leetcode学习笔记-326-3的幂" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -171,13 +171,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/10/Leetcode学习笔记-152-乘积最大子序列/">Leetcode学习笔记-152-乘积最大子序列</a>
+      <a class="article-title" href="/2018/06/12/Leetcode学习笔记-326-3的幂/">Leetcode学习笔记-326-3的幂</a>
     </h1>
   
 
         
-        <a href="/2018/08/10/Leetcode学习笔记-152-乘积最大子序列/" class="archive-article-date">
-  	<time datetime="2018-08-10T12:56:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-10</time>
+        <a href="/2018/06/12/Leetcode学习笔记-326-3的幂/" class="archive-article-date">
+  	<time datetime="2018-06-12T02:10:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-12</time>
 </a>
         
         
@@ -185,11 +185,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><font size="5"><br><strong>题目：</strong><br>给定一个整数数组 nums ，找出一个序列中乘积最大的连续子序列（该序列至少包含一个数）。<br></font><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line">输入: [2,3,-2,4]</span><br><span class="line">输出: 6</span><br><span class="line">解释: 子数组 [2,3] 有最大乘积 6。</span><br><span class="line"></span><br><span class="line">示例 2:</span><br><span class="line">输入: [-2,0,-1]</span><br><span class="line">输出: 0</span><br><span class="line">解释: 结果不能为 2, 因为 [-2,-1] 不是子数组。</span><br></pre></td></tr></table></figure></p>
-<p><font size="5"><br><strong>解题思路：<br></strong><br>跟踪记录max和min，这里的max和min是以当前元素为结尾的所有区间的最大值和最小值。<br>跟踪最小值的原因是有可能两个负数的成绩结果是个很大的正数。<br>拿当前元素大于0举例：<br>max = Math.max(max * nums[i], nums[i])的意思是若当前元素乘以之前的最大值比本身大，则可以把之前的区间后面填上当前元素（因为总值增大了）；若比本身小，则舍弃掉前面的区间， 从当前元素重新开始，min同理。<br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProduct</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">           <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> max = nums[<span class="number">0</span>], min = nums[<span class="number">0</span>], res = nums[<span class="number">0</span>];</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">           <span class="keyword">if</span> (nums[i] &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">               max = Math.max(max * nums[i], nums[i]);</span><br><span class="line">               min = Math.min(min * nums[i], nums[i]);</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="keyword">int</span> max_temp = max;</span><br><span class="line">               max = Math.max(min * nums[i], nums[i]);</span><br><span class="line">               min = Math.min(max_temp * nums[i], nums[i]);</span><br><span class="line">           &#125;</span><br><span class="line">           res = Math.max(max, res);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> res;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxProduct</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">       <span class="string">"""</span></span><br><span class="line"><span class="string">       :type nums: List[int]</span></span><br><span class="line"><span class="string">       :rtype: int</span></span><br><span class="line"><span class="string">       """</span></span><br><span class="line">       <span class="keyword">if</span> nums <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> len(nums) == <span class="number">0</span>:</span><br><span class="line">           <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">       maxVal, minVal, res = nums[<span class="number">0</span>], nums[<span class="number">0</span>], nums[<span class="number">0</span>]</span><br><span class="line">       <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</span><br><span class="line">           <span class="keyword">if</span> nums[i] &gt;= <span class="number">0</span>:</span><br><span class="line">               maxVal = max(maxVal * nums[i], nums[i])</span><br><span class="line">               minVal = min(minVal * nums[i], nums[i])</span><br><span class="line">           <span class="keyword">else</span>:</span><br><span class="line">               max_temp = maxVal</span><br><span class="line">               maxVal = max(minVal * nums[i], nums[i])</span><br><span class="line">               minVal = min(max_temp * nums[i], nums[i])</span><br><span class="line">           res = max(maxVal, res)</span><br><span class="line">       <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
+        <p><font size="5"><br><strong>题目：</strong><br>给定一个整数，写一个函数来判断它是否是 3 的幂次方。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: 27</span><br><span class="line">输出: true</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: 0</span><br><span class="line">输出: false</span><br><span class="line">示例 3:</span><br><span class="line"></span><br><span class="line">输入: 9</span><br><span class="line">输出: true</span><br><span class="line">示例 4:</span><br><span class="line"></span><br><span class="line">输入: 45</span><br><span class="line">输出: false</span><br><span class="line">进阶：</span><br><span class="line">你能不使用循环或者递归来完成本题吗？</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br>
+        
+          <a class="article-more-a" href="/2018/06/12/Leetcode学习笔记-326-3的幂/#more">more >></a>
+        
       
 
       
@@ -202,15 +203,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Dynamic Programming</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
         		</li>
       		
 		</ul>
@@ -220,7 +217,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/10/Leetcode学习笔记-152-乘积最大子序列/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/06/12/Leetcode学习笔记-326-3的幂/">展开全文 >></a>
         </p>
       
 
@@ -250,7 +247,7 @@
 
 
   
-    <article id="post-Leetcode学习笔记-56-合并区间" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Leetcode学习笔记-263-丑数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -258,13 +255,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/10/Leetcode学习笔记-56-合并区间/">Leetcode学习笔记-56-合并区间</a>
+      <a class="article-title" href="/2018/06/12/Leetcode学习笔记-263-丑数/">Leetcode学习笔记-263-丑数</a>
     </h1>
   
 
         
-        <a href="/2018/08/10/Leetcode学习笔记-56-合并区间/" class="archive-article-date">
-  	<time datetime="2018-08-10T10:09:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-10</time>
+        <a href="/2018/06/12/Leetcode学习笔记-263-丑数/" class="archive-article-date">
+  	<time datetime="2018-06-12T02:02:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-12</time>
 </a>
         
         
@@ -272,11 +269,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><font size="5"><br><strong>题目：</strong><br>给出一个区间的集合，请合并所有重叠的区间。<br></font><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line">输入: [[1,3],[2,6],[8,10],[15,18]]</span><br><span class="line">输出: [[1,6],[8,10],[15,18]]</span><br><span class="line">解释: 区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6].</span><br><span class="line"></span><br><span class="line">示例 2:</span><br><span class="line">输入: [[1,4],[4,5]]</span><br><span class="line">输出: [[1,5]]</span><br><span class="line">解释: 区间 [1,4] 和 [4,5] 可被视为重叠区间。</span><br></pre></td></tr></table></figure></p>
-<p><font size="5"><br><strong>解题思路：<br></strong><br>首先将区间按区间开始的大小排序（由小到大）<br>然后拿到第一个最小的作为开始区间，从第二个区间开始遍历：<br>拿到当前遍历的区间的开始位置和开始区间的结束位置作比较：<br>若开始区间的end &gt; 结束区间的start并且开始区间的end小于结束区间的end，则将两个区间合并，<br>反之，则将开始区间添加到结果集合中并将当前区间重新设置为开始区间。<br>遍历结束后，再将最后的开始区间添加到结果集合中。<br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Interval&gt; <span class="title">merge</span><span class="params">(List&lt;Interval&gt; intervals)</span> </span>&#123;</span><br><span class="line">       </span><br><span class="line">       List&lt;Interval&gt; res = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">       <span class="keyword">if</span> (intervals.size() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">           sort(intervals);</span><br><span class="line">           Interval start = intervals.get(<span class="number">0</span>);</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; intervals.size(); i++) &#123;</span><br><span class="line">               Interval temp = intervals.get(i);</span><br><span class="line">               <span class="keyword">if</span> (start.end &lt; temp.start) &#123;</span><br><span class="line">                   res.add(start);</span><br><span class="line">                   start = temp;</span><br><span class="line">               &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                   <span class="keyword">if</span> (start.end &lt; temp.end)</span><br><span class="line">                       start.end = temp.end;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           res.add(start);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> res;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(List&lt;Interval&gt; intervals)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       Collections.sort(intervals, <span class="keyword">new</span> Comparator&lt;Interval&gt;() &#123;</span><br><span class="line"></span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Interval o1, Interval o2)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">               <span class="keyword">return</span> o1.start &lt; o2.start ? -<span class="number">1</span> : (o1.start == o2.start ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(self, intervals)</span>:</span></span><br><span class="line">       <span class="string">"""</span></span><br><span class="line"><span class="string">       :type intervals: List[Interval]</span></span><br><span class="line"><span class="string">       :rtype: List[Interval]</span></span><br><span class="line"><span class="string">       """</span></span><br><span class="line">       res = []</span><br><span class="line">       <span class="keyword">if</span> len(intervals) &gt; <span class="number">0</span>:</span><br><span class="line">           intervals = sorted(intervals, key=<span class="keyword">lambda</span> x: x.start)</span><br><span class="line">           start = intervals[<span class="number">0</span>]</span><br><span class="line">           <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(intervals)):</span><br><span class="line">               temp = intervals[i]</span><br><span class="line">               <span class="keyword">if</span> start.end &lt; temp.start:</span><br><span class="line">                   res.append(start)</span><br><span class="line">                   start = temp</span><br><span class="line">               <span class="keyword">else</span>:</span><br><span class="line">                   <span class="keyword">if</span> start.end &lt; temp.end:</span><br><span class="line">                       start.end = temp.end</span><br><span class="line">           res.append(start)</span><br><span class="line">       <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
+        <p><font size="5"><br><strong>题目：</strong><br>编写一个程序判断给定的数是否为丑数。<br>丑数就是只包含质因数 2, 3, 5 的正整数。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: 6</span><br><span class="line">输出: true</span><br><span class="line">解释: 6 = 2 × 3</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: 8</span><br><span class="line">输出: true</span><br><span class="line">解释: 8 = 2 × 2 × 2</span><br><span class="line">示例 3:</span><br><span class="line"></span><br><span class="line">输入: 14</span><br><span class="line">输出: false </span><br><span class="line">解释: 14 不是丑数，因为它包含了另外一个质因数 7。</span><br><span class="line">说明：</span><br><span class="line"></span><br><span class="line">1 是丑数。</span><br><span class="line">输入不会超过 32 位有符号整数的范围: [−231,  231 − 1]。</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br>
+        
+          <a class="article-more-a" href="/2018/06/12/Leetcode学习笔记-263-丑数/#more">more >></a>
+        
       
 
       
@@ -289,15 +287,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Sort</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
         		</li>
       		
 		</ul>
@@ -307,7 +301,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/10/Leetcode学习笔记-56-合并区间/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/06/12/Leetcode学习笔记-263-丑数/">展开全文 >></a>
         </p>
       
 
@@ -337,7 +331,7 @@
 
 
   
-    <article id="post-Leetcode学习笔记-71-简化路径" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-最近被折腾死喽！" class="article article-type-post  article-index" itemscope itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -345,13 +339,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/10/Leetcode学习笔记-71-简化路径/">Leetcode学习笔记-71-简化路径</a>
+      <a class="article-title" href="/2018/06/09/最近被折腾死喽！/">最近被折腾死喽！</a>
     </h1>
   
 
         
-        <a href="/2018/08/10/Leetcode学习笔记-71-简化路径/" class="archive-article-date">
-  	<time datetime="2018-08-10T06:01:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-10</time>
+        <a href="/2018/06/09/最近被折腾死喽！/" class="archive-article-date">
+  	<time datetime="2018-06-09T04:10:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-09</time>
 </a>
         
         
@@ -359,11 +353,601 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><font size="5"><br><strong>题目：</strong><br>给定一个文档 (Unix-style) 的完全路径，请进行路径简化。<br></font><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">例如，</span><br><span class="line">path = &quot;/home/&quot;, =&gt; &quot;/home&quot;</span><br><span class="line">path = &quot;/a/./b/../../c/&quot;, =&gt; &quot;/c&quot;</span><br><span class="line"></span><br><span class="line">边界情况:</span><br><span class="line">你是否考虑了 路径 = &quot;/../&quot; 的情况？</span><br><span class="line">在这种情况下，你需返回 &quot;/&quot; 。</span><br><span class="line">此外，路径中也可能包含多个斜杠 &apos;/&apos; ，如 &quot;/home//foo/&quot; 。</span><br><span class="line">在这种情况下，你可忽略多余的斜杠，返回 &quot;/home/foo&quot; 。</span><br></pre></td></tr></table></figure></p>
-<p><font size="5"><br><strong>解题思路：<br></strong><br>首先读题可以发现其中的.和/没有用处，只有字串和..有用。这样我们可以按/来切割字符串<br>遍历切割后的字符串数组，若字串长度&gt;0（为了避免//这种情况切割后是个空字符串）并且不是.的字串压入栈中，若字串是..则将栈顶的字串弹出，直至遍历结束。<br>最后返回 / + 栈内元素之间用/分开<br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">simplifyPath</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">       Stack&lt;String&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">       <span class="keyword">for</span> (String str : path.split(<span class="string">"/"</span>)) &#123;</span><br><span class="line">           <span class="keyword">if</span> (str.equals(<span class="string">".."</span>)) &#123;</span><br><span class="line">               <span class="keyword">if</span> (!stack.isEmpty())</span><br><span class="line">                   stack.pop();</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="keyword">if</span> (!str.isEmpty() &amp;&amp; !str.equals(<span class="string">"."</span>))</span><br><span class="line">                   stack.push(str);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="string">"/"</span> + String.join(<span class="string">"/"</span>, stack);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">simplifyPath</span><span class="params">(self, path)</span>:</span></span><br><span class="line">       <span class="string">"""</span></span><br><span class="line"><span class="string">       :type path: str</span></span><br><span class="line"><span class="string">       :rtype: str</span></span><br><span class="line"><span class="string">       """</span></span><br><span class="line">       stack = []</span><br><span class="line">       <span class="keyword">for</span> string <span class="keyword">in</span> path.split(<span class="string">'/'</span>):</span><br><span class="line">           <span class="keyword">if</span> string == <span class="string">'..'</span>:</span><br><span class="line">               <span class="keyword">if</span> len(stack) &gt; <span class="number">0</span>:</span><br><span class="line">                   stack.pop(<span class="number">-1</span>)</span><br><span class="line">           <span class="keyword">else</span>:</span><br><span class="line">               <span class="keyword">if</span> string != <span class="string">""</span> <span class="keyword">and</span> string != <span class="string">'.'</span>:</span><br><span class="line">                   stack.append(string)</span><br><span class="line">       <span class="keyword">return</span> <span class="string">'/'</span> + <span class="string">'/'</span>.join(stack)</span><br></pre></td></tr></table></figure>
+        <h1 id="终于要毕业了"><a href="#终于要毕业了" class="headerlink" title="终于要毕业了"></a><p align="center">终于要毕业了</p></h1><h2 id="nbsp-nbsp-nbsp-nbsp-前阵子从北京回来水了个三等，满意啦，毕竟没怎么在这方面下功夫。和老师，和她的孩子相处的很愉快，小孩子真有趣哈哈哈。-nbsp-nbsp-nbsp-nbsp-可是学校这边。。。答辩倒没怎么难为人，就是这个论文改的真的是心烦啊。改过去又改回来，还要打印这，打印那。以后一定要自己买一个家用打印机，出去跑太不方便了。不过终于在昨天结束啦，只需要安安静静等着拿到毕业证就好！-nbsp-nbsp-nbsp-nbsp-这几天准备疯玩一下，打打麻将，上上网，出去转转，就开始下一阶段的学习任务了。今早还和室友计划去一下长白山，也不知道能不能去上。对了，昨天还拿到了通知书，拿到了就立刻给我爹妈还有晨晨发，结果漏了一个人，可能当时有点开心，忘记啦！前方还有好长的路要走呢，继续前进吧！最后放一张通知书吧："><a href="#nbsp-nbsp-nbsp-nbsp-前阵子从北京回来水了个三等，满意啦，毕竟没怎么在这方面下功夫。和老师，和她的孩子相处的很愉快，小孩子真有趣哈哈哈。-nbsp-nbsp-nbsp-nbsp-可是学校这边。。。答辩倒没怎么难为人，就是这个论文改的真的是心烦啊。改过去又改回来，还要打印这，打印那。以后一定要自己买一个家用打印机，出去跑太不方便了。不过终于在昨天结束啦，只需要安安静静等着拿到毕业证就好！-nbsp-nbsp-nbsp-nbsp-这几天准备疯玩一下，打打麻将，上上网，出去转转，就开始下一阶段的学习任务了。今早还和室友计划去一下长白山，也不知道能不能去上。对了，昨天还拿到了通知书，拿到了就立刻给我爹妈还有晨晨发，结果漏了一个人，可能当时有点开心，忘记啦！前方还有好长的路要走呢，继续前进吧！最后放一张通知书吧：" class="headerlink" title="&nbsp;&nbsp;&nbsp;&nbsp;前阵子从北京回来水了个三等，满意啦，毕竟没怎么在这方面下功夫。和老师，和她的孩子相处的很愉快，小孩子真有趣哈哈哈。&nbsp;&nbsp;&nbsp;&nbsp;可是学校这边。。。答辩倒没怎么难为人，就是这个论文改的真的是心烦啊。改过去又改回来，还要打印这，打印那。以后一定要自己买一个家用打印机，出去跑太不方便了。不过终于在昨天结束啦，只需要安安静静等着拿到毕业证就好！&nbsp;&nbsp;&nbsp;&nbsp;这几天准备疯玩一下，打打麻将，上上网，出去转转，就开始下一阶段的学习任务了。今早还和室友计划去一下长白山，也不知道能不能去上。对了，昨天还拿到了通知书，拿到了就立刻给我爹妈还有晨晨发，结果漏了一个人，可能当时有点开心，忘记啦！前方还有好长的路要走呢，继续前进吧！最后放一张通知书吧："></a>&nbsp;&nbsp;&nbsp;&nbsp;前阵子从北京回来水了个三等，满意啦，毕竟没怎么在这方面下功夫。和老师，和她的孩子相处的很愉快，小孩子真有趣哈哈哈。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;可是学校这边。。。答辩倒没怎么难为人，就是这个论文改的真的是心烦啊。改过去又改回来，还要打印这，打印那。以后一定要自己买一个家用打印机，出去跑太不方便了。不过终于在昨天结束啦，只需要安安静静等着拿到毕业证就好！<br><br>&nbsp;&nbsp;&nbsp;&nbsp;这几天准备疯玩一下，打打麻将，上上网，出去转转，就开始下一阶段的学习任务了。今早还和室友计划去一下长白山，也不知道能不能去上。对了，昨天还拿到了通知书，拿到了就立刻给我爹妈还有晨晨发，结果漏了一个人，可能当时有点开心，忘记啦！前方还有好长的路要走呢，继续前进吧！最后放一张通知书吧：</h2><p><img src="/img/post.JPG" alt="avatar"></p>
+<h3 id="宝石2018年6月9日午间记"><a href="#宝石2018年6月9日午间记" class="headerlink" title="宝石2018年6月9日午间记"></a><p align="right">宝石<br>2018年6月9日午间记</p></h3>
+      
 
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/09/最近被折腾死喽！/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-415-字符串相加" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/22/Leetcode学习笔记-415-字符串相加/">Leetcode学习笔记-415-字符串相加</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/22/Leetcode学习笔记-415-字符串相加/" class="archive-article-date">
+  	<time datetime="2018-05-22T02:11:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-22</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>给定两个字符串形式的非负整数 num1 和num2 ，计算它们的和。<br>注意：<br>num1 和num2 的长度都小于 5100.<br>num1 和num2 都只包含数字 0-9.<br>num1 和num2 都不包含任何前导零。<br>你不能使用任何內建 BigInteger 库， 也不能直接将输入的字符串转换为整数形式。<br><br></font></p>
+<p><font size="5"><br>
+        
+          <a class="article-more-a" href="/2018/05/22/Leetcode学习笔记-415-字符串相加/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/22/Leetcode学习笔记-415-字符串相加/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-812-最大三角形面积" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/22/Leetcode学习笔记-812-最大三角形面积/">Leetcode学习笔记-812-最大三角形面积</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/22/Leetcode学习笔记-812-最大三角形面积/" class="archive-article-date">
+  	<time datetime="2018-05-22T01:32:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-22</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>给定包含多个点的集合，从其中取三个点组成三角形，返回能组成的最大三角形的面积。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">示例:</span><br><span class="line">输入: points = [[0,0],[0,1],[1,0],[0,2],[2,0]]</span><br><span class="line">输出: 2</span><br><span class="line">解释: </span><br><span class="line">这五个点如下图所示。组成的橙色三角形是最大的，面积为2。</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br>
+        
+          <a class="article-more-a" href="/2018/05/22/Leetcode学习笔记-812-最大三角形面积/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/22/Leetcode学习笔记-812-最大三角形面积/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-231-2的幂" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/20/Leetcode学习笔记-231-2的幂/">Leetcode学习笔记-231-2的幂</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/20/Leetcode学习笔记-231-2的幂/" class="archive-article-date">
+  	<time datetime="2018-05-20T01:08:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-20</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>给定一个整数，写一个函数来判断它是否是 2 的幂次方。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: 1</span><br><span class="line">输出: true</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: 16</span><br><span class="line">输出: true</span><br><span class="line">示例 3:</span><br><span class="line"></span><br><span class="line">输入: 218</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br>
+        
+          <a class="article-more-a" href="/2018/05/20/Leetcode学习笔记-231-2的幂/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Bit Manipulation</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/20/Leetcode学习笔记-231-2的幂/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-268-缺失数字" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/20/Leetcode学习笔记-268-缺失数字/">Leetcode学习笔记-268-缺失数字</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/20/Leetcode学习笔记-268-缺失数字/" class="archive-article-date">
+  	<time datetime="2018-05-20T00:31:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-20</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>给定一个包含 0, 1, 2, …, n 中 n 个数的序列，找出 0 .. n 中没有出现在序列中的那个数。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: [3,0,1]</span><br><span class="line">输出: 2</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: [9,6,4,2,3,5,7,0,1]</span><br><span class="line">输出: 8</span><br><span class="line">说明:</span><br><span class="line">你的算法应具有线性时间复杂度。你能否仅使用额外常数空间来实现?</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br>
+        
+          <a class="article-more-a" href="/2018/05/20/Leetcode学习笔记-268-缺失数字/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Bit Manipulation</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/20/Leetcode学习笔记-268-缺失数字/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-258-各位相加" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/18/Leetcode学习笔记-258-各位相加/">Leetcode学习笔记-258-各位相加</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/18/Leetcode学习笔记-258-各位相加/" class="archive-article-date">
+  	<time datetime="2018-05-18T03:52:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-18</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>给定一个非负整数 num，反复将各个位上的数字相加，直到结果为一位数。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">示例:</span><br><span class="line"></span><br><span class="line">输入: 38</span><br><span class="line">输出: 2 </span><br><span class="line">解释: 各位相加的过程为：3 + 8 = 11, 1 + 1 = 2。 由于 2 是一位数，所以返回 2。</span><br><span class="line">进阶:</span><br><span class="line">你可以不使用循环或者递归，且在 O(1) 时间复杂度内解决这个问题吗？</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br>
+        
+          <a class="article-more-a" href="/2018/05/18/Leetcode学习笔记-258-各位相加/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/18/Leetcode学习笔记-258-各位相加/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-171-Excel表序列号" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/18/Leetcode学习笔记-171-Excel表序列号/">Leetcode学习笔记-171-Excel表序列号</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/18/Leetcode学习笔记-171-Excel表序列号/" class="archive-article-date">
+  	<time datetime="2018-05-18T03:35:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-18</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>给定一个Excel表格中的列名称，返回其相应的列序号。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: &quot;A&quot;</span><br><span class="line">输出: 1</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: &quot;AB&quot;</span><br><span class="line">输出: 28</span><br><span class="line">示例 3:</span><br><span class="line"></span><br><span class="line">输入: &quot;ZY&quot;</span><br><span class="line">输出: 701</span><br></pre></td></tr></table></figure></font></p>
+<p></p>
+<p><font size="5"><br>
+        
+          <a class="article-more-a" href="/2018/05/18/Leetcode学习笔记-171-Excel表序列号/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/18/Leetcode学习笔记-171-Excel表序列号/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Leetcode学习笔记-12-整数转罗马数字" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/17/Leetcode学习笔记-12-整数转罗马数字/">Leetcode学习笔记-12-整数转罗马数字</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/17/Leetcode学习笔记-12-整数转罗马数字/" class="archive-article-date">
+  	<time datetime="2018-05-17T03:21:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-17</time>
+</a>
+        
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><font size="5"><br><strong>题目：</strong><br>罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。<br>例如， 罗马数字 2 写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II 。<br>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况：<br>I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。<br>X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。<br>C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。<br>给定一个整数，将其转为罗马数字。输入确保在 1 到 3999 的范围内。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: 3</span><br><span class="line">输出: &quot;III&quot;</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: 4</span><br><span class="line">输出: &quot;IV&quot;</span><br><span class="line">示例 3:</span><br><span class="line"></span><br><span class="line">输入: 9</span><br><span class="line">输出: &quot;IX&quot;</span><br><span class="line">示例 4:</span><br><span class="line"></span><br><span class="line">输入: 58</span><br><span class="line">输出: &quot;LVIII&quot;</span><br><span class="line">解释: C = 100, L = 50, XXX = 30, III = 3.</span><br><span class="line">示例 5:</span><br><span class="line"></span><br><span class="line">输入: 1994</span><br><span class="line">输出: &quot;MCMXCIV&quot;</span><br><span class="line">解释: M = 1000, CM = 900, XC = 90, IV = 4.</span><br></pre></td></tr></table></figure></font></p>
+        
+          <a class="article-more-a" href="/2018/05/17/Leetcode学习笔记-12-整数转罗马数字/#more">more >></a>
+        
       
 
       
@@ -384,7 +968,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Stack</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Math</a>
         		</li>
       		
 		</ul>
@@ -394,173 +978,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/10/Leetcode学习笔记-71-简化路径/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Leetcode学习笔记-844-比较含退格的字符串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/10/Leetcode学习笔记-844-比较含退格的字符串/">Leetcode学习笔记-844-比较含退格的字符串</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/10/Leetcode学习笔记-844-比较含退格的字符串/" class="archive-article-date">
-  	<time datetime="2018-08-10T03:03:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-10</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>给定 S 和 T 两个字符串，当它们分别被输入到空白的文本编辑器后，判断二者是否相等，并返回结果。 # 代表退格字符。<br></font><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例 1：</span><br><span class="line">输入：S = &quot;ab#c&quot;, T = &quot;ad#c&quot;</span><br><span class="line">输出：true</span><br><span class="line">解释：S 和 T 都会变成 “ac”。</span><br><span class="line"></span><br><span class="line">提示：</span><br><span class="line">1 &lt;= S.length &lt;= 200</span><br><span class="line">1 &lt;= T.length &lt;= 200</span><br><span class="line">S 和 T 只含有小写字母以及字符 &apos;#&apos;。</span><br></pre></td></tr></table></figure></p>
-<p><font size="5"><br><strong>解题思路：<br></strong><br>利用一个栈来实现，若当前的字符是#，则将栈顶元素弹出，若不是#，则将字符压入栈，最后比较两个字符串是否相同。<br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">backspaceCompare</span><span class="params">(String S, String T)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">return</span> getStr(S.toCharArray()).equals(getStr(T.toCharArray()));</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">private</span> String <span class="title">getStr</span><span class="params">(<span class="keyword">char</span>[] arr)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       Stack&lt;Character&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">       StringBuilder res = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">           <span class="keyword">if</span> (arr[i] == <span class="string">'#'</span>) &#123;</span><br><span class="line">               <span class="keyword">if</span> (!stack.isEmpty())</span><br><span class="line">                   stack.pop();</span><br><span class="line">               <span class="keyword">continue</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           stack.push(arr[i]);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">while</span> (!stack.isEmpty())</span><br><span class="line">           res.append(stack.pop());</span><br><span class="line">       <span class="keyword">return</span> res.toString();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">backspaceCompare</span><span class="params">(self, S, T)</span>:</span></span><br><span class="line">       <span class="string">"""</span></span><br><span class="line"><span class="string">       :type S: str</span></span><br><span class="line"><span class="string">       :type T: str</span></span><br><span class="line"><span class="string">       :rtype: bool</span></span><br><span class="line"><span class="string">       """</span></span><br><span class="line">       <span class="keyword">return</span> self.getStr(S) == self.getStr(T)</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">getStr</span><span class="params">(self, arr)</span>:</span></span><br><span class="line">       stack = []</span><br><span class="line">       <span class="keyword">for</span> ch <span class="keyword">in</span> arr:</span><br><span class="line">           <span class="keyword">if</span> ch == <span class="string">'#'</span>:</span><br><span class="line">               <span class="keyword">if</span> len(stack) &gt; <span class="number">0</span>:</span><br><span class="line">                   stack.pop(<span class="number">-1</span>)</span><br><span class="line">           <span class="keyword">else</span>:</span><br><span class="line">               stack.append(ch)</span><br><span class="line">       <span class="keyword">return</span> <span class="string">""</span>.join(stack)</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Easy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Two Pointers</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Stack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/10/Leetcode学习笔记-844-比较含退格的字符串/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Leetcode学习笔记-807-保持城市天际线" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/09/Leetcode学习笔记-807-保持城市天际线/">Leetcode学习笔记-807-保持城市天际线</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/09/Leetcode学习笔记-807-保持城市天际线/" class="archive-article-date">
-  	<time datetime="2018-08-09T11:21:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-09</time>
-</a>
-        
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><font size="5"><br><strong>题目：</strong><br>在二维数组grid中，grid[i][j]代表位于某处的建筑物的高度。 我们被允许增加任何数量（不同建筑物的数量可能不同）的建筑物的高度。 高度 0 也被认为是建筑物。<br>最后，从新数组的所有四个方向（即顶部，底部，左侧和右侧）观看的“天际线”必须与原始数组的天际线相同。 城市的天际线是从远处观看时，由所有建筑物形成的矩形的外部轮廓。 请看下面的例子。<br>建筑物高度可以增加的最大总和是多少？<br></font><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">例子：</span><br><span class="line">输入： grid = [[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]</span><br><span class="line">输出： 35</span><br><span class="line">解释： </span><br><span class="line">The grid is:</span><br><span class="line">[ [3, 0, 8, 4], </span><br><span class="line">  [2, 4, 5, 7],</span><br><span class="line">  [9, 2, 6, 3],</span><br><span class="line">  [0, 3, 1, 0] ]</span><br><span class="line"></span><br><span class="line">从数组竖直方向（即顶部，底部）看“天际线”是：[9, 4, 8, 7]</span><br><span class="line">从水平水平方向（即左侧，右侧）看“天际线”是：[8, 7, 9, 3]</span><br><span class="line">在不影响天际线的情况下对建筑物进行增高后，新数组如下：</span><br><span class="line">gridNew = [ [8, 4, 8, 7],</span><br><span class="line">            [7, 4, 7, 7],</span><br><span class="line">            [9, 4, 8, 7],</span><br><span class="line">            [3, 3, 3, 3] ]</span><br><span class="line">说明:</span><br><span class="line">1 &lt; grid.length = grid[0].length &lt;= 50。</span><br><span class="line"> grid[i][j] 的高度范围是： [0, 100]。</span><br><span class="line">一座建筑物占据一个grid[i][j]：换言之，它们是 1 x 1 x grid[i][j] 的长方体。</span><br></pre></td></tr></table></figure></p>
-<p><font size="5"><br><strong>解题思路：<br></strong><br>求出每一行，每一列的最大值，二维数组中每个值的更新规则是该元素所在行和列的最大值中取最小值，然后所有增加的值求和即可。<br></font></p>
-<h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxIncreaseKeepingSkyline</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">int</span>[] rowMax = <span class="keyword">new</span> <span class="keyword">int</span>[grid.length];</span><br><span class="line">       <span class="keyword">int</span>[] colMax = <span class="keyword">new</span> <span class="keyword">int</span>[grid[<span class="number">0</span>].length];</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; grid.length; i++)</span><br><span class="line">           rowMax[i] = getRowMax(grid, i);</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; grid[<span class="number">0</span>].length; i++)</span><br><span class="line">           colMax[i] = getColMax(grid, i);</span><br><span class="line"></span><br><span class="line">       <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; grid.length; i++)</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; grid[<span class="number">0</span>].length; j++)</span><br><span class="line">               res += Math.min(rowMax[i], colMax[j]) - grid[i][j];</span><br><span class="line">       <span class="keyword">return</span> res;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getRowMax</span><span class="params">(<span class="keyword">int</span>[][] grid, <span class="keyword">int</span> pos)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">int</span> max = -<span class="number">1</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; grid[pos].length; i++)</span><br><span class="line">           max = Math.max(max, grid[pos][i]);</span><br><span class="line">       <span class="keyword">return</span> max;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getColMax</span><span class="params">(<span class="keyword">int</span>[][] grid, <span class="keyword">int</span> pos)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">int</span> max = -<span class="number">1</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; grid.length; i++)</span><br><span class="line">           max = Math.max(max, grid[i][pos]);</span><br><span class="line">       <span class="keyword">return</span> max;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxIncreaseKeepingSkyline</span><span class="params">(self, grid)</span>:</span></span><br><span class="line">       rowMax, colMax = [], []</span><br><span class="line">       <span class="keyword">for</span> i <span class="keyword">in</span> range(len(grid)):</span><br><span class="line">           rowMax.append(self.getRowMax(grid, i))</span><br><span class="line">       <span class="keyword">for</span> i <span class="keyword">in</span> range(len(grid[<span class="number">0</span>])):</span><br><span class="line">           colMax.append(self.getColMax(grid, i))</span><br><span class="line">       res = <span class="number">0</span></span><br><span class="line">       <span class="keyword">for</span> i <span class="keyword">in</span> range(len(grid)):</span><br><span class="line">           <span class="keyword">for</span> j <span class="keyword">in</span> range(len(grid[<span class="number">0</span>])):</span><br><span class="line">               res += min(rowMax[i], colMax[j]) - grid[i][j]</span><br><span class="line">       <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">getRowMax</span><span class="params">(self, grid, pos)</span>:</span></span><br><span class="line">       m = <span class="number">-1</span></span><br><span class="line">       <span class="keyword">for</span> i <span class="keyword">in</span> range(len(grid[pos])):</span><br><span class="line">           m = max(m, grid[pos][i])</span><br><span class="line">       <span class="keyword">return</span> m</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">getColMax</span><span class="params">(self, grid, pos)</span>:</span></span><br><span class="line">       m = <span class="number">-1</span></span><br><span class="line">       <span class="keyword">for</span> i <span class="keyword">in</span> range(len(grid)):</span><br><span class="line">           m = max(m, grid[i][pos])</span><br><span class="line">       <span class="keyword">return</span> m</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Medium</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/09/Leetcode学习笔记-807-保持城市天际线/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/05/17/Leetcode学习笔记-12-整数转罗马数字/">展开全文 >></a>
         </p>
       
 
@@ -592,7 +1010,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
     </nav>
   
 
@@ -616,7 +1034,23 @@
       	</div>
     </div>
   </div>
-
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("04/05/2018 12:49:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "小站已正常运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
 
 
 </footer>
@@ -700,15 +1134,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -716,7 +1150,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -756,15 +1190,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Design</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -776,11 +1210,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -792,11 +1226,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -804,7 +1242,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -813,10 +1251,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pyecharts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
             
             <div class="clearfix"></div>

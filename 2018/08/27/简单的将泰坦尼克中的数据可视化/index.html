@@ -8,22 +8,22 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>简单的将泰坦尼克中的数据可视化 | 宝石叔叔的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="上次做的只是简单查看数据，看起来并不直观，这次利用pyecharts简单的可视化了其中的一些字段数据： 生存死亡比123pie = pyecharts.Pie(&quot;生存-死亡情况&quot;)s = fullData[&apos;Survived&apos;].value_counts()pie.add(&quot;&quot;, [&quot;死亡&quot;, &quot;存活&quot;], s, is_label_show=True)  存活率12gauge = pyechart">
+  <meta name="description" content="上次做的只是简单查看数据，看起来并不直观，这次利用pyecharts简单的可视化了其中的一些字段数据：">
 <meta name="keywords" content="Kaggle,可视化,pyecharts">
 <meta property="og:type" content="article">
 <meta property="og:title" content="简单的将泰坦尼克中的数据可视化">
 <meta property="og:url" content="http://yoursite.com/2018/08/27/简单的将泰坦尼克中的数据可视化/index.html">
 <meta property="og:site_name" content="宝石叔叔的博客">
-<meta property="og:description" content="上次做的只是简单查看数据，看起来并不直观，这次利用pyecharts简单的可视化了其中的一些字段数据： 生存死亡比123pie = pyecharts.Pie(&quot;生存-死亡情况&quot;)s = fullData[&apos;Survived&apos;].value_counts()pie.add(&quot;&quot;, [&quot;死亡&quot;, &quot;存活&quot;], s, is_label_show=True)  存活率12gauge = pyechart">
+<meta property="og:description" content="上次做的只是简单查看数据，看起来并不直观，这次利用pyecharts简单的可视化了其中的一些字段数据：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/img/titanic2/k1.png">
 <meta property="og:image" content="http://yoursite.com/img/titanic2/k2.png">
 <meta property="og:image" content="http://yoursite.com/img/titanic2/k3.png">
 <meta property="og:image" content="http://yoursite.com/img/titanic2/k4.png">
-<meta property="og:updated_time" content="2018-08-27T12:04:16.059Z">
+<meta property="og:updated_time" content="2018-08-28T01:54:17.398Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单的将泰坦尼克中的数据可视化">
-<meta name="twitter:description" content="上次做的只是简单查看数据，看起来并不直观，这次利用pyecharts简单的可视化了其中的一些字段数据： 生存死亡比123pie = pyecharts.Pie(&quot;生存-死亡情况&quot;)s = fullData[&apos;Survived&apos;].value_counts()pie.add(&quot;&quot;, [&quot;死亡&quot;, &quot;存活&quot;], s, is_label_show=True)  存活率12gauge = pyechart">
+<meta name="twitter:description" content="上次做的只是简单查看数据，看起来并不直观，这次利用pyecharts简单的可视化了其中的一些字段数据：">
 <meta name="twitter:image" content="http://yoursite.com/img/titanic2/k1.png">
   
     <link rel="alternative" href="/atom.xml" title="宝石叔叔的博客" type="application/atom+xml">
@@ -194,13 +194,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><font size="5">上次做的只是简单查看数据，看起来并不直观，这次利用pyecharts简单的可视化了其中的一些字段数据：</font></strong></p>
+        <p><strong><font size="5">上次做的只是简单查看数据，看起来并不直观，这次利用pyecharts简单的可视化了其中的一些字段数据：</font></strong><br><a id="more"></a></p>
 <h1 id="生存死亡比"><a href="#生存死亡比" class="headerlink" title="生存死亡比"></a>生存死亡比</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pie = pyecharts.Pie(<span class="string">"生存-死亡情况"</span>)</span><br><span class="line">s = fullData[<span class="string">'Survived'</span>].value_counts()</span><br><span class="line">pie.add(<span class="string">""</span>, [<span class="string">"死亡"</span>, <span class="string">"存活"</span>], s, is_label_show=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="/img/titanic2/k1.png" alt="avatar"></p>
 <h1 id="存活率"><a href="#存活率" class="headerlink" title="存活率"></a>存活率</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gauge = pyecharts.Gauge(<span class="string">"生存情况"</span>)</span><br><span class="line">gauge.add(<span class="string">"存活/总数"</span>, <span class="string">"存活率"</span>,<span class="number">38.38</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="/img/titanic2/k2.png" alt="avatar"></p>
-<h1 id="各舱乘客总数及存货情况"><a href="#各舱乘客总数及存货情况" class="headerlink" title="各舱乘客总数及存货情况"></a>各舱乘客总数及存货情况</h1><a id="more"></a>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">s = train.Pclass.value_counts()</span><br><span class="line">t = train.Pclass[train[<span class="string">'Survived'</span>] == <span class="number">1</span>].value_counts()</span><br><span class="line">bar = pyecharts.Bar(<span class="string">"各舱乘客存活情况"</span>)</span><br><span class="line">bar.width = <span class="number">500</span></span><br><span class="line">bar.hight = <span class="number">600</span></span><br><span class="line">bar.add(<span class="string">"存活人数"</span>, [<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>],t,is_stack=<span class="keyword">True</span>)</span><br><span class="line">bar.add(<span class="string">"总人数"</span>, [<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>],s,is_stack=<span class="keyword">True</span>)</span><br><span class="line">bar</span><br></pre></td></tr></table></figure>
+<h1 id="各舱乘客总数及存货情况"><a href="#各舱乘客总数及存货情况" class="headerlink" title="各舱乘客总数及存货情况"></a>各舱乘客总数及存货情况</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">s = train.Pclass.value_counts()</span><br><span class="line">t = train.Pclass[train[<span class="string">'Survived'</span>] == <span class="number">1</span>].value_counts()</span><br><span class="line">bar = pyecharts.Bar(<span class="string">"各舱乘客存活情况"</span>)</span><br><span class="line">bar.width = <span class="number">500</span></span><br><span class="line">bar.hight = <span class="number">600</span></span><br><span class="line">bar.add(<span class="string">"存活人数"</span>, [<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>],t,is_stack=<span class="keyword">True</span>)</span><br><span class="line">bar.add(<span class="string">"总人数"</span>, [<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>],s,is_stack=<span class="keyword">True</span>)</span><br><span class="line">bar</span><br></pre></td></tr></table></figure>
 <p><img src="/img/titanic2/k3.png" alt="avatar"></p>
 <h1 id="不同等级的船舱中乘客年龄分布"><a href="#不同等级的船舱中乘客年龄分布" class="headerlink" title="不同等级的船舱中乘客年龄分布"></a>不同等级的船舱中乘客年龄分布</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 不同等级船舱中乘客年龄分布</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getAgeList</span><span class="params">(age)</span>:</span></span><br><span class="line">    age = age[age.notnull()]</span><br><span class="line">    ans = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">11</span>)]</span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> age:</span><br><span class="line">        ans[int(a) // <span class="number">10</span>] += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">line = pyecharts.Line(<span class="string">"不同等级船舱中乘客年龄分布"</span>)</span><br><span class="line">ans1 = getAgeList(train.Age[train.Pclass == <span class="number">1</span>])</span><br><span class="line">ans2 = getAgeList(train.Age[train.Pclass == <span class="number">2</span>])</span><br><span class="line">ans3 = getAgeList(train.Age[train.Pclass == <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">line.add(<span class="string">"一等舱"</span>, [<span class="string">"0"</span>,<span class="string">"10"</span>,<span class="string">"20"</span>,<span class="string">"30"</span>,<span class="string">"40"</span>,<span class="string">"50"</span>,<span class="string">"60"</span>,<span class="string">"70"</span>,<span class="string">"80"</span>,<span class="string">"90"</span>,<span class="string">"100"</span>] ,ans1, is_smooth=<span class="keyword">True</span>)</span><br><span class="line">line.add(<span class="string">"二等舱"</span>, [<span class="string">"0"</span>,<span class="string">"10"</span>,<span class="string">"20"</span>,<span class="string">"30"</span>,<span class="string">"40"</span>,<span class="string">"50"</span>,<span class="string">"60"</span>,<span class="string">"70"</span>,<span class="string">"80"</span>,<span class="string">"90"</span>,<span class="string">"100"</span>] ,ans2, is_smooth=<span class="keyword">True</span>)</span><br><span class="line">line.add(<span class="string">"三等舱"</span>, [<span class="string">"0"</span>,<span class="string">"10"</span>,<span class="string">"20"</span>,<span class="string">"30"</span>,<span class="string">"40"</span>,<span class="string">"50"</span>,<span class="string">"60"</span>,<span class="string">"70"</span>,<span class="string">"80"</span>,<span class="string">"90"</span>,<span class="string">"100"</span>] ,ans3, is_smooth=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="/img/titanic2/k4.png" alt="avatar"></p>
@@ -419,7 +418,23 @@
       	</div>
     </div>
   </div>
-
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("04/05/2018 12:49:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "小站已正常运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
 
 
 </footer>
@@ -503,15 +518,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -519,7 +534,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -559,15 +574,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Design</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -579,11 +594,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -595,11 +610,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -607,7 +626,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -616,10 +635,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pyecharts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
             
             <div class="clearfix"></div>

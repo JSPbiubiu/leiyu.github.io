@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Leetcode学习笔记-257-二叉树的所有路径 | 宝石叔叔的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目：给定一个二叉树，返回所有从根节点到叶子节点的路径。说明: 叶子节点是指没有子节点的节点。12345678910111213示例:输入:   1 /   \2     3 \  5输出: [&amp;quot;1-&amp;gt;2-&amp;gt;5&amp;quot;, &amp;quot;1-&amp;gt;3&amp;quot;]解释: 所有根节点到叶子节点的路径为: 1-&amp;gt;2-&amp;gt;5, 1-&amp;gt;3  解体思路：二叉树前序遍历">
-<meta name="keywords" content="Easy,DFS,Tree">
+  <meta name="description" content="题目：给定一个二叉树，返回所有从根节点到叶子节点的路径。说明: 叶子节点是指没有子节点的节点。12345678910111213示例:输入:   1 /   \2     3 \  5输出: [&amp;quot;1-&amp;gt;2-&amp;gt;5&amp;quot;, &amp;quot;1-&amp;gt;3&amp;quot;]解释: 所有根节点到叶子节点的路径为: 1-&amp;gt;2-&amp;gt;5, 1-&amp;gt;3">
+<meta name="keywords" content="Easy,Tree,DFS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode学习笔记-257-二叉树的所有路径">
 <meta property="og:url" content="http://yoursite.com/2018/05/13/Leetcode学习笔记-257-二叉树的所有路径/index.html">
 <meta property="og:site_name" content="宝石叔叔的博客">
-<meta property="og:description" content="题目：给定一个二叉树，返回所有从根节点到叶子节点的路径。说明: 叶子节点是指没有子节点的节点。12345678910111213示例:输入:   1 /   \2     3 \  5输出: [&amp;quot;1-&amp;gt;2-&amp;gt;5&amp;quot;, &amp;quot;1-&amp;gt;3&amp;quot;]解释: 所有根节点到叶子节点的路径为: 1-&amp;gt;2-&amp;gt;5, 1-&amp;gt;3  解体思路：二叉树前序遍历">
+<meta property="og:description" content="题目：给定一个二叉树，返回所有从根节点到叶子节点的路径。说明: 叶子节点是指没有子节点的节点。12345678910111213示例:输入:   1 /   \2     3 \  5输出: [&amp;quot;1-&amp;gt;2-&amp;gt;5&amp;quot;, &amp;quot;1-&amp;gt;3&amp;quot;]解释: 所有根节点到叶子节点的路径为: 1-&amp;gt;2-&amp;gt;5, 1-&amp;gt;3">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-13T01:34:17.993Z">
+<meta property="og:updated_time" content="2018-08-28T02:14:53.112Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习笔记-257-二叉树的所有路径">
-<meta name="twitter:description" content="题目：给定一个二叉树，返回所有从根节点到叶子节点的路径。说明: 叶子节点是指没有子节点的节点。12345678910111213示例:输入:   1 /   \2     3 \  5输出: [&amp;quot;1-&amp;gt;2-&amp;gt;5&amp;quot;, &amp;quot;1-&amp;gt;3&amp;quot;]解释: 所有根节点到叶子节点的路径为: 1-&amp;gt;2-&amp;gt;5, 1-&amp;gt;3  解体思路：二叉树前序遍历">
+<meta name="twitter:description" content="题目：给定一个二叉树，返回所有从根节点到叶子节点的路径。说明: 叶子节点是指没有子节点的节点。12345678910111213示例:输入:   1 /   \2     3 \  5输出: [&amp;quot;1-&amp;gt;2-&amp;gt;5&amp;quot;, &amp;quot;1-&amp;gt;3&amp;quot;]解释: 所有根节点到叶子节点的路径为: 1-&amp;gt;2-&amp;gt;5, 1-&amp;gt;3">
   
     <link rel="alternative" href="/atom.xml" title="宝石叔叔的博客" type="application/atom+xml">
   
@@ -191,7 +191,7 @@
       
         <p><font size="5"><br><strong>题目：</strong><br>给定一个二叉树，返回所有从根节点到叶子节点的路径。<br>说明: 叶子节点是指没有子节点的节点。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">示例:</span><br><span class="line"></span><br><span class="line">输入:</span><br><span class="line"></span><br><span class="line">   1</span><br><span class="line"> /   \</span><br><span class="line">2     3</span><br><span class="line"> \</span><br><span class="line">  5</span><br><span class="line"></span><br><span class="line">输出: [&quot;1-&gt;2-&gt;5&quot;, &quot;1-&gt;3&quot;]</span><br><span class="line"></span><br><span class="line">解释: 所有根节点到叶子节点的路径为: 1-&gt;2-&gt;5, 1-&gt;3</span><br></pre></td></tr></table></figure></font></p>
 <p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>二叉树前序遍历的变形，利用一个字符串来记录路径，最后如果当前节点的左右子树都为空就把当前字符串填入到结果集合中。<br><br></font></p>
+<p><font size="5"><br><a id="more"></a><br><strong>解题思路：<br></strong><br>二叉树前序遍历的变形，利用一个字符串来记录路径，最后如果当前节点的左右子树都为空就把当前字符串填入到结果集合中。<br><br></font></p>
 <h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; res = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">binaryTreePaths</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">           <span class="keyword">return</span> res;</span><br><span class="line">       helper(root, <span class="string">""</span>);</span><br><span class="line">       <span class="keyword">return</span> res;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">helper</span><span class="params">(TreeNode root, String pre)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> (root != <span class="keyword">null</span>) &#123;</span><br><span class="line"></span><br><span class="line">           <span class="keyword">if</span> (pre.equals(<span class="string">""</span>))</span><br><span class="line">               pre += root.val;</span><br><span class="line">           <span class="keyword">else</span></span><br><span class="line">               pre += <span class="string">"-&gt;"</span> + root.val;</span><br><span class="line">           <span class="keyword">if</span> (root.left == <span class="keyword">null</span> &amp;&amp; root.right == <span class="keyword">null</span>)</span><br><span class="line">               res.add(pre);</span><br><span class="line">           helper(root.left, pre);</span><br><span class="line">           helper(root.right, pre);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binaryTreePaths</span><span class="params">(self, root)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type root: TreeNode</span></span><br><span class="line"><span class="string">    :rtype: List[str]</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    res = []</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">    self.helper(root, <span class="string">""</span>, res)</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(self, root, pre, res)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type root: TreeNode</span></span><br><span class="line"><span class="string">    :type pre: str</span></span><br><span class="line"><span class="string">    :type res: List[str]</span></span><br><span class="line"><span class="string">    :rtype: None</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> root:</span><br><span class="line">        <span class="keyword">if</span> pre == <span class="string">""</span>:</span><br><span class="line">            pre += str(root.val)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            pre += <span class="string">"-&gt;"</span> + str(root.val)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root.left <span class="keyword">and</span> <span class="keyword">not</span> root.right:</span><br><span class="line">            res.append(pre)</span><br><span class="line">        self.helper(root.left, pre, res)</span><br><span class="line">        self.helper(root.right, pre, res)</span><br></pre></td></tr></table></figure>
       
@@ -241,11 +241,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DFS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Tree</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Tree</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DFS</a>
         		</li>
       		
 		</ul>
@@ -412,7 +412,23 @@
       	</div>
     </div>
   </div>
-
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("04/05/2018 12:49:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "小站已正常运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
 
 
 </footer>
@@ -496,15 +512,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,7 +528,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -552,15 +568,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Design</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -572,11 +588,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -588,11 +604,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -600,7 +620,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -609,10 +629,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pyecharts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
             
             <div class="clearfix"></div>

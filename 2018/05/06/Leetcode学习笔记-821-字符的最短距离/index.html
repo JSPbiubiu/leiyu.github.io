@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="宝石叔叔的博客">
 <meta property="og:description" content="题目：给定一个字符串 S 和一个字符 C。返回一个代表字符串 S 中每个字符到字符串 S 中的字符 C 的最短距离的数组。123456789示例 1:输入: S = &amp;quot;loveleetcode&amp;quot;, C = &amp;apos;e&amp;apos;输出: [3, 2, 1, 0, 1, 0, 0, 1, 2, 2, 1, 0]说明:字符串 S 的长度范围为 [1, 10000]。C 是一个单字">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-06T13:03:58.748Z">
+<meta property="og:updated_time" content="2018-08-28T02:28:46.438Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习笔记-821-字符的最短距离">
 <meta name="twitter:description" content="题目：给定一个字符串 S 和一个字符 C。返回一个代表字符串 S 中每个字符到字符串 S 中的字符 C 的最短距离的数组。123456789示例 1:输入: S = &amp;quot;loveleetcode&amp;quot;, C = &amp;apos;e&amp;apos;输出: [3, 2, 1, 0, 1, 0, 0, 1, 2, 2, 1, 0]说明:字符串 S 的长度范围为 [1, 10000]。C 是一个单字">
@@ -191,7 +191,7 @@
       
         <p><font size="5"><br><strong>题目：</strong><br>给定一个字符串 S 和一个字符 C。返回一个代表字符串 S 中每个字符到字符串 S 中的字符 C 的最短距离的数组。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: S = &quot;loveleetcode&quot;, C = &apos;e&apos;</span><br><span class="line">输出: [3, 2, 1, 0, 1, 0, 0, 1, 2, 2, 1, 0]</span><br><span class="line">说明:</span><br><span class="line"></span><br><span class="line">字符串 S 的长度范围为 [1, 10000]。</span><br><span class="line">C 是一个单字符，且保证是字符串 S 里的字符。</span><br><span class="line">S 和 C 中的所有字母均为小写字母。</span><br></pre></td></tr></table></figure></font></p>
 <p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>先开一个等长数组，然后将位置变量初始值设为负的数组长度，这样从左到右扫数组的时候可以让当前值过大。<br>先从左到右扫描数组，若当前字符匹配目标字符，则将当前位置存放在位置变量中，数组元素值为位置变量减去当前位置。<br>再从右到左扫描一遍，若当前字符匹配匹配目标字符，则将当前位置存放在位置变量中，数组元素值为<br>min(当前元素的值，位置变量减去当前位置的绝对值），用绝对值是因为有可能上一次循环之后位置变量在前面，这样的话会出现负数。<br>最后返回数组。<br><br></font></p>
+<p><font size="5"><br><a id="more"></a><br><strong>解题思路：<br></strong><br>先开一个等长数组，然后将位置变量初始值设为负的数组长度，这样从左到右扫数组的时候可以让当前值过大。<br>先从左到右扫描数组，若当前字符匹配目标字符，则将当前位置存放在位置变量中，数组元素值为位置变量减去当前位置。<br>再从右到左扫描一遍，若当前字符匹配匹配目标字符，则将当前位置存放在位置变量中，数组元素值为<br>min(当前元素的值，位置变量减去当前位置的绝对值），用绝对值是因为有可能上一次循环之后位置变量在前面，这样的话会出现负数。<br>最后返回数组。<br><br></font></p>
 <h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] shortestToChar(String S, <span class="keyword">char</span> C) &#123;</span><br><span class="line">       <span class="keyword">int</span> len = S.length();</span><br><span class="line">       <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">       <span class="keyword">int</span> currentPosition = -len;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; ++i)&#123;</span><br><span class="line">           <span class="keyword">if</span> (S.charAt(i) == C)</span><br><span class="line">               currentPosition = i;</span><br><span class="line">           res[i] = i - currentPosition;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = len - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i)&#123;</span><br><span class="line">           <span class="keyword">if</span>(S.charAt(i) == C)</span><br><span class="line">               currentPosition = i;</span><br><span class="line">           res[i] = Math.min(res[i], Math.abs(currentPosition - i));</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> res;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shortestToChar</span><span class="params">(self, S, C)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type S: str</span></span><br><span class="line"><span class="string">    :type C: str</span></span><br><span class="line"><span class="string">    :rtype: List[int]</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    length = len(S)</span><br><span class="line">    res, currentPosition = [<span class="number">0</span>] * length, -length</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">        <span class="keyword">if</span> S[i] == C:</span><br><span class="line">            currentPosition = i</span><br><span class="line">        res[i] = i - currentPosition</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(length - <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">        <span class="keyword">if</span> S[i] == C:</span><br><span class="line">            currentPosition = i</span><br><span class="line">        res[i] = min(res[i], abs(currentPosition - i))</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
       
@@ -404,7 +404,23 @@
       	</div>
     </div>
   </div>
-
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("04/05/2018 12:49:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "小站已正常运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
 
 
 </footer>
@@ -488,15 +504,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,7 +520,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -544,15 +560,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Design</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -564,11 +580,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -580,11 +596,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -592,7 +612,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -601,10 +621,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pyecharts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
             
             <div class="clearfix"></div>

@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="宝石叔叔的博客">
 <meta property="og:description" content="题目：给定两个表示复数的字符串。返回表示它们乘积的字符串。注意，根据定义 i^2 = -1 。1234567891011121314示例 1:输入: &amp;quot;1+1i&amp;quot;, &amp;quot;1+1i&amp;quot;输出: &amp;quot;0+2i&amp;quot;解释: (1 + i) * (1 + i) = 1 + i2 + 2 * i = 2i ，你需要将它转换为 0+2i 的形式。示例 2:输入:">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-17T03:17:37.759Z">
+<meta property="og:updated_time" content="2018-08-28T02:21:08.529Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习笔记-537-复数乘法">
 <meta name="twitter:description" content="题目：给定两个表示复数的字符串。返回表示它们乘积的字符串。注意，根据定义 i^2 = -1 。1234567891011121314示例 1:输入: &amp;quot;1+1i&amp;quot;, &amp;quot;1+1i&amp;quot;输出: &amp;quot;0+2i&amp;quot;解释: (1 + i) * (1 + i) = 1 + i2 + 2 * i = 2i ，你需要将它转换为 0+2i 的形式。示例 2:输入:">
@@ -191,7 +191,7 @@
       
         <p><font size="5"><br><strong>题目：</strong><br>给定两个表示复数的字符串。<br>返回表示它们乘积的字符串。注意，根据定义 i^2 = -1 。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">输入: &quot;1+1i&quot;, &quot;1+1i&quot;</span><br><span class="line">输出: &quot;0+2i&quot;</span><br><span class="line">解释: (1 + i) * (1 + i) = 1 + i2 + 2 * i = 2i ，你需要将它转换为 0+2i 的形式。</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入: &quot;1+-1i&quot;, &quot;1+-1i&quot;</span><br><span class="line">输出: &quot;0+-2i&quot;</span><br><span class="line">解释: (1 - i) * (1 - i) = 1 + i2 - 2 * i = -2i ，你需要将它转换为 0+-2i 的形式。 </span><br><span class="line">注意:</span><br><span class="line"></span><br><span class="line">输入字符串不包含额外的空格。</span><br><span class="line">输入字符串将以 a+bi 的形式给出，其中整数 a 和 b 的范围均在 [-100, 100] 之间。输出也应当符合这种形式。</span><br></pre></td></tr></table></figure></font></p>
 <p></p>
-<p><font size="5"><br><strong>解体思路：</strong><br>注意（a + b） <em> (c + d) = a </em> c + b <em> d + a </em> d + b * c        i^2 = -1;<br>利用字符串切割  注意“+” 在正则表达式有特殊含义，所以切割时要加转义字”\+”<br><br></font></p>
+<p><font size="5"><br><a id="more"></a><br><strong>解题思路：<br></strong><br>注意（a + b） <em> (c + d) = a </em> c + b <em> d + a </em> d + b * c        i^2 = -1;<br>利用字符串切割  注意“+” 在正则表达式有特殊含义，所以切割时要加转义字”\+”<br><br></font></p>
 <h2 id="Java："><a href="#Java：" class="headerlink" title="Java："></a><strong>Java：</strong></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">complexNumberMultiply</span><span class="params">(String a, String b)</span> </span>&#123;</span><br><span class="line">       </span><br><span class="line">       String[] a1 = a.split(<span class="string">"\\+"</span>);</span><br><span class="line">	String[] a2 = b.split(<span class="string">"\\+"</span>);</span><br><span class="line">	<span class="keyword">int</span> x1 = Integer.parseInt(a1[<span class="number">0</span>]);</span><br><span class="line">	<span class="keyword">int</span> y1 = Integer.parseInt(a1[<span class="number">1</span>].replace(<span class="string">"i"</span>, <span class="string">""</span>));</span><br><span class="line">	<span class="keyword">int</span> x2 = Integer.parseInt(a2[<span class="number">0</span>]);</span><br><span class="line">	<span class="keyword">int</span> y2 = Integer.parseInt(a2[<span class="number">1</span>].replace(<span class="string">"i"</span>, <span class="string">""</span>));</span><br><span class="line">	<span class="keyword">int</span> x1x2y1y2 = (x1 * x2) + (-<span class="number">1</span> * y1 * y2);</span><br><span class="line">	<span class="keyword">int</span> x1y2x2y1 = (x1 * y2) + (x2 * y1);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> x1x2y1y2 + <span class="string">"+"</span> + x1y2x2y1 + <span class="string">"i"</span>;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Python："><a href="#Python：" class="headerlink" title="Python："></a><strong>Python：</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">complexNumberMultiply</span><span class="params">(self, a, b)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type a: str</span></span><br><span class="line"><span class="string">    :type b: str</span></span><br><span class="line"><span class="string">    :rtype: str</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    stra, strb = a.split(<span class="string">'+'</span>), b.split(<span class="string">'+'</span>)</span><br><span class="line">    x1, y1, x2, y2 = int(stra[<span class="number">0</span>]), int(stra[<span class="number">1</span>][<span class="number">0</span>:len(stra[<span class="number">1</span>]) - <span class="number">1</span>]), int(strb[<span class="number">0</span>]), int(strb[<span class="number">1</span>][<span class="number">0</span>:len(strb[<span class="number">1</span>]) - <span class="number">1</span>])</span><br><span class="line">    real = x1 * x2 + y1 * y2 * <span class="number">-1</span></span><br><span class="line">    image = x1 * y2 + x2 * y1</span><br><span class="line">    <span class="keyword">return</span> str(real) + <span class="string">'+'</span> + str(image) + <span class="string">'i'</span></span><br></pre></td></tr></table></figure>
 
@@ -413,7 +413,23 @@
       	</div>
     </div>
   </div>
-
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("04/05/2018 12:49:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "小站已正常运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
 
 
 </footer>
@@ -497,15 +513,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hash</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Easy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,7 +529,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">BFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -553,15 +569,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Stack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Design</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -573,11 +589,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
+                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Queue</a>
+                <a href="javascript:void(0)" class="js-tag color3">Backtracking</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -589,11 +605,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kaggle</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Geometry</a>
+                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -601,7 +621,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -610,10 +630,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pyecharts</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">python爬虫</a>
               </li>
             
             <div class="clearfix"></div>
